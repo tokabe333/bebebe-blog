@@ -24,7 +24,9 @@ class MainPageView extends State<MainPageWidget> {
         child: Container(
       color: const Color.fromARGB(255, 137, 194, 240),
       width: double.infinity,
-      // child: Image.asset("test_body.jpg"),
+      child: Image.asset(
+        "test_body.jpg",
+      ),
     ));
   }
 } // end of class

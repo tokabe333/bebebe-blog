@@ -38,23 +38,28 @@ class Topbar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    double display_width = MediaQuery.of(context).size.width;
-    double padding_width = (display_width - this.contentWidth) / 2;
-    if (padding_width < 0) {
-      padding_width = 0;
+    double displayWidth = MediaQuery.of(context).size.width;
+    double paddingWidth = (displayWidth - this.contentWidth) / 2;
+    if (paddingWidth < 0) {
+      paddingWidth = 0;
+      this.contentWidth = displayWidth;
+    } else {
+      this.contentWidth = this._contentWidth;
     }
 
     return Container(
         width: this.contentWidth,
         margin:
-            EdgeInsets.only(top: 20, left: padding_width, right: padding_width),
+            EdgeInsets.only(top: 20, left: paddingWidth, right: paddingWidth),
         color: const Color.fromARGB(255, 184, 184, 184),
         child: Row(
-          children: [
-            this.iconImage,
-            Row(children: this.tabs),
-          ],
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(margin: EdgeInsets.only(left: 20), child: this.iconImage),
+            Container(
+                margin: EdgeInsets.only(right: 20),
+                child: Row(children: this.tabs)),
+          ],
         ));
   } // end of build
 } // end of class
