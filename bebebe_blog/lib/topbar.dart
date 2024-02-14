@@ -11,7 +11,10 @@ class Topbar extends StatelessWidget implements PreferredSizeWidget {
   double height;
 
   /// タブバーのwidth default=700px
-  double width;
+  double contentWidth;
+
+  /// デフォルトの横幅を記憶しておく
+  double _contentWidth = 0;
 
   /// 画面上部への余白
   double padding_top = 20;
@@ -25,7 +28,9 @@ class Topbar extends StatelessWidget implements PreferredSizeWidget {
   Widget iconImage = Image.asset("assets/fox_logo_alpha.png");
 
   /// Constructor
-  Topbar({double this.height = 70, double this.width = 700}) {}
+  Topbar({double this.height = 70, double this.contentWidth = 700}) {
+    this._contentWidth = this.contentWidth;
+  }
 
   /// これをオーバーライドすることでPreferredSizeWidgetになってAppBarに表示できる
   @override
@@ -34,15 +39,19 @@ class Topbar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     double display_width = MediaQuery.of(context).size.width;
-    double padding_width = (display_width - this.width) / 2;
+    double padding_width = (display_width - this.contentWidth) / 2;
+    if (padding_width < 0) {
+      padding_width = 0;
+    }
 
     return Container(
-        padding: EdgeInsets.only(left: padding_width, right: padding_width),
-        margin: EdgeInsets.only(top: this.padding_top),
+        width: this.contentWidth,
+        margin:
+            EdgeInsets.only(top: 20, left: padding_width, right: padding_width),
         color: const Color.fromARGB(255, 184, 184, 184),
         child: Row(
           children: [
-            this.iconImage!,
+            this.iconImage,
             Row(children: this.tabs),
           ],
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

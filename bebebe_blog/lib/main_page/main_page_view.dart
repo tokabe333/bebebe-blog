@@ -16,12 +16,15 @@ class MainPageWidget extends StatefulWidget {
 class MainPageView extends State<MainPageWidget> {
   @override
   Widget build(BuildContext context) {
-    return MainFrame(page: this._createMainPage());
+    return MainFrame(page: this._createMainPage(context));
   } // end of build
 
-  Widget _createMainPage() {
-    return Container(
-        color: const Color.fromARGB(255, 137, 194, 240),
-        width: double.infinity);
+  Widget _createMainPage(BuildContext context) {
+    return Center(
+        child: Container(
+      color: const Color.fromARGB(255, 137, 194, 240),
+      width: double.infinity,
+      // child: Image.asset("test_body.jpg"),
+    ));
   }
 } // end of class
