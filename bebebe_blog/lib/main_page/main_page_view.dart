@@ -1,0 +1,27 @@
+/// -------------------------------------------
+///         メインページ(自己紹介)
+/// -------------------------------------------
+
+import 'package:flutter/material.dart';
+
+import '../main_frame.dart';
+
+class MainPageWidget extends StatefulWidget {
+  MainPageWidget({Key? key}) : super(key: key);
+  final String title = "べーやん's Site";
+
+  State<MainPageWidget> createState() => MainPageView();
+} // end of class
+
+class MainPageView extends State<MainPageWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return MainFrame(page: this._createMainPage());
+  } // end of build
+
+  Widget _createMainPage() {
+    return Container(
+        color: const Color.fromARGB(255, 137, 194, 240),
+        width: double.infinity);
+  }
+} // end of class
