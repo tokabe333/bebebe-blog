@@ -15,6 +15,14 @@ class BebebeApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MainPageWidget();
+    return MaterialApp(
+      title: "Material Appに書いてる",
+      home: MainPageWidget(),
+      theme: ThemeData(
+        colorScheme:
+            ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 226, 216, 243)),
+        useMaterial3: true,
+      ),
+    );
   } // end of build
 } // end of class
