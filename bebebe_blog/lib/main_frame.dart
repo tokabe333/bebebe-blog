@@ -23,43 +23,73 @@ class MainFrame extends StatefulWidget {
 
 /// 実際に表示を記述する
 class MainFrameView extends State<MainFrame> {
-  /// 想定する画面サイズ
-  double display_width = 1980;
+  /// 利用する領域 % (左右はパディング)
+  double mainContentWidthRatio = 0.95;
 
-  /// 利用する領域(左右はパディング)
-  double main_content_width = 1800;
+  /// 実際のメインコンテンツの大きさ
+  double mainContentWidth = 0;
 
-  /// 初期の大きさを保存しておく
-  double _main_content_width = 0;
+  // 現在の画面サイズ
+  double displayWidth = 0;
+
+  // 画面サイズに応じてパディングサイズを決める
+  double paddingWidth = 0;
 
   /// constructor (初期の大きさを保存しておく)
-  MainFrameView() {
-    this._main_content_width = this.main_content_width;
-  }
+  MainFrameView() {}
 
   @override
   Widget build(BuildContext context) {
+    // 画面が更新されるタイミングで横幅も調整
+    this.displayWidth = MediaQuery.of(context).size.width;
+    this.mainContentWidth = this.displayWidth * this.mainContentWidthRatio;
+    this.paddingWidth = (this.displayWidth - this.mainContentWidth) / 2;
+
+    if (this.paddingWidth < 0) {
+      this.mainContentWidth = this.displayWidth;
+      this.paddingWidth = 0;
+    } else {
+      this.mainContentWidth = this.displayWidth * this.mainContentWidth;
+    }
+
     return Scaffold(
-      appBar: Topbar(height: 70, contentWidth: this.main_content_width),
-      body: this._createAutoFillBody(),
-    );
+        appBar: Topbar(height: 70),
+        body: this._createAutoFillBody(),
+        bottomNavigationBar: this._createBottomIconBar());
   } // end of build
 
   /// 画面サイズに応じて自動的にパディングをつくるボディー
   Widget _createAutoFillBody() {
-    double display_width = MediaQuery.of(context).size.width;
-    double padding_width = (display_width - this.main_content_width) / 2;
+    // メイン画面はスクロール可能なバーで
+    return Scrollbar(
+        child: SingleChildScrollView(
+            child: Container(
+                width: mainContentWidth,
+                margin: EdgeInsets.only(
+                    left: this.paddingWidth, right: this.paddingWidth),
+                child: widget.page)));
+  } // end of method
 
-    if (padding_width < 0) {
-      this.main_content_width = display_width;
-      padding_width = 0;
-    } else {
-      this.main_content_width = this._main_content_width;
-    }
-
+  Widget _createBottomIconBar() {
     return Container(
-        width: this.main_content_width,
-        margin: EdgeInsets.only(left: padding_width, right: padding_width),
-        child: widget.page);
-  } // end of  method
+      margin: EdgeInsets.only(top: 10, bottom: 5),
+      height: 20,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          this._createBottomIcon(path: "images/twitter.png"),
+          this._createBottomIcon(path: "images/youtube.png"),
+          this._createBottomIcon(path: "images/qiita_gray.png"),
+        ],
+      ),
+    );
+  } // end of method
+
+  Widget _createBottomIcon({required String path, String hyperLink = ""}) {
+    return Container(
+        height: 20,
+        width: 20,
+        margin: EdgeInsets.only(left: 7, right: 7),
+        child: Image.asset(path));
+  } // end of method
 } // end of class

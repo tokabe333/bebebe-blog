@@ -11,11 +11,17 @@ class Topbar extends StatelessWidget implements PreferredSizeWidget {
   /// タブバーのheight default=50px
   double height;
 
-  /// タブバーのwidth default=700px
-  double contentWidth;
+  /// 利用する領域 % (左右はパディング)
+  double mainContentWidthRatio = 0.95;
 
-  /// デフォルトの横幅を記憶しておく
-  double _contentWidth = 0;
+  /// 実際のメインコンテンツの大きさ
+  double mainContentWidth = 0;
+
+  // 現在の画面サイズ
+  double displayWidth = 0;
+
+  // 画面サイズに応じてパディングサイズを決める
+  double paddingWidth = 0;
 
   /// 画面上部への余白
   double padding_top = 20;
@@ -27,11 +33,12 @@ class Topbar extends StatelessWidget implements PreferredSizeWidget {
   Widget iconImage = Image.asset("images/fox_logo_alpha.png");
 
   /// Constructor
-  Topbar({double this.height = 70, double this.contentWidth = 700}) {
-    this._contentWidth = this.contentWidth;
-
+  Topbar({double this.height = 70}) {
     this.tabs.add(this._createTabContainer("home", fontSize: 20));
+    this.tabs.add(this._createTabContainer("twitter", fontSize: 20));
+    this.tabs.add(this._createTabContainer("youtube", fontSize: 20));
     this.tabs.add(this._createTabContainer("qiita", fontSize: 20));
+    this.tabs.add(this._createTabContainer("atcoder", fontSize: 20));
   } // end of constructor
 
   /// これをオーバーライドすることでPreferredSizeWidgetになってAppBarに表示できる
@@ -40,30 +47,36 @@ class Topbar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    // 画面サイズに応じたコンテンツサイズ変更
-    double displayWidth = MediaQuery.of(context).size.width;
-    double paddingWidth = (displayWidth - this.contentWidth) / 2;
-    if (paddingWidth < 0) {
-      paddingWidth = 0;
-      this.contentWidth = displayWidth;
+    // 画面が更新されるタイミングで横幅も調整
+    this.displayWidth = MediaQuery.of(context).size.width;
+    this.mainContentWidth = this.displayWidth * this.mainContentWidthRatio;
+    this.paddingWidth = (this.displayWidth - this.mainContentWidth) / 2;
+
+    if (this.paddingWidth < 0) {
+      this.mainContentWidth = this.displayWidth;
+      this.paddingWidth = 0;
     } else {
-      this.contentWidth = this._contentWidth;
+      this.mainContentWidth = this.displayWidth * this.mainContentWidth;
     }
 
+    // トップバーの配置
     return Container(
-        width: this.contentWidth,
+        width: this.mainContentWidth,
         margin:
-            EdgeInsets.only(top: 20, left: paddingWidth, right: paddingWidth),
+            EdgeInsets.only(top: 10, left: paddingWidth, right: paddingWidth),
         // color: const Color.fromARGB(255, 184, 184, 184),
         color: Colors.white,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Container(margin: EdgeInsets.only(left: 20), child: this.iconImage),
+            // アイコン
+            Container(margin: EdgeInsets.only(left: 40), child: this.iconImage),
+            // サイトタイトル
             Container(
                 margin: EdgeInsets.only(left: 20),
                 child: this
-                    ._createTextDancingScript("Beyan's Site", fontSize: 20)),
+                    ._createTextDancingScript("Beyan's Site", fontSize: 25)),
+            // 右上タブ
             Expanded(
                 child: Container(
               alignment: Alignment.centerRight,
@@ -85,13 +98,7 @@ class Topbar extends StatelessWidget implements PreferredSizeWidget {
                 color: Colors.black, letterSpacing: 0.5, fontSize: fontSize)));
   } // end of method
 
-  Widget _createTextAiharaFont(String text, {double fontSize = 15}) {
-    return Text(
-      text,
-      style: TextStyle(fontFamily: "Otsutome", fontSize: fontSize),
-    );
-  }
-
+  // 右上タブに表示するテキストを作成
   Widget _createTabContainer(String text, {double fontSize = 15}) {
     return Container(
         margin: EdgeInsets.only(left: 20, right: 10),
@@ -99,5 +106,5 @@ class Topbar extends StatelessWidget implements PreferredSizeWidget {
           text,
           fontSize: fontSize,
         ));
-  }
+  } // end of method
 } // end of class
