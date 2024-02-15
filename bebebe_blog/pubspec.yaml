@@ -12,6 +12,7 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.2
+  google_fonts: ^6.1.0
 
 dev_dependencies:
   flutter_test:
@@ -25,3 +26,20 @@ flutter:
 
   assets:
   - assets/
+
+  fonts:
+    - family: Aihara
+      fonts:
+      - asset: assets/fonts/AiharaSignPen_free.ttf
+
+    - family: Hui
+      fonts:
+      - asset: assets/fonts/HuiFont.ttf
+
+    - family: Kawaii
+      fonts:
+      - asset: assets/fonts/KTEGAKI.ttf
+
+    - family: Otsutome
+      fonts:
+      - asset: assets/fonts/OtsutomeFont_Ver3_15.ttf

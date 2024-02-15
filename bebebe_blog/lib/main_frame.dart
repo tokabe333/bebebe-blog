@@ -27,7 +27,7 @@ class MainFrameView extends State<MainFrame> {
   double display_width = 1980;
 
   /// 利用する領域(左右はパディング)
-  double main_content_width = 1200;
+  double main_content_width = 1800;
 
   /// 初期の大きさを保存しておく
   double _main_content_width = 0;
