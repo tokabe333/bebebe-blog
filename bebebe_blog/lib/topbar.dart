@@ -24,7 +24,7 @@ class Topbar extends StatelessWidget implements PreferredSizeWidget {
   final List<Widget> tabs = [];
 
   /// 画面左上に表示するアイコン画像
-  Widget iconImage = Image.asset("assets/fox_logo_alpha.png");
+  Widget iconImage = Image.asset("images/fox_logo_alpha.png");
 
   /// Constructor
   Topbar({double this.height = 70, double this.contentWidth = 700}) {
