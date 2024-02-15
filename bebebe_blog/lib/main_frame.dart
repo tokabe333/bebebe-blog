@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 /// -------------------------------------------
 
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'topbar.dart';
 
@@ -35,6 +36,9 @@ class MainFrameView extends State<MainFrame> {
   // 画面サイズに応じてパディングサイズを決める
   double paddingWidth = 0;
 
+  // スクロールバーのコントローラー
+  ScrollController mainContentScrollController = ScrollController();
+
   /// constructor (初期の大きさを保存しておく)
   MainFrameView() {}
 
@@ -62,7 +66,9 @@ class MainFrameView extends State<MainFrame> {
   Widget _createAutoFillBody() {
     // メイン画面はスクロール可能なバーで
     return Scrollbar(
+        controller: this.mainContentScrollController,
         child: SingleChildScrollView(
+            controller: this.mainContentScrollController,
             child: Container(
                 width: mainContentWidth,
                 margin: EdgeInsets.only(
@@ -77,8 +83,13 @@ class MainFrameView extends State<MainFrame> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          this._createBottomIcon(path: "images/twitter.png"),
-          this._createBottomIcon(path: "images/youtube.png"),
+          this._createBottomIcon(
+              path: "images/twitter.png",
+              hyperLink: "https://twitter.com/tokabe333"),
+          this._createBottomIcon(
+              path: "images/youtube.png",
+              hyperLink:
+                  "https://www.youtube.com/channel/UCS2o5U1Aom8AgK4Pn1MI16w"),
           this._createBottomIcon(path: "images/qiita_gray.png"),
         ],
       ),
@@ -90,6 +101,14 @@ class MainFrameView extends State<MainFrame> {
         height: 20,
         width: 20,
         margin: EdgeInsets.only(left: 7, right: 7),
-        child: Image.asset(path));
+        child: InkWell(
+          child: Image.asset(path),
+          onTap: () async {
+            final url = Uri.parse(hyperLink);
+            if (await canLaunchUrl(url)) {
+              launchUrl(url);
+            }
+          },
+        ));
   } // end of method
 } // end of class
