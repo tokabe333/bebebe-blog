@@ -91,8 +91,9 @@ class MainFrameView extends State<MainFrame> {
           this._createBottomIcon(path: "images/twitter_blue.png", hyperLink: "https://twitter.com/tokabe333"),
           this._createBottomIcon(
               path: "images/youtube_red.png", hyperLink: "https://www.youtube.com/channel/UCS2o5U1Aom8AgK4Pn1MI16w"),
-          this._createBottomIcon(path: "images/qiita.png"),
+          this._createBottomIcon(path: "images/qiita.png", hyperLink: "https://qiita.com/tokabe333"),
           this._createBottomIcon(path: "images/github.png", hyperLink: "https://github.com/tokabe333/"),
+          this._createBottomIcon(path: "images/atcoder.png", hyperLink: "https://atcoder.jp/users/tokabe333"),
         ],
       ),
     );
