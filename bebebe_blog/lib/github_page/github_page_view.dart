@@ -34,7 +34,7 @@ class GithubPageView extends State<GithubPageWidget> {
   Widget _createGithubPage(BuildContext context) {
     return Center(
         child: Container(
-      color: Color.fromARGB(255, 136, 210, 206),
+      color: Color.fromARGB(255, 14, 145, 138),
       width: double.infinity,
       height: 2000,
       // child: Image.asset(

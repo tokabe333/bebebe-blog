@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'dart:html' as html;
 // import 'package:url_launcher/url_launcher.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:vrouter/vrouter.dart';
 
 import 'main_page/main_page_view.dart';
 
@@ -37,24 +38,29 @@ class Topbar extends StatelessWidget implements PreferredSizeWidget {
   Widget iconImage = Image.asset("images/fox_logo_alpha.png");
 
   /// Constructor
-  Topbar({double this.height = 70}) {
-    this
-        .tabs
-        .add(this._createTabContainer("home", fontSize: 20, hyperLink: "https://beyan-connect.net", currentTab: true));
-    this.tabs.add(this._createTabContainer("twitter", fontSize: 20, hyperLink: "https://twitter.com/home"));
-    this.tabs.add(this._createTabContainer("youtube",
-        fontSize: 20, hyperLink: "https://www.youtube.com/channel/UCS2o5U1Aom8AgK4Pn1MI16w"));
-    this.tabs.add(this._createTabContainer("qiita", fontSize: 20, hyperLink: "https://qiita.com/tokabe333"));
-    this.tabs.add(this._createTabContainer("atcoder", fontSize: 20, hyperLink: "https://atcoder.jp/users/tokabe333"));
-    this.tabs.add(this._createTabContainer("github", fontSize: 20, hyperLink: "https://github.com/tokabe333"));
-  } // end of constructor
+  Topbar({double this.height = 70}) {} // end of constructor
 
   /// これをオーバーライドすることでPreferredSizeWidgetになってAppBarに表示できる
   @override
   Size get preferredSize => Size.fromHeight(this.height + this.padding_top);
 
+  /// 画面上部のタブバーを作成する
+  void _createTopTabs(BuildContext context) {
+    this.tabs.add(this._createTabContainerInside(context, "home", fontSize: 20, route: "/"));
+    this.tabs.add(this._createTabContainer("twitter", fontSize: 20, hyperLink: "https://twitter.com/home"));
+    this.tabs.add(this._createTabContainer("youtube",
+        fontSize: 20, hyperLink: "https://www.youtube.com/channel/UCS2o5U1Aom8AgK4Pn1MI16w"));
+    this.tabs.add(this._createTabContainer("qiita", fontSize: 20, hyperLink: "https://qiita.com/tokabe333"));
+    this.tabs.add(this._createTabContainer("atcoder", fontSize: 20, hyperLink: "https://atcoder.jp/users/tokabe333"));
+    // this.tabs.add(this._createTabContainer("github", fontSize: 20, hyperLink: "https://github.com/tokabe333"));
+    this.tabs.add(this._createTabContainerInside(context, "github", fontSize: 20, route: "/github"));
+  }
+
   @override
   Widget build(BuildContext context) {
+    // 画面上部のバーを作成する
+    this._createTopTabs(context);
+
     // 画面が更新されるタイミングで横幅も調整
     this.displayWidth = MediaQuery.of(context).size.width;
     this.mainContentWidth = this.displayWidth * this.mainContentWidthRatio;
@@ -112,11 +118,23 @@ class Topbar extends StatelessWidget implements PreferredSizeWidget {
               fontSize: fontSize,
             ),
             onTap: () {
-              if (currentTab == true) {
-                html.window.open(hyperLink, "_self");
-              } else {
-                html.window.open(hyperLink, "_blank");
-              }
+              html.window.open(hyperLink, "_blank");
+            }));
+  } // end of method
+
+  /// サイト内で遷移する際のタブテキストを作成
+  Widget _createTabContainerInside(BuildContext context, String text,
+      {double fontSize = 15, String route = "", bool currentTab = false}) {
+    return Container(
+        margin: EdgeInsets.only(left: 20, right: 10),
+        child: InkWell(
+            child: this._createTextDancingScript(
+              text,
+              fontSize: fontSize,
+            ),
+            onTap: () {
+              // html.window.open(hyperLink, "_blank");
+              context.vRouter.to(route);
             }));
   } // end of method
 } // end of class
