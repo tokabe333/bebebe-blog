@@ -16,11 +16,10 @@ class BebebeApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Material Appに書いてる",
+      title: "beyan's home page",
       home: MainPageWidget(),
       theme: ThemeData(
-        colorScheme:
-            ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 226, 216, 243)),
+        colorScheme: ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 226, 216, 243)),
         useMaterial3: true,
       ),
     );

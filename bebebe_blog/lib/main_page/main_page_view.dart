@@ -16,7 +16,7 @@ class MainPageWidget extends StatefulWidget {
 class MainPageView extends State<MainPageWidget> {
   @override
   Widget build(BuildContext context) {
-    return MainFrame(page: this._createMainPage(context));
+    return MainFrame(title: "beyan's home", page: this._createMainPage(context));
   } // end of build
 
   Widget _createMainPage(BuildContext context) {
