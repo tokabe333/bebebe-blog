@@ -31,7 +31,7 @@ class MainFrameView extends State<MainFrame> {
   double mainContentWidthRatio = 0.95;
 
   /// 実際のメインコンテンツの大きさ
-  double mainContentWidth = 0;
+  static double mainContentWidth = 0;
 
   // 現在の画面サイズ
   double displayWidth = 0;
@@ -49,14 +49,14 @@ class MainFrameView extends State<MainFrame> {
   Widget build(BuildContext context) {
     // 画面が更新されるタイミングで横幅も調整
     this.displayWidth = MediaQuery.of(context).size.width;
-    this.mainContentWidth = this.displayWidth * this.mainContentWidthRatio;
-    this.paddingWidth = (this.displayWidth - this.mainContentWidth) / 2;
+    mainContentWidth = this.displayWidth * this.mainContentWidthRatio;
+    this.paddingWidth = (this.displayWidth - mainContentWidth) / 2;
 
     if (this.paddingWidth < 0) {
-      this.mainContentWidth = this.displayWidth;
+      mainContentWidth = this.displayWidth;
       this.paddingWidth = 0;
     } else {
-      this.mainContentWidth = this.displayWidth * this.mainContentWidth;
+      mainContentWidth = this.displayWidth * this.mainContentWidthRatio;
     }
 
     return Title(
