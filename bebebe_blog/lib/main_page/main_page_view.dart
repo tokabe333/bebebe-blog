@@ -9,7 +9,6 @@ import '../main_frame.dart';
 class MainPageWidget extends StatefulWidget {
   MainPageWidget({Key? key}) : super(key: key);
   final String title = "べーやん's Site";
-
   State<MainPageWidget> createState() => MainPageView();
 } // end of class
 
