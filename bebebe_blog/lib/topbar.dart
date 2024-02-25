@@ -133,8 +133,10 @@ class Topbar extends StatelessWidget implements PreferredSizeWidget {
               fontSize: fontSize,
             ),
             onTap: () {
-              // html.window.open(hyperLink, "_blank");
-              context.vRouter.to(route);
+              // 別のページなら遷移する(現在のページには遷移しない)
+              if (context.vRouter.path != route) {
+                context.vRouter.to(route);
+              }
             }));
   } // end of method
 } // end of class
