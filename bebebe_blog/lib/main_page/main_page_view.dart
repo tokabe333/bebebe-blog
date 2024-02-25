@@ -9,14 +9,13 @@ import '../main_frame.dart';
 class MainPageWidget extends StatefulWidget {
   MainPageWidget({Key? key}) : super(key: key);
   final String title = "べーやん's Site";
-
   State<MainPageWidget> createState() => MainPageView();
 } // end of class
 
 class MainPageView extends State<MainPageWidget> {
   @override
   Widget build(BuildContext context) {
-    return MainFrame(page: this._createMainPage(context));
+    return MainFrame(title: "beyan's home", page: this._createMainPage(context));
   } // end of build
 
   Widget _createMainPage(BuildContext context) {

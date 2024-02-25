@@ -5,7 +5,7 @@
 
 import 'package:flutter/material.dart';
 import 'dart:html' as html;
-import 'package:url_launcher/url_launcher.dart';
+// import 'package:url_launcher/url_launcher.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'main_page/main_page_view.dart';
@@ -38,12 +38,12 @@ class Topbar extends StatelessWidget implements PreferredSizeWidget {
 
   /// Constructor
   Topbar({double this.height = 70}) {
-    this.tabs.add(this._createTabContainerInside("home", fontSize: 20, hyperLink: "https://beyan-connect.net"));
-    this.tabs.add(this._createTabContainerOutside("twitter", fontSize: 20));
-    this.tabs.add(this._createTabContainerOutside("youtube", fontSize: 20));
-    this.tabs.add(this._createTabContainerOutside("qiita", fontSize: 20));
-    this.tabs.add(this._createTabContainerOutside("atcoder", fontSize: 20));
-    this.tabs.add(this._createTabContainerOutside("github", fontSize: 20));
+    this.tabs.add(this._createTabContainer("home", fontSize: 20, hyperLink: "https://beyan-connect.net"));
+    this.tabs.add(this._createTabContainer("twitter", fontSize: 20));
+    this.tabs.add(this._createTabContainer("youtube", fontSize: 20));
+    this.tabs.add(this._createTabContainer("qiita", fontSize: 20));
+    this.tabs.add(this._createTabContainer("atcoder", fontSize: 20));
+    this.tabs.add(this._createTabContainer("github", fontSize: 20));
   } // end of constructor
 
   /// これをオーバーライドすることでPreferredSizeWidgetになってAppBarに表示できる
@@ -100,18 +100,7 @@ class Topbar extends StatelessWidget implements PreferredSizeWidget {
   } // end of method
 
   // 右上タブに表示するテキストを作成
-  Widget _createTabContainerOutside(String text, {double fontSize = 15, String hyperLink = ""}) {
-    return Container(
-        margin: EdgeInsets.only(left: 20, right: 10),
-        child: InkWell(
-            child: this._createTextDancingScript(
-              text,
-              fontSize: fontSize,
-            ),
-            onTap: () {}));
-  } // end of method
-
-  Widget _createTabContainerInside(String text, {double fontSize = 15, String hyperLink = ""}) {
+  Widget _createTabContainer(String text, {double fontSize = 15, String hyperLink = "", bool currentTab = false}) {
     return Container(
         margin: EdgeInsets.only(left: 20, right: 10),
         child: InkWell(
@@ -120,7 +109,11 @@ class Topbar extends StatelessWidget implements PreferredSizeWidget {
               fontSize: fontSize,
             ),
             onTap: () {
-              html.window.open(hyperLink, "");
+              if (currentTab == true) {
+                html.window.open(hyperLink, "_self");
+              } else {
+                html.window.open(hyperLink, "_blank");
+              }
             }));
-  }
+  } // end of method
 } // end of class

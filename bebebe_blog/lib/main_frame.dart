@@ -13,11 +13,14 @@ import 'topbar.dart';
 /// Webサイトの構成を決めるフレーム
 /// 各ページはこれに自身を渡すことで画面を表示する
 class MainFrame extends StatefulWidget {
-  MainFrame({Key? key, required Widget this.page}) : super(key: key);
+  MainFrame({Key? key, String this.title = "beyan's page", required Widget this.page}) : super(key: key);
 
   /// 各種表示したいページ
   /// これを引数で受け取って右側に表示する
   Widget page;
+
+  // タブに表示されるタイトル
+  String title;
 
   State<MainFrame> createState() => MainFrameView();
 } // end of class
@@ -56,8 +59,13 @@ class MainFrameView extends State<MainFrame> {
       this.mainContentWidth = this.displayWidth * this.mainContentWidth;
     }
 
-    return Scaffold(
-        appBar: Topbar(height: 70), body: this._createAutoFillBody(), bottomNavigationBar: this._createBottomIconBar());
+    return Title(
+        color: Colors.black,
+        title: widget.title,
+        child: Scaffold(
+            appBar: Topbar(height: 70),
+            body: this._createAutoFillBody(),
+            bottomNavigationBar: this._createBottomIconBar()));
   } // end of build
 
   /// 画面サイズに応じて自動的にパディングをつくるボディー
