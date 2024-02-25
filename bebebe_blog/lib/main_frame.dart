@@ -57,9 +57,7 @@ class MainFrameView extends State<MainFrame> {
     }
 
     return Scaffold(
-        appBar: Topbar(height: 70),
-        body: this._createAutoFillBody(),
-        bottomNavigationBar: this._createBottomIconBar());
+        appBar: Topbar(height: 70), body: this._createAutoFillBody(), bottomNavigationBar: this._createBottomIconBar());
   } // end of build
 
   /// 画面サイズに応じて自動的にパディングをつくるボディー
@@ -71,8 +69,7 @@ class MainFrameView extends State<MainFrame> {
             controller: this.mainContentScrollController,
             child: Container(
                 width: mainContentWidth,
-                margin: EdgeInsets.only(
-                    left: this.paddingWidth, right: this.paddingWidth),
+                margin: EdgeInsets.only(left: this.paddingWidth, right: this.paddingWidth),
                 child: widget.page)));
   } // end of method
 
@@ -83,14 +80,11 @@ class MainFrameView extends State<MainFrame> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          this._createBottomIcon(path: "images/twitter_blue.png", hyperLink: "https://twitter.com/tokabe333"),
           this._createBottomIcon(
-              path: "images/twitter.png",
-              hyperLink: "https://twitter.com/tokabe333"),
-          this._createBottomIcon(
-              path: "images/youtube.png",
-              hyperLink:
-                  "https://www.youtube.com/channel/UCS2o5U1Aom8AgK4Pn1MI16w"),
-          this._createBottomIcon(path: "images/qiita_gray.png"),
+              path: "images/youtube_red.png", hyperLink: "https://www.youtube.com/channel/UCS2o5U1Aom8AgK4Pn1MI16w"),
+          this._createBottomIcon(path: "images/qiita.png"),
+          this._createBottomIcon(path: "images/github.png", hyperLink: "https://github.com/tokabe333/"),
         ],
       ),
     );

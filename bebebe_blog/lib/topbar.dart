@@ -4,7 +4,11 @@
 /// -------------------------------------------
 
 import 'package:flutter/material.dart';
+import 'dart:html' as html;
+import 'package:url_launcher/url_launcher.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import 'main_page/main_page_view.dart';
 
 /// 画面上部に表示するバー
 class Topbar extends StatelessWidget implements PreferredSizeWidget {
@@ -34,11 +38,12 @@ class Topbar extends StatelessWidget implements PreferredSizeWidget {
 
   /// Constructor
   Topbar({double this.height = 70}) {
-    this.tabs.add(this._createTabContainer("home", fontSize: 20));
-    this.tabs.add(this._createTabContainer("twitter", fontSize: 20));
-    this.tabs.add(this._createTabContainer("youtube", fontSize: 20));
-    this.tabs.add(this._createTabContainer("qiita", fontSize: 20));
-    this.tabs.add(this._createTabContainer("atcoder", fontSize: 20));
+    this.tabs.add(this._createTabContainerInside("home", fontSize: 20, hyperLink: "https://beyan-connect.net"));
+    this.tabs.add(this._createTabContainerOutside("twitter", fontSize: 20));
+    this.tabs.add(this._createTabContainerOutside("youtube", fontSize: 20));
+    this.tabs.add(this._createTabContainerOutside("qiita", fontSize: 20));
+    this.tabs.add(this._createTabContainerOutside("atcoder", fontSize: 20));
+    this.tabs.add(this._createTabContainerOutside("github", fontSize: 20));
   } // end of constructor
 
   /// これをオーバーライドすることでPreferredSizeWidgetになってAppBarに表示できる
@@ -62,8 +67,7 @@ class Topbar extends StatelessWidget implements PreferredSizeWidget {
     // トップバーの配置
     return Container(
         width: this.mainContentWidth,
-        margin:
-            EdgeInsets.only(top: 10, left: paddingWidth, right: paddingWidth),
+        margin: EdgeInsets.only(top: 10, left: paddingWidth, right: paddingWidth),
         // color: const Color.fromARGB(255, 184, 184, 184),
         color: Colors.white,
         child: Row(
@@ -73,9 +77,7 @@ class Topbar extends StatelessWidget implements PreferredSizeWidget {
             Container(margin: EdgeInsets.only(left: 40), child: this.iconImage),
             // サイトタイトル
             Container(
-                margin: EdgeInsets.only(left: 20),
-                child: this
-                    ._createTextDancingScript("Beyan's Site", fontSize: 25)),
+                margin: EdgeInsets.only(left: 20), child: this._createTextDancingScript("Beyan's Site", fontSize: 25)),
             // 右上タブ
             Expanded(
                 child: Container(
@@ -94,17 +96,31 @@ class Topbar extends StatelessWidget implements PreferredSizeWidget {
   Widget _createTextDancingScript(String text, {double fontSize = 15}) {
     return Text(text,
         style: GoogleFonts.getFont("Leckerli One",
-            textStyle: TextStyle(
-                color: Colors.black, letterSpacing: 0.5, fontSize: fontSize)));
+            textStyle: TextStyle(color: Colors.black, letterSpacing: 0.5, fontSize: fontSize)));
   } // end of method
 
   // 右上タブに表示するテキストを作成
-  Widget _createTabContainer(String text, {double fontSize = 15}) {
+  Widget _createTabContainerOutside(String text, {double fontSize = 15, String hyperLink = ""}) {
     return Container(
         margin: EdgeInsets.only(left: 20, right: 10),
-        child: this._createTextDancingScript(
-          text,
-          fontSize: fontSize,
-        ));
+        child: InkWell(
+            child: this._createTextDancingScript(
+              text,
+              fontSize: fontSize,
+            ),
+            onTap: () {}));
   } // end of method
+
+  Widget _createTabContainerInside(String text, {double fontSize = 15, String hyperLink = ""}) {
+    return Container(
+        margin: EdgeInsets.only(left: 20, right: 10),
+        child: InkWell(
+            child: this._createTextDancingScript(
+              text,
+              fontSize: fontSize,
+            ),
+            onTap: () {
+              html.window.open(hyperLink, "");
+            }));
+  }
 } // end of class
