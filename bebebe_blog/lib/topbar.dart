@@ -76,7 +76,7 @@ class Topbar extends StatelessWidget implements PreferredSizeWidget {
     // トップバーの配置
     return Container(
         width: this.mainContentWidth,
-        margin: EdgeInsets.only(top: 10, left: paddingWidth, right: paddingWidth),
+        margin: EdgeInsets.only(top: 20, bottom: 20, left: paddingWidth, right: paddingWidth),
         // color: const Color.fromARGB(255, 184, 184, 184),
         color: Colors.white,
         child: Row(

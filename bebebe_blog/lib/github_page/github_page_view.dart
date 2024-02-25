@@ -78,7 +78,7 @@ class GithubPageView extends State<GithubPageWidget> {
     return Center(
         key: this.mainContentKey,
         child: Container(
-          color: Color.fromARGB(255, 94, 175, 171),
+          // color: Color.fromARGB(255, 94, 175, 171),
           width: double.infinity,
           height: 2000,
           child: repositoryContainers,
