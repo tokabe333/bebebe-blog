@@ -38,12 +38,15 @@ class Topbar extends StatelessWidget implements PreferredSizeWidget {
 
   /// Constructor
   Topbar({double this.height = 70}) {
-    this.tabs.add(this._createTabContainer("home", fontSize: 20, hyperLink: "https://beyan-connect.net"));
-    this.tabs.add(this._createTabContainer("twitter", fontSize: 20));
-    this.tabs.add(this._createTabContainer("youtube", fontSize: 20));
-    this.tabs.add(this._createTabContainer("qiita", fontSize: 20));
-    this.tabs.add(this._createTabContainer("atcoder", fontSize: 20));
-    this.tabs.add(this._createTabContainer("github", fontSize: 20));
+    this
+        .tabs
+        .add(this._createTabContainer("home", fontSize: 20, hyperLink: "https://beyan-connect.net", currentTab: true));
+    this.tabs.add(this._createTabContainer("twitter", fontSize: 20, hyperLink: "https://twitter.com/home"));
+    this.tabs.add(this._createTabContainer("youtube",
+        fontSize: 20, hyperLink: "https://www.youtube.com/channel/UCS2o5U1Aom8AgK4Pn1MI16w"));
+    this.tabs.add(this._createTabContainer("qiita", fontSize: 20, hyperLink: "https://qiita.com/tokabe333"));
+    this.tabs.add(this._createTabContainer("atcoder", fontSize: 20, hyperLink: "https://atcoder.jp/users/tokabe333"));
+    this.tabs.add(this._createTabContainer("github", fontSize: 20, hyperLink: "https://github.com/tokabe333"));
   } // end of constructor
 
   /// これをオーバーライドすることでPreferredSizeWidgetになってAppBarに表示できる
