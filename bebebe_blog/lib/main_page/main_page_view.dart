@@ -35,7 +35,7 @@ class MainPageView extends State<MainPageWidget> {
         secondChild: MainFrame(title: "beyan's home", page: this._createMainPage(context)),
         crossFadeState: this._isFinishedDemo ? CrossFadeState.showSecond : CrossFadeState.showFirst,
         duration: Duration(milliseconds: 300));
-  } // end of build
+  } //   end of build
 
   /// メインページ作成用
   Widget _createMainPage(BuildContext context) {
