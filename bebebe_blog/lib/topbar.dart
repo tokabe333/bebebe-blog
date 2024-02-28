@@ -54,6 +54,7 @@ class Topbar extends StatelessWidget implements PreferredSizeWidget {
     this.tabs.add(this._createTabContainer("atcoder", fontSize: 20, hyperLink: "https://atcoder.jp/users/tokabe333"));
     // this.tabs.add(this._createTabContainer("github", fontSize: 20, hyperLink: "https://github.com/tokabe333"));
     this.tabs.add(this._createTabContainerInside(context, "github", fontSize: 20, route: "/github"));
+    this.tabs.add(this._createTabContainerInside(context, "contact", fontSize: 20, route: "/contact"));
   }
 
   @override
