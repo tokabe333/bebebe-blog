@@ -13,8 +13,8 @@ class StartPageWidget extends StatefulWidget {
 }
 
 class StartPageView extends State<StartPageWidget> with TickerProviderStateMixin {
-  late final AnimationController _controller1 = AnimationController(vsync: this, duration: const Duration(seconds: 2))
-    ..repeat(reverse: true);
+  late final AnimationController _controller1 =
+      AnimationController(vsync: this, duration: const Duration(milliseconds: 300))..repeat(reverse: true);
 
   late final Animation<double> _animation1 = CurvedAnimation(parent: this._controller1, curve: Curves.easeIn);
 
@@ -26,10 +26,16 @@ class StartPageView extends State<StartPageWidget> with TickerProviderStateMixin
 
   @override
   Widget build(BuildContext context) {
-    return Container(color: Colors.blue, width: 1000, height: 1000);
-    // return ColoredBox(
-    //     color: Colors.white,
-    //     child: FadeTransition(
-    //         opacity: this._animation1, child: const Padding(padding: EdgeInsets.all(8), child: FlutterLogo())));
+    return Container(
+      width: 1000,
+      height: 500,
+      alignment: Alignment.center,
+      color: Colors.blue,
+    );
+    return Container(
+        height: MediaQuery.of(context).size.height,
+        color: Colors.white,
+        child: FadeTransition(
+            opacity: this._animation1, child: const Padding(padding: EdgeInsets.all(8), child: FlutterLogo())));
   }
 }
