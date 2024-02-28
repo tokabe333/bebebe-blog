@@ -25,7 +25,7 @@ class MainPageView extends State<MainPageWidget> {
   /// 画面切り替えのためにディレイして状態を変化させる
   MainPageView(this._isPlayDemo) {
     if (this._isPlayDemo) {
-      Future.delayed(Duration(milliseconds: 2000), () {
+      Future.delayed(Duration(milliseconds: 5000), () {
         this._isFinishedDemo = true;
         print("画面チェンジ");
         setState(() {});

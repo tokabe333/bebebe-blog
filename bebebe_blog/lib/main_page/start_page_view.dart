@@ -3,6 +3,7 @@
 /// -------------------------------------------
 
 import 'package:flutter/material.dart';
+import 'package:rive/rive.dart';
 
 import '../main_frame.dart';
 
@@ -18,6 +19,9 @@ class StartPageView extends State<StartPageWidget> with TickerProviderStateMixin
 
   late final Animation<double> _animation1 = CurvedAnimation(parent: this._controller1, curve: Curves.easeIn);
 
+  // Riveアニメーション
+  RiveAnimationController _controller = SimpleAnimation("thumpnail");
+
   // @override
   // void dispose() {
   //   this._controller1.dispose();
@@ -26,16 +30,25 @@ class StartPageView extends State<StartPageWidget> with TickerProviderStateMixin
 
   @override
   Widget build(BuildContext context) {
+    // return Container(
+    //   width: 1000,
+    //   height: 500,
+    //   alignment: Alignment.center,
+    //   color: Colors.blue,
+    // );
+
     return Container(
-      width: 1000,
-      height: 500,
-      alignment: Alignment.center,
-      color: Colors.blue,
-    );
-    return Container(
-        height: MediaQuery.of(context).size.height,
-        color: Colors.white,
-        child: FadeTransition(
-            opacity: this._animation1, child: const Padding(padding: EdgeInsets.all(8), child: FlutterLogo())));
+        height: 500,
+        width: 1000,
+        color: Colors.blue,
+        child: RiveAnimation.asset(
+          "assets/animations/main.riv",
+          controllers: [this._controller],
+        ));
+    // return Container(
+    //     height: MediaQuery.of(context).size.height,
+    //     color: Colors.white,
+    //     child: FadeTransition(
+    //         opacity: this._animation1, child: const Padding(padding: EdgeInsets.all(8), child: FlutterLogo())));
   }
 }
