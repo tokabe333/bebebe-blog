@@ -5,6 +5,7 @@
 import 'package:flutter/material.dart';
 import 'package:vrouter/vrouter.dart';
 
+import 'main_page/start_page_view.dart';
 import './main_page/main_page_view.dart';
 import './github_page/github_page_view.dart';
 
@@ -34,6 +35,7 @@ class BebebeApp extends StatelessWidget {
       },
       routes: [
         VWidget(path: "/", widget: MainPageWidget()),
+        VWidget(path: "/home", widget: MainPageWidget()),
         VWidget(path: "/github", widget: GithubPageWidget()),
         VWidget(path: "/contact", widget: MainPageWidget()),
         VRouteRedirector(path: r'*', redirectTo: "/"),

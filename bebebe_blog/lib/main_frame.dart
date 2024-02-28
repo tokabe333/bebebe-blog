@@ -62,10 +62,12 @@ class MainFrameView extends State<MainFrame> {
     return Title(
         color: Colors.black,
         title: widget.title,
-        child: Scaffold(
-            appBar: Topbar(height: 70),
-            body: this._createAutoFillBody(),
-            bottomNavigationBar: this._createBottomIconBar()));
+        child: Container(
+            height: MediaQuery.of(context).size.height,
+            child: Scaffold(
+                appBar: Topbar(height: 70),
+                body: this._createAutoFillBody(),
+                bottomNavigationBar: this._createBottomIconBar())));
   } // end of build
 
   /// 画面サイズに応じて自動的にパディングをつくるボディー
