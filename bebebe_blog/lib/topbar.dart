@@ -46,7 +46,7 @@ class Topbar extends StatelessWidget implements PreferredSizeWidget {
 
   /// 画面上部のタブバーを作成する
   void _createTopTabs(BuildContext context) {
-    this.tabs.add(this._createTabContainerInside(context, "home", fontSize: 20, route: "/"));
+    this.tabs.add(this._createTabContainerInside(context, "home", fontSize: 20, route: "/home"));
     this.tabs.add(this._createTabContainer("twitter", fontSize: 20, hyperLink: "https://twitter.com/home"));
     this.tabs.add(this._createTabContainer("youtube",
         fontSize: 20, hyperLink: "https://www.youtube.com/channel/UCS2o5U1Aom8AgK4Pn1MI16w"));

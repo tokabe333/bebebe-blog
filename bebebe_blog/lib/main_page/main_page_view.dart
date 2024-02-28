@@ -9,32 +9,42 @@ import '../main_frame.dart';
 import './start_page_view.dart';
 
 class MainPageWidget extends StatefulWidget {
-  MainPageWidget({Key? key, bool isDemo = true}) : super(key: key);
+  MainPageWidget({Key? key, bool this.isPlayDemo = true}) : super(key: key);
   final String title = "べーやん's Site";
-  State<MainPageWidget> createState() => MainPageView();
+  bool isPlayDemo = true;
+  State<MainPageWidget> createState() => MainPageView(isPlayDemo);
 } // end of class
 
 class MainPageView extends State<MainPageWidget> {
   /// 画面切り替え用のフラグ
   bool _isFinishedDemo = false;
 
+  /// デモ画面再生フラグ
+  bool _isPlayDemo = true;
+
   /// 画面切り替えのためにディレイして状態を変化させる
-  MainPageView() {
-    print("constructor");
-    Future.delayed(Duration(milliseconds: 2000), () {
-      this._isFinishedDemo = true;
-      print("画面チェンジ");
-      setState(() {});
-    });
+  MainPageView(this._isPlayDemo) {
+    if (this._isPlayDemo) {
+      Future.delayed(Duration(milliseconds: 2000), () {
+        this._isFinishedDemo = true;
+        print("画面チェンジ");
+        setState(() {});
+      });
+    }
   } // end of constructor
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedCrossFade(
-        firstChild: StartPageWidget(),
-        secondChild: MainFrame(title: "beyan's home", page: this._createMainPage(context)),
-        crossFadeState: this._isFinishedDemo ? CrossFadeState.showSecond : CrossFadeState.showFirst,
-        duration: Duration(milliseconds: 300));
+    if (this._isPlayDemo) {
+      /// デモ画面と普通の画面を切り替える
+      return AnimatedCrossFade(
+          firstChild: StartPageWidget(),
+          secondChild: MainFrame(title: "beyan's home", page: this._createMainPage(context)),
+          crossFadeState: this._isFinishedDemo ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+          duration: Duration(milliseconds: 300));
+    } else {
+      return MainFrame(title: "beyan's home", page: this._createMainPage(context));
+    }
   } //   end of build
 
   /// メインページ作成用

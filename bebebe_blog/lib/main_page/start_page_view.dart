@@ -18,11 +18,11 @@ class StartPageView extends State<StartPageWidget> with TickerProviderStateMixin
 
   late final Animation<double> _animation1 = CurvedAnimation(parent: this._controller1, curve: Curves.easeIn);
 
-  @override
-  void dispose() {
-    this._controller1.dispose();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   this._controller1.dispose();
+  //   // super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
