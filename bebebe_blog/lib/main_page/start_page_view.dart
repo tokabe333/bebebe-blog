@@ -23,7 +23,8 @@ class StartPageView extends State<StartPageWidget>
       CurvedAnimation(parent: this._controller1, curve: Curves.easeIn);
 
   // Riveアニメーション
-  RiveAnimationController _controller = SimpleAnimation("thumpnail");
+  RiveAnimationController _controller = SimpleAnimation("demo");
+  // RiveAnimationController _controller = SimpleAnimation("Idle");
 
   // @override
   // void dispose() {
@@ -33,19 +34,15 @@ class StartPageView extends State<StartPageWidget>
 
   @override
   Widget build(BuildContext context) {
-    // return Container(
-    //   width: 1000,
-    //   height: 500,
-    //   alignment: Alignment.center,
-    //   color: Colors.blue,
-    // );
-
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return Container(
-        height: 500,
-        width: 1000,
+        height: height,
+        width: width,
         color: Colors.blue,
         child: RiveAnimation.asset(
-          "assets/animations/liquid_fox.riv",
+          // "assets/animations/laptop_click.riv",
+          "assets/animations/maindemo.riv",
           controllers: [this._controller],
         ));
     // return Container(

@@ -25,7 +25,7 @@ class MainPageView extends State<MainPageWidget> {
   /// 画面切り替えのためにディレイして状態を変化させる
   MainPageView(this._isPlayDemo) {
     if (this._isPlayDemo) {
-      Future.delayed(Duration(milliseconds: 5000), () {
+      Future.delayed(Duration(milliseconds: 6000), () {
         this._isFinishedDemo = true;
         print("画面チェンジ");
         setState(() {});
@@ -39,11 +39,15 @@ class MainPageView extends State<MainPageWidget> {
       /// デモ画面と普通の画面を切り替える
       return AnimatedCrossFade(
           firstChild: StartPageWidget(),
-          secondChild: MainFrame(title: "beyan's home", page: this._createMainPage(context)),
-          crossFadeState: this._isFinishedDemo ? CrossFadeState.showSecond : CrossFadeState.showFirst,
-          duration: Duration(milliseconds: 300));
+          secondChild: MainFrame(
+              title: "beyan's home", page: this._createMainPage(context)),
+          crossFadeState: this._isFinishedDemo
+              ? CrossFadeState.showSecond
+              : CrossFadeState.showFirst,
+          duration: Duration(milliseconds: 1000));
     } else {
-      return MainFrame(title: "beyan's home", page: this._createMainPage(context));
+      return MainFrame(
+          title: "beyan's home", page: this._createMainPage(context));
     }
   } //   end of build
 
