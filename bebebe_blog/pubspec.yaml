@@ -30,6 +30,7 @@ flutter:
   assets:
   - assets/images/
   - assets/animations/
+  - assets/animations/liquid_fox.riv
 
   fonts:
     - family: Aihara
