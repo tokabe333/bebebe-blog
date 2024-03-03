@@ -36,16 +36,11 @@ class StartPageView extends State<StartPageWidget> with TickerProviderStateMixin
     return Container(
         height: height,
         width: width,
-        color: Colors.blue,
+        color: const Color.fromARGB(255, 137, 194, 240),
         child: RiveAnimation.asset(
           // "assets/animations/laptop_click.riv",
           "assets/animations/maindemo_nologo.riv",
           controllers: [this._controller],
         ));
-    // return Container(
-    //     height: MediaQuery.of(context).size.height,
-    //     color: Colors.white,
-    //     child: FadeTransition(
-    //         opacity: this._animation1, child: const Padding(padding: EdgeInsets.all(8), child: FlutterLogo())));
-  }
-}
+  } // end of method
+} // end of class

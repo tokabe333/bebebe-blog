@@ -49,6 +49,7 @@ class MainPageView extends State<MainPageWidget> {
 
   /// メインページ作成用
   Widget _createMainPage(BuildContext context) {
+    // return Container();
     return Center(
         child: Container(
       color: const Color.fromARGB(255, 137, 194, 240),

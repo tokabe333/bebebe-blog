@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:vrouter/vrouter.dart';
 
 import 'topbar.dart';
 
@@ -39,14 +40,26 @@ class MainFrameView extends State<MainFrame> {
   // 画面サイズに応じてパディングサイズを決める
   double paddingWidth = 0;
 
+  // トップバーの高さ
+  double topbarHeight = 60;
+
   // スクロールバーのコントローラー
   ScrollController mainContentScrollController = ScrollController();
+
+  /// トップバーのDrawerを取得するためのキー
+  GlobalKey<TopbarView>? drawerKey;
+
+  // /// トップバーくん
+  // late Topbar topbar;
+
+  /// Scaffoldのキーを作ってDrawerのON/OFFを切り替える
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   /// constructor (初期の大きさを保存しておく)
   MainFrameView() {}
 
-  /// Scaffoldのキーを作ってDrawerのON/OFFを切り替える
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
+  @override
+  void initState() {}
 
   @override
   Widget build(BuildContext context) {
@@ -62,16 +75,39 @@ class MainFrameView extends State<MainFrame> {
       mainContentWidth = this.displayWidth * this.mainContentWidthRatio;
     }
 
+    // トップバーを作ってキーを取得する
     return Title(
       color: Colors.black,
       title: widget.title,
       child: Container(
-        height: MediaQuery.of(context).size.height,
+        // height: MediaQuery.of(context).size.height,
+        // width: MediaQuery.of(context).size.width,
+        // decoration: const BoxDecoration(
+        //   gradient: LinearGradient(
+        //     begin: Alignment.topCenter,
+        //     end: Alignment.bottomCenter,
+        //     colors: [
+        //       const Color.fromARGB(255, 137, 194, 240),
+        //       Color.fromARGB(255, 160, 210, 252),
+        //       Color.fromARGB(255, 59, 93, 121),
+        //     ],
+        //     stops: [0, 0.5, 1],
+        //     tileMode: TileMode.repeated,
+        //   ),
+        // ),
+        // decoration: const BoxDecoration(
+        //     image: DecorationImage(image: AssetImage("assets/images/background/big_pattern_asshuku.png"))),
         child: Scaffold(
+          backgroundColor: Colors.transparent,
+          // ScaffoldのDrawerの起動をtopbarからできるように
           key: this._scaffoldKey,
-          appBar: Topbar(height: 60, scaffoldKey: this._scaffoldKey),
-          drawer: const Drawer(),
+          // トップバーくん
+          appBar: Topbar(height: this.topbarHeight, scaffoldKey: this._scaffoldKey),
+          // トップバーが作ってくれたDrawerをキーから取得する
+          drawer: this._createDrawerMenu(),
+          // メインボディ
           body: this._createAutoFillBody(),
+
           // bottomNavigationBar: this._createBottomIconBar(),
         ),
       ),
@@ -82,46 +118,48 @@ class MainFrameView extends State<MainFrame> {
   Widget _createAutoFillBody() {
     // メイン画面はスクロール可能なバーで
     return Scrollbar(
+      controller: this.mainContentScrollController,
+      child: SingleChildScrollView(
         controller: this.mainContentScrollController,
-        child: SingleChildScrollView(
-            controller: this.mainContentScrollController,
-            child: Container(
-                width: mainContentWidth,
-                margin: EdgeInsets.only(left: this.paddingWidth, right: this.paddingWidth),
-                child: widget.page)));
-  } // end of method
-
-  Widget _createBottomIconBar() {
-    return Container(
-      margin: EdgeInsets.only(top: 10, bottom: 5),
-      height: 20,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          this._createBottomIcon(path: "images/twitter_blue.png", hyperLink: "https://twitter.com/tokabe333"),
-          this._createBottomIcon(
-              path: "images/youtube_red.png", hyperLink: "https://www.youtube.com/channel/UCS2o5U1Aom8AgK4Pn1MI16w"),
-          this._createBottomIcon(path: "images/qiita.png", hyperLink: "https://qiita.com/tokabe333"),
-          this._createBottomIcon(path: "images/github.png", hyperLink: "https://github.com/tokabe333/"),
-          this._createBottomIcon(path: "images/atcoder.png", hyperLink: "https://atcoder.jp/users/tokabe333"),
-        ],
+        child: Container(
+            width: mainContentWidth,
+            margin: EdgeInsets.only(left: this.paddingWidth, right: this.paddingWidth),
+            child: widget.page),
       ),
     );
   } // end of method
 
-  Widget _createBottomIcon({required String path, String hyperLink = ""}) {
-    return Container(
-        height: 20,
-        width: 20,
-        margin: EdgeInsets.only(left: 7, right: 7),
-        child: InkWell(
-          child: Image.asset(path),
-          onTap: () async {
-            final url = Uri.parse(hyperLink);
-            if (await canLaunchUrl(url)) {
-              launchUrl(url);
-            }
-          },
-        ));
+  /// Drawerメニュー作成
+  Drawer _createDrawerMenu() {
+    // アクセス一覧
+    List<Widget> access = [
+      this._createDrawerText("トップ", 15, "/top"),
+      this._createDrawerText("ポートフォリオ", 15, "/github"),
+    ];
+
+    return Drawer(
+        child: ListView(
+      children: access,
+    ));
+  } // end of method
+
+  /// DrawerにHyperLinkText
+  Widget _createDrawerText(String text, double fontSize, String route) {
+    return InkWell(
+      child: Text(text,
+          style: TextStyle(
+            fontFamily: "noto",
+            color: const Color.fromARGB(255, 102, 102, 102),
+            letterSpacing: 0.5,
+            fontWeight: FontWeight.w500,
+            fontSize: fontSize,
+          )),
+      onTap: () {
+        // 別のページなら遷移する(現在のページには遷移しない)
+        if (context.vRouter.path != route) {
+          context.vRouter.to(route);
+        }
+      },
+    );
   } // end of method
 } // end of class

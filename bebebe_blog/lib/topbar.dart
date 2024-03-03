@@ -47,6 +47,9 @@ class TopbarView extends State<Topbar> {
   /// 現在のScaffold状態を確認するKey
   GlobalKey<ScaffoldState>? scaffoldKey;
 
+  /// main_frameからDrawerを呼び出すためのkey
+  final GlobalKey<TopbarView> _topbarViewKey = GlobalKey<TopbarView>();
+
   /// Constructor
   TopbarView({
     double this.height = 60,
@@ -56,6 +59,7 @@ class TopbarView extends State<Topbar> {
   /// 画面上部のタブバーを作成する
   void _createTopTabs(BuildContext context) {
     this.tabs.add(HyperLinkText(text: "トップ", fontSize: 15, route: "/top"));
+    this.tabs.add(HyperLinkText(text: "ポートフォリオ", fontSize: 15, route: "/github"));
     this.tabs.add(SizedBox(width: 20));
     this.tabs.add(this._createBottomIcon(path: "images/twitter_blue.png", hyperLink: "https://twitter.com/tokabe333"));
     this.tabs.add(this._createBottomIcon(
@@ -103,6 +107,7 @@ class TopbarView extends State<Topbar> {
           InkWell(
               onTap: () => this.scaffoldKey?.currentState?.openDrawer(),
               child: Container(height: this.height, margin: EdgeInsets.only(left: 40), child: this.iconImage)),
+          // Container(height: this.height, margin: EdgeInsets.only(left: 40), child: this.iconImage),
           // サイトタイトル
           // Container(
           //     margin: EdgeInsets.only(left: 20), child: this._createTextDancingScript("Beyan's Site", fontSize: 25)),
@@ -122,6 +127,7 @@ class TopbarView extends State<Topbar> {
     );
   } // end of method
 
+  /// スマホなど幅が小さい画面のときに表示するバー
   Widget _createDrawerTopBar(BuildContext context) {
     // 横幅を計算
     double displayWidth = MediaQuery.of(context).size.width;
@@ -134,7 +140,11 @@ class TopbarView extends State<Topbar> {
       child: CircleAvatar(
         backgroundColor: Colors.white,
         child: InkWell(
-          onTap: () {},
+          onTap: () {
+            print("scaffold key : ${this.scaffoldKey}");
+            print("current state : ${this.scaffoldKey?.currentState}");
+            this.scaffoldKey?.currentState?.openDrawer();
+          },
           child: Icon(
             Icons.dehaze_rounded,
             color: Color.fromARGB(185, 11, 127, 223),
@@ -157,6 +167,16 @@ class TopbarView extends State<Topbar> {
         Expanded(child: SizedBox()),
       ],
     );
+  }
+
+  /// 画面が小さいときに左からスライドしてくるDrawer
+  Drawer createDrawerMenu() {
+    return Drawer(
+        child: Container(
+      width: 50,
+      height: 50,
+      color: Colors.green,
+    ));
   }
 
   /// 外部リンクへのアイコンを作る(BottomではなくTop)
