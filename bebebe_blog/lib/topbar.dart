@@ -6,7 +6,6 @@
 import 'package:flutter/material.dart';
 import 'dart:html' as html;
 import 'dart:math' as math;
-// import 'package:url_launcher/url_launcher.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:vrouter/vrouter.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -26,7 +25,7 @@ class Topbar extends StatefulWidget implements PreferredSizeWidget {
   Size get preferredSize => Size.fromHeight(height);
 
   State<Topbar> createState() => TopbarView(height: height, scaffoldKey: scaffoldKey);
-}
+} // end of class
 
 /// 画面上部に表示するバー
 class TopbarView extends State<Topbar> {
@@ -35,6 +34,9 @@ class TopbarView extends State<Topbar> {
 
   /// メインコンテンツサイズ
   double topbarContentWidth = 600;
+
+  // ハンバーガーメニューを置く場所(左から何割の場所か)
+  double hamburgerButtonPlace = 0.1;
 
   /// 画面右上部に表示するナビゲーション
   final List<Widget> tabs = [];
@@ -77,9 +79,13 @@ class TopbarView extends State<Topbar> {
   Widget build(BuildContext context) {
     // 左右のパディング
     double displayWidth = MediaQuery.of(context).size.width;
-    double padding = math.max(0, (displayWidth - this.topbarContentWidth) / 2);
+    double padding = (displayWidth - this.topbarContentWidth) / 2;
 
-    return this._createDefaultTopbar(displayWidth, padding);
+    if (padding >= 0) {
+      return this._createDefaultTopbar(displayWidth, padding);
+    } else {
+      return this._createDrawerTopBar(context);
+    }
   } // end of build
 
   /// 大きさが足りているときは横長のバー
@@ -116,6 +122,44 @@ class TopbarView extends State<Topbar> {
     );
   } // end of method
 
+  Widget _createDrawerTopBar(BuildContext context) {
+    // 横幅を計算
+    double displayWidth = MediaQuery.of(context).size.width;
+    double paddingLeft = displayWidth * this.hamburgerButtonPlace;
+
+    // Drawerを起動するハンバーガーボタン
+    Widget hamburgerButton = SizedBox(
+      width: this.height * 0.7,
+      height: this.height * 0.7,
+      child: CircleAvatar(
+        backgroundColor: Colors.white,
+        child: InkWell(
+          onTap: () {},
+          child: Icon(
+            Icons.dehaze_rounded,
+            color: Color.fromARGB(185, 11, 127, 223),
+          ),
+        ),
+      ),
+    );
+
+    // return Padding(padding:EdgeInsets.only(left: paddingLeft), child:Drawer)
+    return Row(
+      children: [
+        Expanded(
+            child: Row(
+          children: [
+            SizedBox(width: paddingLeft),
+            Flexible(child: hamburgerButton),
+          ],
+        )),
+        Container(height: this.height, margin: EdgeInsets.only(left: 40), child: this.iconImage),
+        Expanded(child: SizedBox()),
+      ],
+    );
+  }
+
+  /// 外部リンクへのアイコンを作る(BottomではなくTop)
   Widget _createBottomIcon({required String path, String hyperLink = ""}) {
     return Container(
         height: 50,
