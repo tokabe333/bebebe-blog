@@ -35,7 +35,7 @@ class BebebeApp extends StatelessWidget {
       },
       routes: [
         VWidget(path: "/", widget: MainPageWidget(isPlayDemo: true)),
-        VWidget(path: "/home", widget: MainPageWidget(isPlayDemo: false)),
+        VWidget(path: "/top", widget: MainPageWidget(isPlayDemo: false)),
         VWidget(path: "/github", widget: GithubPageWidget()),
         VWidget(path: "/contact", widget: MainPageWidget()),
         VRouteRedirector(path: r'*', redirectTo: "/"),

@@ -65,7 +65,7 @@ class MainFrameView extends State<MainFrame> {
       child: Container(
         height: MediaQuery.of(context).size.height,
         child: Scaffold(
-          appBar: Topbar(height: 70),
+          appBar: Topbar(height: 60),
           body: this._createAutoFillBody(),
           // bottomNavigationBar: this._createBottomIconBar(),
         ),
