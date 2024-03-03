@@ -22,6 +22,9 @@ class MainPageView extends State<MainPageWidget> {
   /// デモ画面再生フラグ
   bool _isPlayDemo = true;
 
+  /// デモを再生するだけのページ
+  Widget demoPage = Container();
+
   /// 画面切り替えのためにディレイして状態を変化させる
   MainPageView(this._isPlayDemo) {
     if (this._isPlayDemo) {
@@ -34,27 +37,27 @@ class MainPageView extends State<MainPageWidget> {
   } // end of constructor
 
   @override
+  void initState() {
+    this.demoPage = StartPageWidget(isPlayDemo: true);
+  }
+
+  @override
   Widget build(BuildContext context) {
-    if (this._isPlayDemo) {
-      /// デモ画面と普通の画面を切り替える
-      return AnimatedCrossFade(
-          firstChild: StartPageWidget(),
-          secondChild: MainFrame(title: "beyan's home", page: this._createMainPage(context)),
-          crossFadeState: this._isFinishedDemo ? CrossFadeState.showSecond : CrossFadeState.showFirst,
-          duration: Duration(milliseconds: 1000));
-    } else {
-      return MainFrame(title: "beyan's home", page: this._createMainPage(context));
-    }
+    // if (this._isPlayDemo) {
+    //   /// デモ画面と普通の画面を切り替える
+    //   return AnimatedCrossFade(
+    //       firstChild: this.demoPage,
+    //       secondChild: MainFrame(title: "beyan's home", page: this._createMainPage(context)),
+    //       crossFadeState: this._isFinishedDemo ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+    //       duration: Duration(milliseconds: 1000));
+    // } else {
+    //   return MainFrame(title: "beyan's home", page: this._createMainPage(context));
+    // }
+    return MainFrame(title: "beyan's home", page: StartPageWidget(isPlayDemo: true));
   } //   end of build
 
   /// メインページ作成用
   Widget _createMainPage(BuildContext context) {
-    // return Container();
-    return Center(
-        child: Container(
-      color: const Color.fromARGB(255, 137, 194, 240),
-      width: double.infinity,
-      height: 2000,
-    ));
+    return StartPageWidget(isPlayDemo: false);
   } // end of method
 } // end of class
