@@ -28,7 +28,7 @@ class MainFrame extends StatefulWidget {
 /// 実際に表示を記述する
 class MainFrameView extends State<MainFrame> {
   /// 利用する領域 % (左右はパディング)
-  double mainContentWidthRatio = 0.95;
+  double mainContentWidthRatio = 1.0;
 
   /// 実際のメインコンテンツの大きさ
   static double mainContentWidth = 0;
@@ -60,14 +60,17 @@ class MainFrameView extends State<MainFrame> {
     }
 
     return Title(
-        color: Colors.black,
-        title: widget.title,
-        child: Container(
-            height: MediaQuery.of(context).size.height,
-            child: Scaffold(
-                appBar: Topbar(height: 70),
-                body: this._createAutoFillBody(),
-                bottomNavigationBar: this._createBottomIconBar())));
+      color: Colors.black,
+      title: widget.title,
+      child: Container(
+        height: MediaQuery.of(context).size.height,
+        child: Scaffold(
+          appBar: Topbar(height: 70),
+          body: this._createAutoFillBody(),
+          // bottomNavigationBar: this._createBottomIconBar(),
+        ),
+      ),
+    );
   } // end of build
 
   /// 画面サイズに応じて自動的にパディングをつくるボディー

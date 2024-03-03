@@ -5,9 +5,11 @@
 
 import 'package:flutter/material.dart';
 import 'dart:html' as html;
+import 'dart:math' as math;
 // import 'package:url_launcher/url_launcher.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:vrouter/vrouter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'main_page/main_page_view.dart';
 
@@ -17,10 +19,13 @@ class Topbar extends StatelessWidget implements PreferredSizeWidget {
   double height;
 
   /// 利用する領域 % (左右はパディング)
-  double mainContentWidthRatio = 0.95;
+  double mainContentWidthRatio = 0.6;
+
+  /// 最小のメインコンテンツサイズ
+  double minMainContentWidth = 300;
 
   /// 実際のメインコンテンツの大きさ
-  double mainContentWidth = 0;
+  double mainContentWidth = 300;
 
   // 現在の画面サイズ
   double displayWidth = 0;
@@ -46,15 +51,21 @@ class Topbar extends StatelessWidget implements PreferredSizeWidget {
 
   /// 画面上部のタブバーを作成する
   void _createTopTabs(BuildContext context) {
-    this.tabs.add(this._createTabContainerInside(context, "home", fontSize: 20, route: "/home"));
-    this.tabs.add(this._createTabContainer("twitter", fontSize: 20, hyperLink: "https://twitter.com/home"));
-    this.tabs.add(this._createTabContainer("youtube",
-        fontSize: 20, hyperLink: "https://www.youtube.com/channel/UCS2o5U1Aom8AgK4Pn1MI16w"));
-    this.tabs.add(this._createTabContainer("qiita", fontSize: 20, hyperLink: "https://qiita.com/tokabe333"));
-    this.tabs.add(this._createTabContainer("atcoder", fontSize: 20, hyperLink: "https://atcoder.jp/users/tokabe333"));
-    // this.tabs.add(this._createTabContainer("github", fontSize: 20, hyperLink: "https://github.com/tokabe333"));
-    this.tabs.add(this._createTabContainerInside(context, "github", fontSize: 20, route: "/github"));
-    this.tabs.add(this._createTabContainerInside(context, "contact", fontSize: 20, route: "/contact"));
+    // this.tabs.add(this._createTabContainerInside(context, "home", fontSize: 20, route: "/home"));
+    // this.tabs.add(this._createTabContainer("twitter", fontSize: 20, hyperLink: "https://twitter.com/home"));
+    // this.tabs.add(this._createTabContainer("youtube",
+    //     fontSize: 20, hyperLink: "https://www.youtube.com/channel/UCS2o5U1Aom8AgK4Pn1MI16w"));
+    // this.tabs.add(this._createTabContainer("qiita", fontSize: 20, hyperLink: "https://qiita.com/tokabe333"));
+    // this.tabs.add(this._createTabContainer("atcoder", fontSize: 20, hyperLink: "https://atcoder.jp/users/tokabe333"));
+    this.tabs.add(this._createTabContainer("github", fontSize: 20, hyperLink: "https://github.com/tokabe333"));
+    // this.tabs.add(this._createTabContainerInside(context, "github", fontSize: 20, route: "/github"));
+    // this.tabs.add(this._createTabContainerInside(context, "contact", fontSize: 20, route: "/contact"));
+    this.tabs.add(this._createBottomIcon(path: "images/twitter_blue.png", hyperLink: "https://twitter.com/tokabe333"));
+    this.tabs.add(this._createBottomIcon(
+        path: "images/youtube_red.png", hyperLink: "https://www.youtube.com/channel/UCS2o5U1Aom8AgK4Pn1MI16w"));
+    this.tabs.add(this._createBottomIcon(path: "images/qiita.png", hyperLink: "https://qiita.com/tokabe333"));
+    this.tabs.add(this._createBottomIcon(path: "images/github.png", hyperLink: "https://github.com/tokabe333/"));
+    this.tabs.add(this._createBottomIcon(path: "images/atcoder.png", hyperLink: "https://atcoder.jp/users/tokabe333"));
   }
 
   @override
@@ -62,17 +73,20 @@ class Topbar extends StatelessWidget implements PreferredSizeWidget {
     // 画面上部のバーを作成する
     this._createTopTabs(context);
 
-    // 画面が更新されるタイミングで横幅も調整
-    this.displayWidth = MediaQuery.of(context).size.width;
-    this.mainContentWidth = this.displayWidth * this.mainContentWidthRatio;
-    this.paddingWidth = (this.displayWidth - this.mainContentWidth) / 2;
+    // // 画面が更新されるタイミングで横幅も調整
+    // this.displayWidth = MediaQuery.of(context).size.width;
+    // this.mainContentWidth = this.displayWidth * this.mainContentWidthRatio;
+    // this.mainContentWidth = math.max(this.mainContentWidth, this.minMainContentWidth);
 
-    if (this.paddingWidth < 0) {
-      this.mainContentWidth = this.displayWidth;
-      this.paddingWidth = 0;
-    } else {
-      this.mainContentWidth = this.displayWidth * this.mainContentWidth;
-    }
+    // this.paddingWidth = (this.displayWidth - this.mainContentWidth) / 2;
+
+    // if (this.paddingWidth < 0) {
+    //   this.mainContentWidth = this.displayWidth;
+    //   this.paddingWidth = 0;
+    // } else {
+    //   this.mainContentWidth = this.displayWidth * this.mainContentWidth;
+    // }
+    // 画面サイズはいじらない
 
     // トップバーの配置
     return Container(
@@ -105,8 +119,9 @@ class Topbar extends StatelessWidget implements PreferredSizeWidget {
   // GoogleFontsのdancingScriptで作ったtextを返す
   Widget _createTextDancingScript(String text, {double fontSize = 15}) {
     return Text(text,
-        style: GoogleFonts.getFont("Leckerli One",
-            textStyle: TextStyle(color: Colors.black, letterSpacing: 0.5, fontSize: fontSize)));
+        // style: GoogleFonts.getFont("Leckerli One",
+        //     textStyle: TextStyle(color: Colors.black, letterSpacing: 0.5, fontSize: fontSize)));
+        style: TextStyle(fontFamily: "noto", color: Colors.black, letterSpacing: 0.5, fontSize: fontSize));
   } // end of method
 
   // 右上タブに表示するテキストを作成
@@ -139,5 +154,21 @@ class Topbar extends StatelessWidget implements PreferredSizeWidget {
                 context.vRouter.to(route);
               }
             }));
+  } // end of method
+
+  Widget _createBottomIcon({required String path, String hyperLink = ""}) {
+    return Container(
+        height: 20,
+        width: 20,
+        margin: EdgeInsets.only(left: 7, right: 7),
+        child: InkWell(
+          child: Image.asset(path),
+          onTap: () async {
+            final url = Uri.parse(hyperLink);
+            if (await canLaunchUrl(url)) {
+              launchUrl(url);
+            }
+          },
+        ));
   } // end of method
 } // end of class
