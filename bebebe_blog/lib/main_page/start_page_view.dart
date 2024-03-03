@@ -13,14 +13,11 @@ class StartPageWidget extends StatefulWidget {
   State<StartPageWidget> createState() => StartPageView();
 }
 
-class StartPageView extends State<StartPageWidget>
-    with TickerProviderStateMixin {
-  late final AnimationController _controller1 = AnimationController(
-      vsync: this, duration: const Duration(milliseconds: 300))
-    ..repeat(reverse: true);
+class StartPageView extends State<StartPageWidget> with TickerProviderStateMixin {
+  late final AnimationController _controller1 =
+      AnimationController(vsync: this, duration: const Duration(milliseconds: 300))..repeat(reverse: true);
 
-  late final Animation<double> _animation1 =
-      CurvedAnimation(parent: this._controller1, curve: Curves.easeIn);
+  late final Animation<double> _animation1 = CurvedAnimation(parent: this._controller1, curve: Curves.easeIn);
 
   // Riveアニメーション
   RiveAnimationController _controller = SimpleAnimation("demo");
@@ -42,7 +39,7 @@ class StartPageView extends State<StartPageWidget>
         color: Colors.blue,
         child: RiveAnimation.asset(
           // "assets/animations/laptop_click.riv",
-          "assets/animations/maindemo.riv",
+          "assets/animations/maindemo_nologo.riv",
           controllers: [this._controller],
         ));
     // return Container(

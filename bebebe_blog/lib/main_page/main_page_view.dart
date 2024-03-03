@@ -39,15 +39,11 @@ class MainPageView extends State<MainPageWidget> {
       /// デモ画面と普通の画面を切り替える
       return AnimatedCrossFade(
           firstChild: StartPageWidget(),
-          secondChild: MainFrame(
-              title: "beyan's home", page: this._createMainPage(context)),
-          crossFadeState: this._isFinishedDemo
-              ? CrossFadeState.showSecond
-              : CrossFadeState.showFirst,
+          secondChild: MainFrame(title: "beyan's home", page: this._createMainPage(context)),
+          crossFadeState: this._isFinishedDemo ? CrossFadeState.showSecond : CrossFadeState.showFirst,
           duration: Duration(milliseconds: 1000));
     } else {
-      return MainFrame(
-          title: "beyan's home", page: this._createMainPage(context));
+      return MainFrame(title: "beyan's home", page: this._createMainPage(context));
     }
   } //   end of build
 
