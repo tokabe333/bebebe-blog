@@ -45,6 +45,9 @@ class MainFrameView extends State<MainFrame> {
   /// constructor (初期の大きさを保存しておく)
   MainFrameView() {}
 
+  /// Scaffoldのキーを作ってDrawerのON/OFFを切り替える
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     // 画面が更新されるタイミングで横幅も調整
@@ -65,7 +68,9 @@ class MainFrameView extends State<MainFrame> {
       child: Container(
         height: MediaQuery.of(context).size.height,
         child: Scaffold(
-          appBar: Topbar(height: 60),
+          key: this._scaffoldKey,
+          appBar: Topbar(height: 60, scaffoldKey: this._scaffoldKey),
+          drawer: const Drawer(),
           body: this._createAutoFillBody(),
           // bottomNavigationBar: this._createBottomIconBar(),
         ),
