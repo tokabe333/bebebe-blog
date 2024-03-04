@@ -20,7 +20,7 @@ class MainPageView extends State<MainPageWidget> {
   bool _isFinishedDemo = false;
 
   /// デモ画面再生フラグ
-  bool _isPlayDemo = true;
+  bool _isPlayDemo;
 
   /// デモを再生するだけのページ
   Widget demoPage = Container();
@@ -53,7 +53,7 @@ class MainPageView extends State<MainPageWidget> {
     // } else {
     //   return MainFrame(title: "beyan's home", page: this._createMainPage(context));
     // }
-    return MainFrame(title: "beyan's home", page: StartPageWidget(isPlayDemo: true));
+    return MainFrame(title: "beyan's home", page: StartPageWidget(isPlayDemo: this._isPlayDemo));
   } //   end of build
 
   /// メインページ作成用

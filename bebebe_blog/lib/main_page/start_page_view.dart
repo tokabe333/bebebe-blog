@@ -55,7 +55,7 @@ class StartPageView extends State<StartPageWidget> with TickerProviderStateMixin
       demoWidth = displayWidth;
       demoHeight = demoWidth / 500 * 340;
     } else {
-      demoHeight = displayHeight;
+      demoHeight = displayHeight - 60;
       demoWidth = math.min(displayWidth, demoHeight / 340 * 500);
       leftpadding = (displayWidth - demoWidth) / 2;
     }
@@ -79,7 +79,6 @@ class StartPageView extends State<StartPageWidget> with TickerProviderStateMixin
   /// デモを再生するだけ
   Widget playDemo() {
     return RiveAnimation.asset(
-      // "assets/animations/laptop_click.riv",
       "assets/animations/maindemo_nologo.riv",
       controllers: [this._controller],
     );
