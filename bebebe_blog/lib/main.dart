@@ -16,6 +16,9 @@ void main() {
 class BebebeApp extends StatelessWidget {
   BebebeApp({super.key}) {}
 
+  /// 画面上部のバーの高さ
+  double topbarHeight = 60;
+
   @override
   Widget build(BuildContext context) {
     // return MaterialApp(
@@ -27,6 +30,7 @@ class BebebeApp extends StatelessWidget {
     //   ),
     // );
     /// VRouterでページごとに /hogehoge にする
+
     return VRouter(
       debugShowCheckedModeBanner: false,
       mode: VRouterMode.history,
@@ -34,10 +38,10 @@ class BebebeApp extends StatelessWidget {
         return child;
       },
       routes: [
-        VWidget(path: "/", widget: MainPageWidget(isPlayDemo: true)),
-        VWidget(path: "/top", widget: MainPageWidget(isPlayDemo: false)),
+        VWidget(path: "/", widget: MainPageWidget(isPlayDemo: true, topbarHeight: this.topbarHeight)),
+        VWidget(path: "/top", widget: MainPageWidget(isPlayDemo: false, topbarHeight: this.topbarHeight)),
         VWidget(path: "/github", widget: GithubPageWidget()),
-        VWidget(path: "/contact", widget: MainPageWidget()),
+        VWidget(path: "/contact", widget: MainPageWidget(topbarHeight: this.topbarHeight)),
         VRouteRedirector(path: r'*', redirectTo: "/"),
       ],
     );

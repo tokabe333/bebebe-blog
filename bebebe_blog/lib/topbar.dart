@@ -51,7 +51,7 @@ class TopbarView extends State<Topbar> {
 
   /// Constructor
   TopbarView({
-    double this.height = 60,
+    double this.height = 0,
     GlobalKey<ScaffoldState>? this.scaffoldKey,
   }) {} // end of constructor
 

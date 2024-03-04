@@ -3,61 +3,137 @@
 /// 初回起動はデモを表示する(/にアクセスしたら /homeはデモなし)
 /// -------------------------------------------
 
+import 'package:easy_animate/animation/fade_in_animation.dart';
+import 'package:easy_animate/enum/animate_direction.dart';
 import 'package:flutter/material.dart';
 
 import '../main_frame.dart';
 import './start_page_view.dart';
 
 class MainPageWidget extends StatefulWidget {
-  MainPageWidget({Key? key, bool this.isPlayDemo = true}) : super(key: key);
+  MainPageWidget({Key? key, bool this.isPlayDemo = true, required double this.topbarHeight}) : super(key: key);
   final String title = "べーやん's Site";
   bool isPlayDemo = true;
-  State<MainPageWidget> createState() => MainPageView(isPlayDemo);
+  double topbarHeight;
+  State<MainPageWidget> createState() => MainPageView(isPlayDemo, topbarHeight);
 } // end of class
 
 class MainPageView extends State<MainPageWidget> {
-  /// 画面切り替え用のフラグ
-  bool _isFinishedDemo = false;
-
   /// デモ画面再生フラグ
   bool _isPlayDemo;
 
   /// デモを再生するだけのページ
-  Widget demoPage = Container();
+  late DemoPageWidget _demoPage;
+
+  /// 画面切り替え用
+  bool _isFinishedDemo = false;
+
+  /// トップバーの高さ
+  double topbarHeight;
 
   /// 画面切り替えのためにディレイして状態を変化させる
-  MainPageView(this._isPlayDemo) {
+  MainPageView(this._isPlayDemo, this.topbarHeight) {
+    // デモページを作成
+    this._demoPage = DemoPageWidget(this._isPlayDemo);
+
+    // 時間が来たら紹介文を表示する
     if (this._isPlayDemo) {
-      Future.delayed(Duration(milliseconds: 6000), () {
-        this._isFinishedDemo = true;
-        print("画面チェンジ");
-        setState(() {});
+      Future.delayed(Duration(milliseconds: 5300), () {
+        setState(() {
+          this._isFinishedDemo = true;
+        });
       });
     }
   } // end of constructor
 
   @override
-  void initState() {
-    this.demoPage = StartPageWidget(isPlayDemo: true);
-  }
+  void initState() {}
 
   @override
   Widget build(BuildContext context) {
-    // if (this._isPlayDemo) {
-    //   /// デモ画面と普通の画面を切り替える
-    //   return AnimatedCrossFade(
-    //       firstChild: this.demoPage,
-    //       secondChild: MainFrame(title: "beyan's home", page: this._createMainPage(context)),
-    //       crossFadeState: this._isFinishedDemo ? CrossFadeState.showSecond : CrossFadeState.showFirst,
-    //       duration: Duration(milliseconds: 1000));
-    // } else {
-    //   return MainFrame(title: "beyan's home", page: this._createMainPage(context));
-    // }
-    return MainFrame(title: "beyan's home", page: StartPageWidget(isPlayDemo: this._isPlayDemo));
+    return MainFrame(title: "beyan's home", page: this._createMainContent(context));
   } //   end of build
 
-  /// メインページ作成用
-  Widget _createMainPage(BuildContext context) {
-    return StartPageWidget(isPlayDemo: false);
+  /// メインコンテンツ(デモとサイト紹介)を作成
+  Widget _createMainContent(BuildContext context) {
+    double displayWidth = MediaQuery.of(context).size.width;
+    double displayHeight = MediaQuery.of(context).size.height;
+    double mainContentHeight = displayHeight - this.topbarHeight;
+    double introduceHeight = mainContentHeight * 0.3;
+
+    return Container(
+      width: displayWidth,
+      height: mainContentHeight,
+      color: const Color.fromARGB(255, 137, 194, 240),
+      child: Column(
+        children: [
+          Expanded(child: this._demoPage.createDemoWidget(context)),
+          this._createIntroduce(introduceHeight),
+          // this._isFinishedDemo ? this._createIntroduce() : Container(color: const Color.fromARGB(255, 137, 194, 240)),
+          // Container(color: Colors.lightGreen, width: displayWidth, child: this._createIntroduce()),
+        ],
+      ),
+    );
+  } // end of method
+
+  /// 画面下部の紹介文を作成
+  Widget _createIntroduce(double height) {
+    // デモ終了後に表示する紹介文
+    Widget introduceColumn = Column(children: [
+      this._createIntroduceText("べーやんのポートフォリオサイトです"),
+      this._createIntroduceText("ゆっくりしていってね！"),
+    ]);
+
+    // 表示用コンテナ
+    Widget introduceContainer = SizedBox(
+      height: height,
+      child: this._isFinishedDemo ? introduceColumn : SizedBox(),
+    );
+
+    // フェードインアニメーション
+    return FadeInAnimation(
+      animateDirection: AnimateDirection.top,
+      moveAmount: 10,
+      delay: Duration(milliseconds: 5300),
+      child: Container(
+        color: const Color.fromARGB(255, 137, 194, 240),
+        child: introduceContainer,
+      ),
+    );
+  } // end of method
+
+  /// 紹介文用テキストを作成
+  Widget _createIntroduceText(String text, {double fontSize = 18, Color color = Colors.white}) {
+    return SizedBox(
+      child: Center(
+        child: Text(
+          text,
+          style: TextStyle(
+            color: color,
+            fontSize: fontSize,
+            fontFamily: "noto",
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+      ),
+    );
   } // end of method
 } // end of class
+
+
+
+
+
+
+// ---------- あとから見返す ------------
+
+// if (this._isPlayDemo) {
+//   /// デモ画面と普通の画面を切り替える
+//   return AnimatedCrossFade(
+//       firstChild: this.demoPage,
+//       secondChild: MainFrame(title: "beyan's home", page: this._createMainPage(context)),
+//       crossFadeState: this._isFinishedDemo ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+//       duration: Duration(milliseconds: 1000));
+// } else {
+//   return MainFrame(title: "beyan's home", page: this._createMainPage(context));
+// }
