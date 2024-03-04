@@ -31,19 +31,23 @@ class MainPageView extends State<MainPageWidget> {
   /// トップバーの高さ
   double topbarHeight;
 
+  /// デモからメイン画面に移るディレイ
+  int delaySwitchTime = 0;
+
   /// 画面切り替えのためにディレイして状態を変化させる
   MainPageView(this._isPlayDemo, this.topbarHeight) {
+    // デモをするときはディレイをつける
+    if (this._isPlayDemo) this.delaySwitchTime = 5300;
+
     // デモページを作成
     this._demoPage = DemoPageWidget(this._isPlayDemo);
 
     // 時間が来たら紹介文を表示する
-    if (this._isPlayDemo) {
-      Future.delayed(Duration(milliseconds: 5300), () {
-        setState(() {
-          this._isFinishedDemo = true;
-        });
+    Future.delayed(Duration(milliseconds: this.delaySwitchTime), () {
+      setState(() {
+        this._isFinishedDemo = true;
       });
-    }
+    });
   } // end of constructor
 
   @override
@@ -94,7 +98,7 @@ class MainPageView extends State<MainPageWidget> {
     return FadeInAnimation(
       animateDirection: AnimateDirection.top,
       moveAmount: 10,
-      delay: Duration(milliseconds: 6000),
+      delay: Duration(milliseconds: this.delaySwitchTime + 1000),
       child: Container(
         color: const Color.fromARGB(255, 137, 194, 240),
         child: introduceContainer,
