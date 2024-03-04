@@ -94,7 +94,7 @@ class MainPageView extends State<MainPageWidget> {
     return FadeInAnimation(
       animateDirection: AnimateDirection.top,
       moveAmount: 10,
-      delay: Duration(milliseconds: 5300),
+      delay: Duration(milliseconds: 6000),
       child: Container(
         color: const Color.fromARGB(255, 137, 194, 240),
         child: introduceContainer,
