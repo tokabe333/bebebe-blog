@@ -34,29 +34,9 @@ class DemoPageWidget {
     this.demo = this.isPlayDemo ? _playDemo() : _noPlayDemo();
   }
 
+  /// 色々あったけどmain_page側で大きさや配置をいじるのが一番だった
   Widget createDemoWidget(BuildContext context) {
     return demo;
-
-    // double displayWidth = MediaQuery.of(context).size.width;
-    // double displayHeight = MediaQuery.of(context).size.height;
-
-    // // でも画面のサイズを決める
-    // double demoWidth = 0, demoHeight = 0;
-    // double leftpadding = 0;
-    // if (displayWidth <= displayHeight) {
-    //   demoWidth = displayWidth;
-    //   demoHeight = demoWidth / 500 * 340;
-    // } else {
-    //   demoHeight = displayHeight - 60;
-    //   demoWidth = math.min(displayWidth, demoHeight / 340 * 500);
-    //   leftpadding = (displayWidth - demoWidth) / 2;
-    // }
-
-    // return Container(
-    //   height: demoHeight,
-    //   width: demoWidth,
-    //   child: demo,
-    // );
   } // end of method
 
   /// デモを再生するだけ
