@@ -65,16 +65,34 @@ class MainPageView extends State<MainPageWidget> {
     double mainContentHeight = displayHeight - this.topbarHeight;
     double introduceHeight = mainContentHeight * 0.3;
 
+    // stackで重ねるデモの位置
+    double demoHeight = displayHeight * 0.6;
+    double demoWidth = 0;
+    if (displayHeight <= displayWidth) {
+      demoWidth = demoHeight / 340 * 500;
+    } else {
+      demoWidth = displayWidth;
+      demoHeight = demoWidth / 500 * 340;
+    }
+    double demoPadding = (displayWidth - demoWidth) / 2;
+
     return Container(
       width: displayWidth,
       height: mainContentHeight,
       color: const Color.fromARGB(255, 137, 194, 240),
-      child: Column(
+      child: Stack(
         children: [
-          Expanded(child: this._demoPage.createDemoWidget(context)),
-          this._createIntroduce(introduceHeight),
-          // this._isFinishedDemo ? this._createIntroduce() : Container(color: const Color.fromARGB(255, 137, 194, 240)),
-          // Container(color: Colors.lightGreen, width: displayWidth, child: this._createIntroduce()),
+          Column(
+            children: [
+              Expanded(child: SizedBox()),
+              // Expanded(child: this._demoPage.createDemoWidget(context)),
+              this._createIntroduce(introduceHeight),
+            ],
+          ),
+          Positioned(
+              left: demoPadding,
+              right: demoPadding,
+              child: Container(height: demoHeight, width: demoWidth, child: this._demoPage.createDemoWidget(context))),
         ],
       ),
     );
