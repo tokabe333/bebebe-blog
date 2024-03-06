@@ -8,7 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:rive/rive.dart';
 import 'dart:math' as math;
 
-import '../main_frame/main_frame.dart';
+import '../../site_frames/main_frame.dart';
 
 class DemoPageWidget {
   // Riveアニメーション

@@ -7,11 +7,11 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:vrouter/vrouter.dart';
 
-import 'topbar.dart';
+import 'topbar/topbar.dart';
 import 'main_frame_drawer.dart';
 import 'main_frame_fit.dart';
 
-import '../main_page/main_page_view.dart';
+import '../contents/main_page/main_page_view.dart';
 
 /// Webサイトの構成を決めるフレーム
 /// 各ページはこれに自身を渡すことで画面を表示する

@@ -5,7 +5,7 @@
 import 'package:flutter/material.dart';
 import 'package:vrouter/vrouter.dart';
 
-import 'main_frame/main_frame.dart';
+import 'site_frames/main_frame.dart';
 
 void main() {
   runApp(BebebeApp());

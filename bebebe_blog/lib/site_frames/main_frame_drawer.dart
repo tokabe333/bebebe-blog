@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:vrouter/vrouter.dart';
 
-import 'topbar_hover_text.dart';
+import 'topbar/topbar_hover_text.dart';
 import 'main_frame.dart';
 
 /// 実際に表示を記述する
