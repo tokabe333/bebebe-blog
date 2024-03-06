@@ -9,6 +9,7 @@ import 'package:vrouter/vrouter.dart';
 
 import 'topbar.dart';
 import './main_frame_drawer.dart';
+import './main_frame_fit.dart';
 
 /// Webサイトの構成を決めるフレーム
 /// 各ページはこれに自身を渡すことで画面を表示する
@@ -31,7 +32,7 @@ class MainFrameView extends State<MainFrame> {
   double mainContentWidthRatio = 1.0;
 
   /// 実際のメインコンテンツの大きさ
-  static double mainContentWidth = 0;
+  double mainContentWidth = 0;
 
   // 現在の画面サイズ
   double displayWidth = 0;
@@ -48,9 +49,6 @@ class MainFrameView extends State<MainFrame> {
   /// トップバーのDrawerを取得するためのキー
   GlobalKey<TopbarView>? drawerKey;
 
-  // /// トップバーくん
-  // late Topbar topbar;
-
   /// Scaffoldのキーを作ってDrawerのON/OFFを切り替える
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -63,16 +61,7 @@ class MainFrameView extends State<MainFrame> {
   @override
   Widget build(BuildContext context) {
     // 画面が更新されるタイミングで横幅も調整
-    this.displayWidth = MediaQuery.of(context).size.width;
-    mainContentWidth = this.displayWidth * this.mainContentWidthRatio;
-    this.paddingWidth = (this.displayWidth - mainContentWidth) / 2;
-
-    if (this.paddingWidth < 0) {
-      mainContentWidth = this.displayWidth;
-      this.paddingWidth = 0;
-    } else {
-      mainContentWidth = this.displayWidth * this.mainContentWidthRatio;
-    }
+    this.updateSize();
 
     // トップバーを作ってキーを取得する
     return Title(
@@ -90,26 +79,11 @@ class MainFrameView extends State<MainFrame> {
           // トップバーが作ってくれたDrawerをキーから取得する
           drawer: this.createDrawerMenu(),
           // メインボディ
-          body: this._createAutoFillBody(),
+          body: this.createAutoFillBody(),
 
           // bottomNavigationBar: this._createBottomIconBar(),
         ),
       ),
     );
   } // end of build
-
-  /// 画面サイズに応じて自動的にパディングをつくるボディー
-  Widget _createAutoFillBody() {
-    // メイン画面はスクロール可能なバーで
-    return Scrollbar(
-      controller: this.mainContentScrollController,
-      child: SingleChildScrollView(
-        controller: this.mainContentScrollController,
-        child: Container(
-            width: mainContentWidth,
-            margin: EdgeInsets.only(left: this.paddingWidth, right: this.paddingWidth),
-            child: widget.page),
-      ),
-    );
-  } // end of method
 } // end of class
