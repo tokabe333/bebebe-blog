@@ -9,12 +9,15 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:vrouter/vrouter.dart';
 
-import 'topbar.dart';
+import './topbar.dart';
+import './topbar_hover_text.dart';
 
 /// Webサイトの構成を決めるフレーム
 /// 各ページはこれに自身を渡すことで画面を表示する
 class MainFrame extends StatefulWidget {
-  MainFrame({Key? key, String this.title = "beyan's page", required Widget this.page}) : super(key: key);
+  MainFrame(
+      {Key? key, String this.title = "beyan's page", required Widget this.page})
+      : super(key: key);
 
   /// 各種表示したいページ
   /// これを引数で受け取って右側に表示する
@@ -82,27 +85,13 @@ class MainFrameView extends State<MainFrame> {
       child: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        // decoration: const BoxDecoration(
-        //   gradient: LinearGradient(
-        //     begin: Alignment.topCenter,
-        //     end: Alignment.bottomCenter,
-        //     colors: [
-        //       const Color.fromARGB(255, 137, 194, 240),
-        //       Color.fromARGB(255, 160, 210, 252),
-        //       Color.fromARGB(255, 59, 93, 121),
-        //     ],
-        //     stops: [0, 0.5, 1],
-        //     tileMode: TileMode.repeated,
-        //   ),
-        // ),
-        // decoration: const BoxDecoration(
-        //     image: DecorationImage(image: AssetImage("assets/images/background/big_pattern_asshuku.png"))),
         child: Scaffold(
           backgroundColor: Colors.transparent,
           // ScaffoldのDrawerの起動をtopbarからできるように
           key: this._scaffoldKey,
           // トップバーくん
-          appBar: Topbar(height: this.topbarHeight, scaffoldKey: this._scaffoldKey),
+          appBar:
+              Topbar(height: this.topbarHeight, scaffoldKey: this._scaffoldKey),
           // トップバーが作ってくれたDrawerをキーから取得する
           drawer: this._createDrawerMenu(),
           // メインボディ
@@ -123,7 +112,8 @@ class MainFrameView extends State<MainFrame> {
         controller: this.mainContentScrollController,
         child: Container(
             width: mainContentWidth,
-            margin: EdgeInsets.only(left: this.paddingWidth, right: this.paddingWidth),
+            margin: EdgeInsets.only(
+                left: this.paddingWidth, right: this.paddingWidth),
             child: widget.page),
       ),
     );
@@ -133,8 +123,10 @@ class MainFrameView extends State<MainFrame> {
   Drawer _createDrawerMenu() {
     // アクセス一覧
     List<Widget> access = [
-      this._createDrawerText("トップ", 15, "/top"),
-      this._createDrawerText("ポートフォリオ", 15, "/github"),
+      //   this._createDrawerText("トップ", 15, "/top"),
+      //   this._createDrawerText("ポートフォリオ", 15, "/github"),
+      HyperLinkText(text: "トップ", fontSize: 15, route: "/"),
+      HyperLinkText(text: "ポートフォリオ", fontSize: 15, route: "/github"),
     ];
 
     return Drawer(

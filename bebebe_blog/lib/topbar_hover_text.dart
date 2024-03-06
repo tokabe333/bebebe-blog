@@ -18,6 +18,7 @@ class HyperLinkText extends StatefulWidget {
       required String this.text,
       required double this.fontSize,
       required String this.route,
+      Alignment this.textAlignment = Alignment.center,
       double this.height = 60})
       : super(key: key);
   // 表示するテキスト
@@ -29,7 +30,11 @@ class HyperLinkText extends StatefulWidget {
   /// Vrouteで使用するリンク
   String route;
 
+  /// フォントの高さ
   double height;
+
+  /// フォントの配置
+  Alignment textAlignment;
 
   @override
   State<HyperLinkText> createState() => HyperLinkTextView(height);
@@ -61,7 +66,7 @@ class HyperLinkTextView extends State<HyperLinkText> {
     primaryContainer = Container(
       height: this.height,
       color: primaryColor,
-      alignment: Alignment.center,
+      alignment: widget.textAlignment,
       margin: EdgeInsets.only(left: 10, right: 10),
       child: InkWell(
         child: Text(widget.text,
@@ -84,7 +89,7 @@ class HyperLinkTextView extends State<HyperLinkText> {
     hoverContainer = Container(
       height: this.height,
       color: hoverColor,
-      alignment: Alignment.center,
+      alignment: widget.textAlignment,
       padding: EdgeInsets.only(left: 10, right: 10),
       child: InkWell(
         child: Text(widget.text,
@@ -111,7 +116,8 @@ class HyperLinkTextView extends State<HyperLinkText> {
     animatedContainer = AnimatedCrossFade(
       firstChild: primaryContainer,
       secondChild: hoverContainer,
-      crossFadeState: this.isHover ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+      crossFadeState:
+          this.isHover ? CrossFadeState.showSecond : CrossFadeState.showFirst,
       duration: Duration(milliseconds: 100),
     );
 

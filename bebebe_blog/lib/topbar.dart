@@ -157,8 +157,6 @@ class TopbarView extends State<Topbar> {
         backgroundColor: Colors.white,
         child: InkWell(
           onTap: () {
-            print("scaffold key : ${this.scaffoldKey}");
-            print("current state : ${this.scaffoldKey?.currentState}");
             this.scaffoldKey?.currentState?.openDrawer();
           },
           child: Icon(
@@ -187,16 +185,6 @@ class TopbarView extends State<Topbar> {
         Expanded(child: SizedBox()),
       ],
     );
-  }
-
-  /// 画面が小さいときに左からスライドしてくるDrawer
-  Drawer createDrawerMenu() {
-    return Drawer(
-        child: Container(
-      width: 50,
-      height: 50,
-      color: Colors.green,
-    ));
   }
 
   /// 外部リンクへのアイコンを作る(BottomではなくTop)

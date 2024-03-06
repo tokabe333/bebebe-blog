@@ -41,7 +41,7 @@ class MainPageView extends State<MainPageWidget> {
   /// 画面切り替えのためにディレイして状態を変化させる
   MainPageView(this._isPlayDemo, this.topbarHeight) {
     // デモをするときはディレイをつける
-    if (this._isPlayDemo) this.delaySwitchTime = 530;
+    if (this._isPlayDemo) this.delaySwitchTime = 5300;
 
     // デモページを作成
     this._demoPage = DemoPageWidget(this._isPlayDemo);
