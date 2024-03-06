@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:vrouter/vrouter.dart';
 
 import 'main_page/start_page_view.dart';
-import './main_page/main_page_view.dart';
-import './github_page/github_page_view.dart';
+import 'main_page/main_page_view.dart';
+import 'github_page/github_page_view.dart';
 
 void main() {
   runApp(BebebeApp());
