@@ -121,7 +121,7 @@ class MainFrameView extends State<MainFrame> {
     List<Widget> access = [
       // this._createDrawerText("トップ", 15, "/", textAlignment: Alignment.centerLeft),
       // this._createDrawerText("ポートフォリオ", 15, "/github", textAlignment: Alignment.centerLeft),
-      HyperLinkText(text: "トップ", fontSize: 15, route: "/", textAlignment: Alignment.center),
+      HyperLinkText(text: "トップ", fontSize: 15, route: "/top", textAlignment: Alignment.center),
       HyperLinkText(text: "ポートフォリオ", fontSize: 15, route: "/github", textAlignment: Alignment.center),
     ];
 

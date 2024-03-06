@@ -96,7 +96,7 @@ class MainPageView extends State<MainPageWidget> {
           Positioned(
             left: demoPadding,
             right: demoPadding,
-            top: demoHeight + 50,
+            top: demoHeight + 30,
             child: this._createIntroduce(introduceHeight),
           ),
         ],
