@@ -10,7 +10,7 @@ import 'dart:math' as math;
 import 'package:vrouter/vrouter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'main_page/main_page_view.dart';
+import '../main_page/main_page_view.dart';
 
 /// 画面上部に表示するハイパーリンクテキスト
 class HyperLinkText extends StatefulWidget {

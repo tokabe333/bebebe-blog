@@ -7,7 +7,7 @@ import 'package:easy_animate/animation/fade_in_animation.dart';
 import 'package:easy_animate/enum/animate_direction.dart';
 import 'package:flutter/material.dart';
 
-import '../main_frame.dart';
+import '../main_frame/main_frame.dart';
 import './demo_page_view.dart';
 
 class MainPageWidget extends StatefulWidget {

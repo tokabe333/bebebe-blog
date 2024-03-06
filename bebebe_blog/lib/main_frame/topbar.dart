@@ -9,7 +9,7 @@ import 'dart:math' as math;
 import 'package:vrouter/vrouter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'main_page/main_page_view.dart';
+import '../main_page/main_page_view.dart';
 import 'topbar_hover_text.dart';
 
 class Topbar extends StatefulWidget implements PreferredSizeWidget {
