@@ -11,7 +11,11 @@ import '../main_frame.dart';
 import './start_page_view.dart';
 
 class MainPageWidget extends StatefulWidget {
-  MainPageWidget({Key? key, bool this.isPlayDemo = true, required double this.topbarHeight}) : super(key: key);
+  MainPageWidget(
+      {Key? key,
+      bool this.isPlayDemo = true,
+      required double this.topbarHeight})
+      : super(key: key);
   final String title = "べーやん's Site";
   bool isPlayDemo = true;
   double topbarHeight;
@@ -37,7 +41,7 @@ class MainPageView extends State<MainPageWidget> {
   /// 画面切り替えのためにディレイして状態を変化させる
   MainPageView(this._isPlayDemo, this.topbarHeight) {
     // デモをするときはディレイをつける
-    if (this._isPlayDemo) this.delaySwitchTime = 5300;
+    if (this._isPlayDemo) this.delaySwitchTime = 530;
 
     // デモページを作成
     this._demoPage = DemoPageWidget(this._isPlayDemo);
@@ -55,7 +59,8 @@ class MainPageView extends State<MainPageWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return MainFrame(title: "beyan's home", page: this._createMainContent(context));
+    return MainFrame(
+        title: "beyan's home", page: this._createMainContent(context));
   } //   end of build
 
   /// メインコンテンツ(デモとサイト紹介)を作成
@@ -82,17 +87,26 @@ class MainPageView extends State<MainPageWidget> {
       color: const Color.fromARGB(255, 137, 194, 240),
       child: Stack(
         children: [
-          Column(
-            children: [
-              Expanded(child: SizedBox()),
-              // Expanded(child: this._demoPage.createDemoWidget(context)),
-              this._createIntroduce(introduceHeight),
-            ],
+          //   const Column(
+          //     children: [
+          //       Expanded(child: SizedBox()),
+          //       // Expanded(child: this._demoPage.createDemoWidget(context)),
+          //     ],
+          //   ),
+          Positioned(
+            left: demoPadding,
+            right: demoPadding,
+            child: Container(
+                height: demoHeight,
+                width: demoWidth,
+                child: this._demoPage.createDemoWidget(context)),
           ),
           Positioned(
-              left: demoPadding,
-              right: demoPadding,
-              child: Container(height: demoHeight, width: demoWidth, child: this._demoPage.createDemoWidget(context))),
+            left: demoPadding,
+            right: demoPadding,
+            top: demoHeight + 50,
+            child: this._createIntroduce(introduceHeight),
+          ),
         ],
       ),
     );
@@ -125,8 +139,10 @@ class MainPageView extends State<MainPageWidget> {
   } // end of method
 
   /// 紹介文用テキストを作成
-  Widget _createIntroduceText(String text, {double fontSize = 18, Color color = Colors.white}) {
+  Widget _createIntroduceText(String text,
+      {double fontSize = 18, Color color = Colors.white}) {
     return SizedBox(
+      height: fontSize + 10,
       child: Center(
         child: Text(
           text,
