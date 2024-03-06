@@ -4,6 +4,7 @@
 /// -------------------------------------------
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'dart:html' as html;
 import 'dart:math' as math;
 import 'package:vrouter/vrouter.dart';
@@ -67,7 +68,8 @@ class HyperLinkTextView extends State<HyperLinkText> {
       height: this.height,
       color: primaryColor,
       alignment: widget.textAlignment,
-      margin: EdgeInsets.only(left: 10, right: 10),
+      // margin: EdgeInsets.only(left: 10, right: 10),
+      padding: EdgeInsets.only(left: 10, right: 10),
       child: InkWell(
         child: Text(widget.text,
             style: TextStyle(
@@ -116,8 +118,7 @@ class HyperLinkTextView extends State<HyperLinkText> {
     animatedContainer = AnimatedCrossFade(
       firstChild: primaryContainer,
       secondChild: hoverContainer,
-      crossFadeState:
-          this.isHover ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+      crossFadeState: this.isHover ? CrossFadeState.showSecond : CrossFadeState.showFirst,
       duration: Duration(milliseconds: 100),
     );
 

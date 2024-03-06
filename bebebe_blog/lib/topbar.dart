@@ -13,11 +13,7 @@ import 'main_page/main_page_view.dart';
 import 'topbar_hover_text.dart';
 
 class Topbar extends StatefulWidget implements PreferredSizeWidget {
-  Topbar(
-      {Key? key,
-      required double this.height,
-      required GlobalKey<ScaffoldState> this.scaffoldKey})
-      : super(key: key);
+  Topbar({Key? key, required double this.height, required GlobalKey<ScaffoldState> this.scaffoldKey}) : super(key: key);
 
   double height = 0;
 
@@ -27,8 +23,7 @@ class Topbar extends StatefulWidget implements PreferredSizeWidget {
   @override
   Size get preferredSize => Size.fromHeight(height);
 
-  State<Topbar> createState() =>
-      TopbarView(height: height, scaffoldKey: scaffoldKey);
+  State<Topbar> createState() => TopbarView(height: height, scaffoldKey: scaffoldKey);
 } // end of class
 
 /// 画面上部に表示するバー
@@ -46,8 +41,7 @@ class TopbarView extends State<Topbar> {
   final List<Widget> tabs = [];
 
   /// 画面左上に表示するアイコン画像
-  Widget iconImage =
-      Image.asset("images/fox_logo_alpha.png", fit: BoxFit.contain);
+  Widget iconImage = Image.asset("images/fox_logo_alpha.png", fit: BoxFit.contain);
 
   /// 現在のScaffold状態を確認するKey
   GlobalKey<ScaffoldState>? scaffoldKey;
@@ -64,23 +58,14 @@ class TopbarView extends State<Topbar> {
   /// 画面上部のタブバーを作成する
   void _createTopTabs(BuildContext context) {
     this.tabs.add(HyperLinkText(text: "トップ", fontSize: 15, route: "/top"));
-    this
-        .tabs
-        .add(HyperLinkText(text: "ポートフォリオ", fontSize: 15, route: "/github"));
+    this.tabs.add(HyperLinkText(text: "ポートフォリオ", fontSize: 15, route: "/github"));
     this.tabs.add(SizedBox(width: 20));
+    this.tabs.add(this._createBottomIcon(path: "images/twitter_blue.png", hyperLink: "https://twitter.com/tokabe333"));
     this.tabs.add(this._createBottomIcon(
-        path: "images/twitter_blue.png",
-        hyperLink: "https://twitter.com/tokabe333"));
-    this.tabs.add(this._createBottomIcon(
-        path: "images/youtube_red.png",
-        hyperLink: "https://www.youtube.com/channel/UCS2o5U1Aom8AgK4Pn1MI16w"));
-    this.tabs.add(this._createBottomIcon(
-        path: "images/qiita.png", hyperLink: "https://qiita.com/tokabe333"));
-    this.tabs.add(this._createBottomIcon(
-        path: "images/github.png", hyperLink: "https://github.com/tokabe333/"));
-    this.tabs.add(this._createBottomIcon(
-        path: "images/atcoder.png",
-        hyperLink: "https://atcoder.jp/users/tokabe333"));
+        path: "images/youtube_red.png", hyperLink: "https://www.youtube.com/channel/UCS2o5U1Aom8AgK4Pn1MI16w"));
+    this.tabs.add(this._createBottomIcon(path: "images/qiita.png", hyperLink: "https://qiita.com/tokabe333"));
+    this.tabs.add(this._createBottomIcon(path: "images/github.png", hyperLink: "https://github.com/tokabe333/"));
+    this.tabs.add(this._createBottomIcon(path: "images/atcoder.png", hyperLink: "https://atcoder.jp/users/tokabe333"));
   }
 
   @override
@@ -111,8 +96,7 @@ class TopbarView extends State<Topbar> {
     // トップバーの配置
     return Container(
       width: displayWidth,
-      padding:
-          EdgeInsets.only(top: 0, bottom: 0, left: padding, right: padding),
+      padding: EdgeInsets.only(top: 0, bottom: 0, left: padding, right: padding),
       // color: const Color.fromARGB(255, 184, 184, 184),
       color: Colors.white,
       child: Row(
@@ -121,10 +105,7 @@ class TopbarView extends State<Topbar> {
           // アイコン
           InkWell(
             onTap: () => this.scaffoldKey?.currentState?.openDrawer(),
-            child: Container(
-                height: this.height,
-                margin: EdgeInsets.only(left: 40),
-                child: this.iconImage),
+            child: Container(height: this.height, margin: EdgeInsets.only(left: 40), child: this.iconImage),
           ),
 
           // 右上タブ
