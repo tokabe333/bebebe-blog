@@ -5,7 +5,7 @@
 import 'package:flutter/material.dart';
 import 'package:vrouter/vrouter.dart';
 
-import './main_page/main_page_view.dart';
+import './main_frame.dart';
 
 void main() {
   runApp(BebebeApp());
@@ -21,7 +21,7 @@ class BebebeApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "beyan's home page",
-      home: MainPageWidget(topbarHeight: 60),
+      home: MainFrame(topbarHeight: this.topbarHeight),
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 226, 216, 243)),
         useMaterial3: true,

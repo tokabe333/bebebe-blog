@@ -7,23 +7,24 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:vrouter/vrouter.dart';
 
-import 'topbar.dart';
+import './topbar.dart';
 import './main_frame_drawer.dart';
 import './main_frame_fit.dart';
+
+import './main_page/main_page_view.dart';
 
 /// Webサイトの構成を決めるフレーム
 /// 各ページはこれに自身を渡すことで画面を表示する
 class MainFrame extends StatefulWidget {
-  MainFrame({Key? key, String this.title = "beyan's page", required Widget this.page}) : super(key: key);
-
-  /// 各種表示したいページ
-  /// これを引数で受け取って右側に表示する
-  Widget page;
+  MainFrame({Key? key, String this.title = "beyan's page", required double this.topbarHeight}) : super(key: key);
 
   // タブに表示されるタイトル
   String title;
 
-  State<MainFrame> createState() => MainFrameView();
+  /// トップバーの高さ
+  double topbarHeight;
+
+  State<MainFrame> createState() => MainFrameView(topbarHeight);
 } // end of class
 
 /// 実際に表示を記述する
@@ -52,8 +53,15 @@ class MainFrameView extends State<MainFrame> {
   /// Scaffoldのキーを作ってDrawerのON/OFFを切り替える
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  /// constructor (初期の大きさを保存しておく)
-  MainFrameView() {}
+  /// このWebサイトのコンテンツ一覧(ページ一覧)
+  late List<Widget> mainContents;
+
+  /// constructor 各ページを初期化していく
+  MainFrameView(double this.topbarHeight) {
+    this.mainContents = [
+      MainPageWidget(topbarHeight: this.topbarHeight),
+    ];
+  }
 
   @override
   void initState() {}
@@ -79,7 +87,7 @@ class MainFrameView extends State<MainFrame> {
           // トップバーが作ってくれたDrawerをキーから取得する
           drawer: this.createDrawerMenu(),
           // メインボディ
-          body: this.createAutoFillBody(),
+          body: this.createAutoFillBody(this.mainContents[0]),
 
           // bottomNavigationBar: this._createBottomIconBar(),
         ),

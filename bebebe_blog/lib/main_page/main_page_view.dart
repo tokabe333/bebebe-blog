@@ -54,12 +54,9 @@ class MainPageView extends State<MainPageWidget> {
   void initState() {}
 
   @override
-  Widget build(BuildContext context) {
-    return MainFrame(title: "beyan's home", page: this._createMainContent(context));
-  } //   end of build
 
   /// メインコンテンツ(デモとサイト紹介)を作成
-  Widget _createMainContent(BuildContext context) {
+  Widget build(BuildContext context) {
     double displayWidth = MediaQuery.of(context).size.width;
     double displayHeight = MediaQuery.of(context).size.height;
     double mainContentHeight = displayHeight - this.topbarHeight;
@@ -76,23 +73,20 @@ class MainPageView extends State<MainPageWidget> {
     }
     double demoPadding = (displayWidth - demoWidth) / 2;
 
+    // 背景をつけて、Stackで位置を決めていく
     return Container(
       width: displayWidth,
       height: mainContentHeight,
       color: const Color.fromARGB(255, 137, 194, 240),
       child: Stack(
         children: [
-          //   const Column(
-          //     children: [
-          //       Expanded(child: SizedBox()),
-          //       // Expanded(child: this._demoPage.createDemoWidget(context)),
-          //     ],
-          //   ),
+          // デモ動画
           Positioned(
             left: demoPadding,
             right: demoPadding,
             child: Container(height: demoHeight, width: demoWidth, child: this._demoPage.createDemoWidget(context)),
           ),
+          // ポートフォリオサイトです
           Positioned(
             left: demoPadding,
             right: demoPadding,
@@ -102,7 +96,7 @@ class MainPageView extends State<MainPageWidget> {
         ],
       ),
     );
-  } // end of method
+  } // end of build
 
   /// 画面下部の紹介文を作成
   Widget _createIntroduce(double height) {
@@ -150,19 +144,3 @@ class MainPageView extends State<MainPageWidget> {
 } // end of class
 
 
-
-
-
-
-// ---------- あとから見返す ------------
-
-// if (this._isPlayDemo) {
-//   /// デモ画面と普通の画面を切り替える
-//   return AnimatedCrossFade(
-//       firstChild: this.demoPage,
-//       secondChild: MainFrame(title: "beyan's home", page: this._createMainPage(context)),
-//       crossFadeState: this._isFinishedDemo ? CrossFadeState.showSecond : CrossFadeState.showFirst,
-//       duration: Duration(milliseconds: 1000));
-// } else {
-//   return MainFrame(title: "beyan's home", page: this._createMainPage(context));
-// }

@@ -25,7 +25,7 @@ extension MainFrameFit on MainFrameView {
   }
 
   /// 画面サイズに応じて自動的にパディングをつくるボディー
-  Widget createAutoFillBody() {
+  Widget createAutoFillBody(Widget page) {
     // メイン画面はスクロール可能なバーで
     return Scrollbar(
       controller: this.mainContentScrollController,
@@ -34,7 +34,7 @@ extension MainFrameFit on MainFrameView {
         child: Container(
             width: mainContentWidth,
             margin: EdgeInsets.only(left: this.paddingWidth, right: this.paddingWidth),
-            child: widget.page),
+            child: page),
       ),
     );
   } // end of method
