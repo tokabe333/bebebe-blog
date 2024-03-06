@@ -4,7 +4,7 @@
 
 import 'package:flutter/material.dart';
 
-import './github_page_view.dart';
+import 'github_page_view.dart';
 
 /// コンテナ用のウィジェット(各ウィジェットが独立して状態を保持する必要がある)
 class GitHubContainerWidget extends StatefulWidget {

@@ -9,8 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:vrouter/vrouter.dart';
 
-import './topbar.dart';
-import './topbar_hover_text.dart';
+import 'topbar.dart';
+import 'topbar_hover_text.dart';
 
 /// Webサイトの構成を決めるフレーム
 /// 各ページはこれに自身を渡すことで画面を表示する

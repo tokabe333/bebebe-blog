@@ -5,7 +5,7 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-import './github_page_view.dart';
+import 'github_page_view.dart';
 
 extension GithubApiUtil on GithubPageView {
   /// Githubからリポジトリ一覧を取得

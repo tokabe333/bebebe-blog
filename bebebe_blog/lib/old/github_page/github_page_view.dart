@@ -7,8 +7,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 import '../main_frame.dart';
-import './github_api_util.dart';
-import './github_repository_container.dart';
+import 'github_api_util.dart';
+import 'github_repository_container.dart';
 
 class GithubPageWidget extends StatefulWidget {
   GithubPageWidget({Key? key}) : super(key: key);

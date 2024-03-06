@@ -2,7 +2,7 @@
 ///        一番最初の画面で表示するでも
 /// -------------------------------------------
 
-import 'package:bebebe_blog/main_page/main_page_view.dart';
+import 'package:bebebe_blog/old/main_page/main_page_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:rive/rive.dart';

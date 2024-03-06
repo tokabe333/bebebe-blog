@@ -8,7 +8,7 @@ import 'package:easy_animate/enum/animate_direction.dart';
 import 'package:flutter/material.dart';
 
 import '../main_frame.dart';
-import './start_page_view.dart';
+import 'start_page_view.dart';
 
 class MainPageWidget extends StatefulWidget {
   MainPageWidget({Key? key, bool this.isPlayDemo = true, required double this.topbarHeight}) : super(key: key);
