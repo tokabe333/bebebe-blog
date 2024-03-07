@@ -9,7 +9,6 @@ import 'dart:html' as html;
 import 'dart:math' as math;
 import 'package:vrouter/vrouter.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 /// 画面上部に表示するハイパーリンクテキスト
 class SkilsetBadge extends StatefulWidget {
@@ -132,7 +131,8 @@ class SkilsetBadgeView extends State<SkilsetBadge> {
         ),
         child: Text(
           widget.text,
-          style: GoogleFonts.notoSansJp(
+          style: TextStyle(
+            fontFamily: "noto",
             color: isHover ? Colors.white : widget.borderColor.withAlpha(230),
             letterSpacing: 0.5,
             fontWeight: FontWeight.w500,

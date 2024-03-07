@@ -138,15 +138,10 @@ class MainPageView extends State<MainPageWidget> {
       child: Center(
         child: Text(
           text,
-          // style: TextStyle(
-          //   color: color,
-          //   fontSize: fontSize,
-          //   fontFamily: "noto",
-          //   fontWeight: FontWeight.w500,
-          // ),
-          style: GoogleFonts.notoSansJp(
+          style: TextStyle(
             color: color,
             fontSize: fontSize,
+            fontFamily: "noto",
             fontWeight: FontWeight.w500,
           ),
         ),

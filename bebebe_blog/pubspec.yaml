@@ -16,7 +16,6 @@ dependencies:
   vrouter: ^1.2.1
   rive: ^0.12.4
   easy_animate: ^0.0.3
-  google_fonts: ^6.1.0
 
 dev_dependencies:
   flutter_test:
@@ -33,47 +32,47 @@ flutter:
   - assets/images/background/
   - assets/animations/
 
-  # fonts:
-  #   # - family: Aihara
-  #   #   fonts:
-  #   #   - asset: assets/fonts/AiharaSignPen_free.ttf
+  fonts:
+    # - family: Aihara
+    #   fonts:
+    #   - asset: assets/fonts/AiharaSignPen_free.ttf
 
-  #   # - family: Hui
-  #   #   fonts:
-  #   #   - asset: assets/fonts/HuiFont.ttf
+    # - family: Hui
+    #   fonts:
+    #   - asset: assets/fonts/HuiFont.ttf
 
-  #   # - family: Kawaii
-  #   #   fonts:
-  #   #   - asset: assets/fonts/KTEGAKI.ttf
+    # - family: Kawaii
+    #   fonts:
+    #   - asset: assets/fonts/KTEGAKI.ttf
 
-  #   # - family: Otsutome
-  #   #   fonts:
-  #   #   - asset: assets/fonts/OtsutomeFont_Ver3_15.ttf
+    # - family: Otsutome
+    #   fonts:
+    #   - asset: assets/fonts/OtsutomeFont_Ver3_15.ttf
 
-  #   # - family: BIZUDP
-  #   #   fonts:
-  #   #     - asset: assets/fonts/BIZUDPGothic-Regular.ttf
-  #   #       weight: 400
-  #   #     - asset: assets/fonts/BIZUDPGothic-Bold.ttf
-  #   #       weight: 700
+    # - family: BIZUDP
+    #   fonts:
+    #     - asset: assets/fonts/BIZUDPGothic-Regular.ttf
+    #       weight: 400
+    #     - asset: assets/fonts/BIZUDPGothic-Bold.ttf
+    #       weight: 700
 
-  #   - family: noto
-  #     fonts:
-  #     #   - asset: assets/fonts/noto/NotoSansJP-Thin.ttf
-  #     #     weight: 100
-  #     #   - asset: assets/fonts/noto/NotoSansJP-ExtraLight.ttf
-  #     #     weight: 200
-  #     #   - asset: assets/fonts/noto/NotoSansJP-Light.ttf
-  #     #     weight: 300
-  #     #   - asset: assets/fonts/noto/NotoSansJP-Regular.ttf
-  #     #     weight: 400
-  #       - asset: assets/fonts/noto/NotoSansJP-Medium.ttf
-  #         weight: 500
-  #     #   - asset: assets/fonts/noto/NotoSansJP-SemiBold.ttf
-  #     #     weight: 600
-  #     #   - asset: assets/fonts/noto/NotoSansJP-Bold.ttf
-  #     #     weight: 700
-  #     #   - asset: assets/fonts/noto/NotoSansJP-ExtraBold.ttf
-  #     #     weight: 800
-  #     #   - asset: assets/fonts/noto/NotoSansJP-Black.ttf
-  #     #     weight: 900
+    - family: noto
+      fonts:
+      #   - asset: assets/fonts/noto/NotoSansJP-Thin.ttf
+      #     weight: 100
+      #   - asset: assets/fonts/noto/NotoSansJP-ExtraLight.ttf
+      #     weight: 200
+      #   - asset: assets/fonts/noto/NotoSansJP-Light.ttf
+      #     weight: 300
+      #   - asset: assets/fonts/noto/NotoSansJP-Regular.ttf
+      #     weight: 400
+        - asset: assets/fonts/noto/NotoSansJP-Medium.ttf
+          weight: 500
+      #   - asset: assets/fonts/noto/NotoSansJP-SemiBold.ttf
+      #     weight: 600
+      #   - asset: assets/fonts/noto/NotoSansJP-Bold.ttf
+      #     weight: 700
+      #   - asset: assets/fonts/noto/NotoSansJP-ExtraBold.ttf
+      #     weight: 800
+      #   - asset: assets/fonts/noto/NotoSansJP-Black.ttf
+      #     weight: 900

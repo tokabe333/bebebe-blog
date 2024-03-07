@@ -6,7 +6,6 @@
 import 'package:easy_animate/animation/fade_in_animation.dart';
 import 'package:easy_animate/enum/animate_direction.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../../site_frames/main_frame.dart';
 import './demo_page_view.dart';
@@ -132,13 +131,8 @@ class MainPageView extends State<MainPageWidget> {
       child: Center(
         child: Text(
           text,
-          // style: TextStyle(
-          //   color: color,
-          //   fontSize: fontSize,
-          //   fontFamily: "noto",
-          //   fontWeight: FontWeight.w500,
-          // ),
-          style: GoogleFonts.notoSansJp(
+          style: TextStyle(
+            fontFamily: "noto",
             color: color,
             fontSize: fontSize,
             fontWeight: FontWeight.w500,
