@@ -5,6 +5,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'dart:html' as html;
 import 'dart:math' as math;
 import 'package:vrouter/vrouter.dart';
@@ -76,8 +77,13 @@ class HyperLinkTextView extends State<HyperLinkText> {
       padding: EdgeInsets.only(left: 10, right: 10),
       child: InkWell(
         child: Text(widget.text,
-            style: TextStyle(
-                // fontFamily: "noto",
+            // style: TextStyle(
+            //     // fontFamily: "noto",
+            //     color: const Color.fromARGB(255, 102, 102, 102),
+            //     letterSpacing: 0.5,
+            //     fontWeight: FontWeight.w500,
+            //     fontSize: widget.fontSize)),
+            style: GoogleFonts.notoSansJp(
                 color: const Color.fromARGB(255, 102, 102, 102),
                 letterSpacing: 0.5,
                 fontWeight: FontWeight.w500,
@@ -99,8 +105,14 @@ class HyperLinkTextView extends State<HyperLinkText> {
       padding: EdgeInsets.only(left: 10, right: 10),
       child: InkWell(
         child: Text(widget.text,
-            style: TextStyle(
-              // fontFamily: "noto",
+            // style: TextStyle(
+            //   // fontFamily: "noto",
+            //   color: Colors.white,
+            //   letterSpacing: 0.5,
+            //   fontWeight: FontWeight.w500,
+            //   fontSize: widget.fontSize,
+            // )),
+            style: GoogleFonts.notoSansJp(
               color: Colors.white,
               letterSpacing: 0.5,
               fontWeight: FontWeight.w500,
