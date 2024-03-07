@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:vrouter/vrouter.dart';
 
-import 'main_frame.dart';
+import './main_frame.dart';
 
 /// 画面サイズ調整機能群
 extension MainFrameFit on MainFrameView {

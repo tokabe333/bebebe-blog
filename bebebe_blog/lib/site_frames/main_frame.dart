@@ -7,9 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:vrouter/vrouter.dart';
 
-import 'topbar/topbar.dart';
-import 'main_frame_drawer.dart';
-import 'main_frame_fit.dart';
+import './topbar/topbar.dart';
+import './main_frame_drawer.dart';
+import './main_frame_fit.dart';
 
 import '../contents/main_page/main_page_view.dart';
 
