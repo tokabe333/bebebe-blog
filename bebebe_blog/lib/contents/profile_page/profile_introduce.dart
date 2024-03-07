@@ -12,4 +12,3 @@ import './profile_page_view.dart';
 
 extension ProfileIntroduce on ProfilePageView {} // end of class
 
-
