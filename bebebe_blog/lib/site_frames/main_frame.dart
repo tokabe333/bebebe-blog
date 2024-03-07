@@ -12,6 +12,7 @@ import './main_frame_drawer.dart';
 import './main_frame_fit.dart';
 
 import '../contents/main_page/main_page_view.dart';
+import '../contents/profile_page/profile_page_view.dart';
 
 /// Webサイトの構成を決めるフレーム
 /// 各ページはこれに自身を渡すことで画面を表示する
@@ -59,7 +60,8 @@ class MainFrameView extends State<MainFrame> {
   /// constructor 各ページを初期化していく
   MainFrameView(double this.topbarHeight) {
     this.mainContents = [
-      MainPageWidget(topbarHeight: this.topbarHeight),
+      // MainPageWidget(topbarHeight: this.topbarHeight),
+      ProfilePageWidget(),
     ];
   }
 

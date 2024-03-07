@@ -51,12 +51,16 @@ class HyperLinkTextView extends State<HyperLinkText> {
   /// ホバー時の色
   Color hoverColor = const Color.fromARGB(255, 137, 194, 240);
 
+  /// 通常時の色
   Widget primaryContainer = Container();
 
+  /// ホバー時のウィジェット(これに切り替える)
   Widget hoverContainer = Container();
 
+  /// 通常時のウィジェット(普段はこれ)
   Widget animatedContainer = Container();
 
+  /// このウィジェットの高さ
   double height;
 
   HyperLinkTextView(double this.height) {}
