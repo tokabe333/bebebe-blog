@@ -24,6 +24,7 @@ class BebebeApp extends StatelessWidget {
       home: MainFrame(topbarHeight: this.topbarHeight),
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 226, 216, 243)),
+        // fontFamily: "noto",
         fontFamily: "noto",
         useMaterial3: true,
       ),

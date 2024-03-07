@@ -132,7 +132,7 @@ class MainPageView extends State<MainPageWidget> {
         child: Text(
           text,
           style: TextStyle(
-            fontFamily: "noto",
+            // fontFamily: "noto",
             color: color,
             fontSize: fontSize,
             fontWeight: FontWeight.w500,

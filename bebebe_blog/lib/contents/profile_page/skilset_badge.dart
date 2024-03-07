@@ -132,7 +132,7 @@ class SkilsetBadgeView extends State<SkilsetBadge> {
         child: Text(
           widget.text,
           style: TextStyle(
-            fontFamily: "noto",
+            // fontFamily: "noto",
             color: isHover ? Colors.white : widget.borderColor.withAlpha(230),
             letterSpacing: 0.5,
             fontWeight: FontWeight.w500,
