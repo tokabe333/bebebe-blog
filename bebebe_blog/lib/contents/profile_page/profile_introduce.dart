@@ -6,6 +6,7 @@ import 'package:bebebe_blog/contents/profile_page/skilset_badge.dart';
 import 'package:easy_animate/animation/fade_in_animation.dart';
 import 'package:easy_animate/enum/animate_direction.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import './profile_page_view.dart';
 
@@ -20,23 +21,22 @@ extension ProfileIntroduce on ProfilePageView {
     return ConstrainedBox(
       constraints: BoxConstraints.tightFor(width: contentWidth),
       child: Container(
-          margin: EdgeInsets.only(left: paddingWidth, right: paddingWidth),
-          padding: EdgeInsets.all(20),
-          decoration: BoxDecoration(
-            color: Color.fromARGB(255, 233, 233, 233),
-            borderRadius: BorderRadius.circular(10),
+        margin: EdgeInsets.only(left: paddingWidth, right: paddingWidth),
+        padding: EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          color: Color.fromARGB(255, 233, 233, 233),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Text(
+          "とりあえずテキストとりあえずてきすととりあえずテキストとりあえずてきすととりあえずテキストとりあえずてきすととりあえずテキストとりあえずてきすととりあえずテキストとりあえずてきすととりあえずテキストとりあえずてきすととりあえずテキストとりあえずてきすととりあえずテキストとりあえずてきすととりあえずテキストとりあえずてきすととりあえずテキストとりあえずてきすととりあえずテキストとりあえずてきすととりあえずテキストとりあえずてきすととりあえずテキストとりあえずてきすととりあえずテキストとりあえずてきすと",
+          style: GoogleFonts.notoSansJp(
+            color: Colors.black,
+            letterSpacing: 0.5,
+            fontWeight: FontWeight.w500,
+            fontSize: displayWidth > 500 ? 15 : 13,
           ),
-          child: Text(
-            "とりあえずテキストとりあえずてきすととりあえずテキストとりあえずてきすととりあえずテキストとりあえずてきすととりあえずテキストとりあえずてきすととりあえずテキストとりあえずてきすととりあえずテキストとりあえずてきすととりあえずテキストとりあえずてきすととりあえずテキストとりあえずてきすととりあえずテキストとりあえずてきすととりあえずテキストとりあえずてきすととりあえずテキストとりあえずてきすととりあえずテキストとりあえずてきすととりあえずテキストとりあえずてきすととりあえずテキストとりあえずてきすと",
-            style: TextStyle(
-              fontFamily: "noto",
-              // color: Colors.white,
-              color: Colors.black,
-              letterSpacing: 0.5,
-              fontWeight: FontWeight.w500,
-              fontSize: displayWidth > 500 ? 15 : 13,
-            ),
-          )),
+        ),
+      ),
     );
   } // end of method
 } // end of class
