@@ -135,14 +135,16 @@ class TopbarView extends State<Topbar> {
       width: this.height * 0.7,
       height: this.height * 0.7,
       child: CircleAvatar(
-        backgroundColor: Colors.white,
+        // backgroundColor: Colors.white,
+        backgroundColor: const Color.fromARGB(128, 11, 127, 223),
         child: InkWell(
           onTap: () {
             this.scaffoldKey?.currentState?.openDrawer();
           },
           child: Icon(
             Icons.dehaze_rounded,
-            color: Color.fromARGB(185, 11, 127, 223),
+            // color: Color.fromARGB(185, 11, 127, 223),
+            color: Colors.white,
           ),
         ),
       ),
