@@ -106,10 +106,17 @@ class MainFrameView extends State<MainFrame> {
     double mainContentHeight = MediaQuery.of(context).size.height - this.topbarHeight;
     return Scrollbar(
       controller: this.mainContentScrollController,
-      child: SingleChildScrollView(
-        controller: this.mainContentScrollController,
-        child: SizedBox(height: mainContentHeight * pages.length, child: ListView(children: pages)),
+      thumbVisibility: true,
+      // child: SingleChildScrollView(
+      //   controller: this.mainContentScrollController,
+      child: SizedBox(
+        height: mainContentHeight * pages.length,
+        child: ListView(
+          controller: this.mainContentScrollController,
+          children: pages,
+        ),
       ),
+      // ),
     );
   } // end of main
 } // end of class
