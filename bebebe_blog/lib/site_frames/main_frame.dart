@@ -5,7 +5,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:vrouter/vrouter.dart';
+import 'package:universal_html/html.dart' as html;
 
 import './topbar/topbar.dart';
 import './main_frame_drawer.dart';
@@ -104,19 +104,24 @@ class MainFrameView extends State<MainFrame> {
   Widget _createScrollableMainContent(BuildContext context, List<Widget> pages) {
     // 1ページあたりの高さ
     double mainContentHeight = MediaQuery.of(context).size.height - this.topbarHeight;
-    return Scrollbar(
-      controller: this.mainContentScrollController,
-      thumbVisibility: true,
-      // child: SingleChildScrollView(
-      //   controller: this.mainContentScrollController,
-      child: SizedBox(
-        height: mainContentHeight * pages.length,
-        child: ListView(
-          controller: this.mainContentScrollController,
-          children: pages,
+    return RefreshIndicator(
+      onRefresh: () async {
+        print("onRefresh!");
+        html.window.location.reload();
+      },
+      child: Scrollbar(
+        controller: this.mainContentScrollController,
+        thumbVisibility: true,
+        // child: SingleChildScrollView(
+        //   controller: this.mainContentScrollController,
+        child: SizedBox(
+          height: mainContentHeight * pages.length,
+          child: ListView(
+            controller: this.mainContentScrollController,
+            children: pages,
+          ),
         ),
       ),
-      // ),
     );
   } // end of main
 } // end of class
