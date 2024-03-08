@@ -100,6 +100,7 @@ class MainFrameView extends State<MainFrame> {
     );
   } // end of build
 
+  /// スクロールバー付きでメインコンテンツを並べていく
   Widget _createScrollableMainContent(BuildContext context, List<Widget> pages) {
     // 1ページあたりの高さ
     double mainContentHeight = MediaQuery.of(context).size.height - this.topbarHeight;
