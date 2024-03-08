@@ -63,7 +63,7 @@ class MainFrameView extends State<MainFrame> {
   @override
   void initState() {
     this.mainContents = [
-      // MainPageWidget(topbarHeight: this.topbarHeight),
+      MainPageWidget(topbarHeight: this.topbarHeight),
       ProfilePageWidget(topbarHeight: this.topbarHeight),
     ];
   }
@@ -89,11 +89,24 @@ class MainFrameView extends State<MainFrame> {
           // トップバーが作ってくれたDrawerをキーから取得する
           drawer: this.createDrawerMenu(),
           // メインボディ
-          body: this.createAutoFillBody(this.mainContents[0]),
+          // body: this.createAutoFillBody(this.mainContents[0]),
+          body: this._createScrollableMainContent(context, this.mainContents),
 
           // bottomNavigationBar: this._createBottomIconBar(),
         ),
       ),
     );
   } // end of build
+
+  Widget _createScrollableMainContent(BuildContext context, List<Widget> pages) {
+    // 1ページあたりの高さ
+    double mainContentHeight = MediaQuery.of(context).size.height - this.topbarHeight;
+    return Scrollbar(
+      controller: this.mainContentScrollController,
+      child: SingleChildScrollView(
+        controller: this.mainContentScrollController,
+        child: SizedBox(height: mainContentHeight * pages.length, child: ListView(children: pages)),
+      ),
+    );
+  } // end of main
 } // end of class
