@@ -135,7 +135,7 @@ class TopbarView extends State<Topbar> {
       width: this.height * 0.7,
       height: this.height * 0.7,
       child: CircleAvatar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.white.withOpacity(0.9),
         child: InkWell(
           onTap: () {
             this.scaffoldKey?.currentState?.openDrawer();
