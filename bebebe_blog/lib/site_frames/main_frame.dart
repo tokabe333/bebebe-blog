@@ -86,6 +86,8 @@ class MainFrameView extends State<MainFrame> {
           key: this._scaffoldKey,
           // トップバーくん
           appBar: Topbar(height: this.topbarHeight, scaffoldKey: this._scaffoldKey),
+          // トップバーがボディを透過するように
+          extendBodyBehindAppBar: true,
           // トップバーが作ってくれたDrawerをキーから取得する
           drawer: this.createDrawerMenu(),
           // メインボディ

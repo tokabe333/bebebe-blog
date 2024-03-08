@@ -98,7 +98,7 @@ class TopbarView extends State<Topbar> {
       width: displayWidth,
       padding: EdgeInsets.only(top: 0, bottom: 0, left: padding, right: padding),
       // color: const Color.fromARGB(255, 184, 184, 184),
-      color: Colors.white,
+      color: Colors.white.withOpacity(0.9),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [

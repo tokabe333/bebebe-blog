@@ -71,18 +71,12 @@ class HyperLinkTextView extends State<HyperLinkText> {
     /// 通常時のフォント
     primaryContainer = Container(
       height: this.height,
-      color: primaryColor,
+      color: primaryColor.withOpacity(0),
       alignment: widget.textAlignment,
       // margin: EdgeInsets.only(left: 10, right: 10),
       padding: EdgeInsets.only(left: 10, right: 10),
       child: InkWell(
         child: Text(widget.text,
-            // style: TextStyle(
-            //     // fontFamily: "noto",
-            //     color: const Color.fromARGB(255, 102, 102, 102),
-            //     letterSpacing: 0.5,
-            //     fontWeight: FontWeight.w500,
-            //     fontSize: widget.fontSize)),
             style: GoogleFonts.notoSansJp(
                 color: const Color.fromARGB(255, 102, 102, 102),
                 letterSpacing: 0.5,
@@ -105,13 +99,6 @@ class HyperLinkTextView extends State<HyperLinkText> {
       padding: EdgeInsets.only(left: 10, right: 10),
       child: InkWell(
         child: Text(widget.text,
-            // style: TextStyle(
-            //   // fontFamily: "noto",
-            //   color: Colors.white,
-            //   letterSpacing: 0.5,
-            //   fontWeight: FontWeight.w500,
-            //   fontSize: widget.fontSize,
-            // )),
             style: GoogleFonts.notoSansJp(
               color: Colors.white,
               letterSpacing: 0.5,
