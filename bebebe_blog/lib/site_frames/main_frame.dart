@@ -5,7 +5,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:universal_html/html.dart' as html;
+import 'dart:html' as html;
 
 import './topbar/topbar.dart';
 import './main_frame_drawer.dart';
