@@ -135,7 +135,7 @@ class TopbarView extends State<Topbar> {
       width: this.height * 0.7,
       height: this.height * 0.7,
       child: CircleAvatar(
-        backgroundColor: Colors.white.withOpacity(0.9),
+        backgroundColor: Colors.white,
         child: InkWell(
           onTap: () {
             this.scaffoldKey?.currentState?.openDrawer();
@@ -149,22 +149,25 @@ class TopbarView extends State<Topbar> {
     );
 
     // return Padding(padding:EdgeInsets.only(left: paddingLeft), child:Drawer)
-    return Row(
-      children: [
-        Expanded(
-            child: Row(
-          children: [
-            SizedBox(width: paddingLeft),
-            Flexible(child: hamburgerButton),
-          ],
-        )),
-        // アイコン
-        InkWell(
-          onTap: () => this.scaffoldKey?.currentState?.openDrawer(),
-          child: Container(height: this.height, child: this.iconImage),
-        ),
-        Expanded(child: SizedBox()),
-      ],
+    return Container(
+      color: Colors.white.withOpacity(0.9),
+      child: Row(
+        children: [
+          Expanded(
+              child: Row(
+            children: [
+              SizedBox(width: paddingLeft),
+              Flexible(child: hamburgerButton),
+            ],
+          )),
+          // アイコン
+          InkWell(
+            onTap: () => this.scaffoldKey?.currentState?.openDrawer(),
+            child: Container(height: this.height, child: this.iconImage),
+          ),
+          Expanded(child: SizedBox()),
+        ],
+      ),
     );
   }
 
