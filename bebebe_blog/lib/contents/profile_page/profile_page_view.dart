@@ -17,6 +17,7 @@ class ProfilePageWidget extends StatefulWidget {
 } // end of class
 
 class ProfilePageView extends State<ProfilePageWidget> {
+  final GlobalKey profileKey = GlobalKey();
   @override
   void initState() {}
 
