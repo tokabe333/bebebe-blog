@@ -16,8 +16,8 @@ dependencies:
   vrouter: ^1.2.1
   rive: ^0.12.4
   easy_animate: ^0.0.3
-  google_fonts: ^6.1.0
   universal_html: ^2.2.4
+  google_fonts: 6.1.0
 
 dev_dependencies:
   flutter_test:
