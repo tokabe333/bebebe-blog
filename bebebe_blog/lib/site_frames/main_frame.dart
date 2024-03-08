@@ -58,15 +58,15 @@ class MainFrameView extends State<MainFrame> {
   late List<Widget> mainContents;
 
   /// constructor 各ページを初期化していく
-  MainFrameView(double this.topbarHeight) {
-    this.mainContents = [
-      // MainPageWidget(topbarHeight: this.topbarHeight),
-      ProfilePageWidget(),
-    ];
-  }
+  MainFrameView(double this.topbarHeight) {}
 
   @override
-  void initState() {}
+  void initState() {
+    this.mainContents = [
+      // MainPageWidget(topbarHeight: this.topbarHeight),
+      ProfilePageWidget(topbarHeight: this.topbarHeight),
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {
