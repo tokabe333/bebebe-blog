@@ -17,10 +17,9 @@ import './profile_page_view.dart';
 
 extension ProfileIntroduce on ProfilePageView {
   /// 紹介文作成
-  Widget createIntroduce(BuildContext context) {
+  Widget createIntroduce(BuildContext context, double contentWidth) {
     /// 画面サイズからコンテンツサイズを作る
     double displayWidth = MediaQuery.of(context).size.width;
-    double contentWidth = math.min(displayWidth * 0.95, 700);
     double paddingWidth = (displayWidth - contentWidth) / 2;
     double imageWidth = contentWidth * 0.2;
     double textWidth = contentWidth * 0.7;

@@ -5,6 +5,7 @@
 import 'package:easy_animate/animation/fade_in_animation.dart';
 import 'package:easy_animate/enum/animate_direction.dart';
 import 'package:flutter/material.dart';
+import 'dart:math' as math;
 
 import './profile_page_view.dart';
 import './skilset_badge.dart';
@@ -26,15 +27,17 @@ class ProfilePageView extends State<ProfilePageWidget> {
   Widget build(BuildContext context) {
     // 画面サイズに応じてウィジェット更新
     double displayHeight = MediaQuery.of(context).size.height;
-    double mainContentHeight = displayHeight - widget.topbarHeight;
+    double contentHeight = displayHeight - widget.topbarHeight;
+    double displayWidth = MediaQuery.of(context).size.width;
+    double contentWidth = math.min(displayWidth * 0.95, 700);
 
     return Container(
       color: Color.fromARGB(255, 244, 255, 237),
-      height: mainContentHeight,
+      height: contentHeight,
       child: Column(
         children: [
           SizedBox(height: 60),
-          this.createIntroduce(context),
+          this.createIntroduce(context, contentWidth),
           Center(
             child: SkilsetBadge(
               text: "Github",
