@@ -66,18 +66,24 @@ class MainFrameView extends State<MainFrame> {
   bool isFinishedDemo = false;
 
   @override
-  void initState() {}
+  void initState() {
+    // デモは初回しか読み込まない
+    Future.delayed(Duration(milliseconds: 5500)).then((_) {
+      setState(() {
+        this.isFinishedDemo = true;
+      });
+    });
+  } // end of constructor
 
   @override
   Widget build(BuildContext context) {
     // ページリスト作成
-    // デモは初回のみしか読み込まないのでinitStateじゃなくてbuildで宣言
+    // デモ再生は初回のみなのでinitStateじゃなくてbuildで宣言して状態を変える
     this.mainContents = [
       MainPageWidget(topbarHeight: this.topbarHeight, isPlayDemo: !this.isFinishedDemo),
       ProfilePageWidget(topbarHeight: this.topbarHeight),
       PortfolioPageWidget(topbarHeight: topbarHeight),
     ];
-    this.isFinishedDemo = true;
 
     // 画面が更新されるタイミングで横幅も調整
     this.updateSize();
