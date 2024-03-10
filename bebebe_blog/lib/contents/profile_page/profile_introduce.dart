@@ -21,7 +21,7 @@ extension ProfileIntroduce on ProfilePageView {
     );
   } // end of method
 
-  Widget _createIntroduceText(double textWidth) {
+  Widget _createIntroduceText(double textWidth, FontWeight fontWeight) {
     return SizedBox(
       width: textWidth,
       child: Padding(
@@ -32,7 +32,7 @@ extension ProfileIntroduce on ProfilePageView {
             // style: TextStyle(
             color: Colors.black,
             letterSpacing: 0.5,
-            fontWeight: FontWeight.w500,
+            fontWeight: fontWeight,
             fontSize: textWidth > 500 ? 20 : 17,
           ),
         ),
@@ -59,7 +59,7 @@ extension ProfileIntroduce on ProfilePageView {
           // 画面が小さくなったら画像を上限に置く
           this._createIconImage(imageWidth),
           // テキストは自由に大きさを配置
-          this._createIntroduceText(textWidth),
+          this._createIntroduceText(textWidth, FontWeight.w500),
         ],
       ),
     );
@@ -76,7 +76,7 @@ extension ProfileIntroduce on ProfilePageView {
         color: Colors.white,
         borderRadius: BorderRadius.circular(50),
       ),
-      padding: EdgeInsets.all(contentWidth * 0.03),
+      padding: EdgeInsets.all(10),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -84,7 +84,7 @@ extension ProfileIntroduce on ProfilePageView {
           // 画面が小さくなったら画像を上限に置く
           this._createIconImage(imageWidth),
           // テキストは自由に大きさを配置
-          this._createIntroduceText(textWidth),
+          this._createIntroduceText(textWidth, FontWeight.w300),
         ],
       ),
     );
