@@ -13,10 +13,10 @@ import './profile_introduce.dart';
 extension SkilsetList on ProfilePageView {
   /// スキルセットバッジを並べたやーつを作る
   Widget createSkilsetList(BuildContext context, double contentWidth, double badgeWidth) {
+    // スキルバッジリストを作成
     List<Widget> badges = this._createSkilsetList(badgeWidth);
 
     return Container(
-      color: Color.fromARGB(255, 112, 106, 106),
       width: contentWidth,
       child: Wrap(
         alignment: WrapAlignment.spaceBetween,

@@ -32,7 +32,15 @@ class ProfilePageView extends State<ProfilePageWidget> {
     double displayWidth = MediaQuery.of(context).size.width;
     double contentWidth = math.min(displayWidth * 0.9, 700);
     double badgeWidth = contentWidth <= 500 ? 150 : 200;
-    print("contentWidth:${contentWidth}");
+
+    // 小さい画面のときは紹介文が上下にずれる、その時の横幅
+    RenderObject? rendobj = this.profileKey.currentContext?.findRenderObject();
+    RenderBox? render = rendobj == null ? null : rendobj as RenderBox;
+    double listWidth = render == null ? contentWidth : render!.size.width;
+
+    // パディングは画面サイズ依存で
+    double paddingTop = contentHeight * 0.2;
+    double paddingMiddle = math.max(30, contentHeight * 0.05);
 
     return Container(
       constraints: BoxConstraints(minHeight: contentHeight),
@@ -40,9 +48,10 @@ class ProfilePageView extends State<ProfilePageWidget> {
       // height: contentHeight,
       child: Column(
         children: [
-          SizedBox(height: 60),
+          SizedBox(height: paddingTop),
           this.createIntroduce(context, contentWidth),
-          this.createSkilsetList(context, contentWidth, badgeWidth),
+          SizedBox(height: paddingMiddle),
+          this.createSkilsetList(context, listWidth, badgeWidth),
         ],
       ),
     );

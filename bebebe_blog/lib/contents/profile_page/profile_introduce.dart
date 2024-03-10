@@ -2,18 +2,15 @@
 ///         自己紹介文章のところ
 /// -------------------------------------------
 
-import 'package:bebebe_blog/contents/profile_page/skilset_badge.dart';
 import 'package:easy_animate/animation/fade_in_animation.dart';
 import 'package:easy_animate/enum/animate_direction.dart';
-import 'package:flutter/cupertino.dart';
-import 'dart:math' as math;
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'dart:math' as math;
+
 import './profile_page_view.dart';
+import './skilset_badge.dart';
 
 extension ProfileIntroduce on ProfilePageView {
   /// 紹介文作成
@@ -24,10 +21,8 @@ extension ProfileIntroduce on ProfilePageView {
     double imageWidth = math.max(contentWidth * 0.2, 200);
     double textWidth = contentWidth * 0.7;
 
-    var rend = this.profileKey.currentContext?.findRenderObject() as RenderBox?;
-    double imageHeight = rend == null ? 150 : rend!.size.height * 0.75;
-
     return Container(
+      key: this.profileKey,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(30),
@@ -36,12 +31,13 @@ extension ProfileIntroduce on ProfilePageView {
       child: Wrap(
         alignment: WrapAlignment.spaceAround,
         children: [
+          // 画面が小さくなったら画像を上限に置く
           ConstrainedBox(
             constraints: BoxConstraints.tightFor(width: imageWidth),
             child: Image.asset("assets/images/beyan-alpha.png"),
           ),
+          // テキストは自由に大きさを配置
           SizedBox(
-            key: this.profileKey,
             width: textWidth,
             child: Padding(
               padding: EdgeInsets.only(top: 15),
