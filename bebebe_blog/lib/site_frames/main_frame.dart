@@ -13,6 +13,7 @@ import './main_frame_fit.dart';
 
 import '../contents/main_page/main_page_view.dart';
 import '../contents/profile_page/profile_page_view.dart';
+import '../contents/portfolio_page/portfolio_page_view.dart';
 
 /// Webサイトの構成を決めるフレーム
 /// 各ページはこれに自身を渡すことで画面を表示する
@@ -61,16 +62,22 @@ class MainFrameView extends State<MainFrame> {
   /// constructor 各ページを初期化していく
   MainFrameView(double this.topbarHeight) {}
 
+  /// デモを再生済みかどうか
+  bool isFinishedDemo = false;
+
   @override
-  void initState() {
-    this.mainContents = [
-      MainPageWidget(topbarHeight: this.topbarHeight, isPlayDemo: true),
-      ProfilePageWidget(topbarHeight: this.topbarHeight),
-    ];
-  }
+  void initState() {}
 
   @override
   Widget build(BuildContext context) {
+    // ページリスト作成
+    // デモは初回のみしか読み込まないのでinitStateじゃなくてbuildで宣言
+    this.mainContents = [
+      MainPageWidget(topbarHeight: this.topbarHeight, isPlayDemo: this.isFinishedDemo),
+      ProfilePageWidget(topbarHeight: this.topbarHeight),
+      PortfolioPageWidget(topbarHeight: topbarHeight),
+    ];
+
     // 画面が更新されるタイミングで横幅も調整
     this.updateSize();
 

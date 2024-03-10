@@ -2,8 +2,6 @@
 ///         自己紹介とスキルセットとか
 /// -------------------------------------------
 
-import 'package:bebebe_blog/contents/profile_page/profile_page_smartphone.dart';
-import 'package:bebebe_blog/contents/profile_page/skilset_list.dart';
 import 'package:easy_animate/animation/fade_in_animation.dart';
 import 'package:easy_animate/enum/animate_direction.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +9,9 @@ import 'dart:math' as math;
 
 import './profile_page_view.dart';
 import './skilset_badge.dart';
+import './skilset_list.dart';
 import './profile_introduce.dart';
+import './profile_page_smartphone.dart';
 
 class ProfilePageWidget extends StatefulWidget {
   const ProfilePageWidget({Key? key, required double this.topbarHeight}) : super(key: key);

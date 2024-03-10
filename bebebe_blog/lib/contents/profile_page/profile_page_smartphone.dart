@@ -2,7 +2,6 @@
 ///       自己紹介とスキルセットとか(スマホ版)
 /// -------------------------------------------
 
-import 'package:bebebe_blog/contents/profile_page/skilset_list.dart';
 import 'package:easy_animate/animation/fade_in_animation.dart';
 import 'package:easy_animate/enum/animate_direction.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +9,7 @@ import 'dart:math' as math;
 
 import './profile_page_view.dart';
 import './skilset_badge.dart';
+import './skilset_list.dart';
 import './profile_introduce.dart';
 
 extension ProfilePageViewSmartPhone on ProfilePageView {
