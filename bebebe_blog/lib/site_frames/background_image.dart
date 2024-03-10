@@ -67,7 +67,7 @@ class BackgroundImageView extends State<BackgroundImageWidget> {
   void didChangeDependencies() async {
     this._loadImage(context);
     super.didChangeDependencies();
-  }
+  } // end of didChangeDependencies
 
   /// 非同期で画像を読み込み、終わったら画面更新
   void _loadImage(BuildContext context) async {
@@ -95,10 +95,6 @@ class BackgroundImageView extends State<BackgroundImageWidget> {
     double? parentWidth = renderBox?.size.width;
     double? parentHeight = renderBox?.size.height;
     if (parentWidth == null || parentHeight == null) {
-      // とりあえず0.2秒後にもう一度見てみる
-      Future.delayed(Duration(milliseconds: 200)).then((_) {
-        setState(() {});
-      });
       return SizedBox();
     }
 

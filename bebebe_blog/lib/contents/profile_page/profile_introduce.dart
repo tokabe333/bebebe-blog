@@ -17,7 +17,7 @@ extension ProfileIntroduce on ProfilePageView {
   Widget _createIconImage(double imageWidth) {
     return ConstrainedBox(
       constraints: BoxConstraints.tightFor(width: imageWidth),
-      child: Image.asset("assets/images/beyan-alpha.png"),
+      child: this.iconImage,
     );
   } // end of method
 

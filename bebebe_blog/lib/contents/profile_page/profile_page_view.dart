@@ -25,14 +25,33 @@ class ProfilePageWidget extends StatefulWidget {
 } // end of class
 
 class ProfilePageView extends State<ProfilePageWidget> {
-  @override
-  void initState() {}
+  /// 自分のアイコンイメージ(読み込み終わったらsetstate)
+  Image? iconImage;
 
   /// このウィジェットの大きさを調べるためのキー
   GlobalKey profilePageKey = GlobalKey();
 
   /// このウィジェットの大きさを調べるためのキー(スマートフォンページ)
   GlobalKey profilePageKeySmartphone = GlobalKey();
+
+  @override
+  void didChangeDependencies() async {
+    this._loadImage(context);
+    super.didChangeDependencies();
+  } // end of didChangeDependencies
+
+  /// 非同期で画像を読み込み、終わったら画面更新
+  void _loadImage(BuildContext context) async {
+    final Image image = Image.asset("assets/images/beyan-alpha.png");
+
+    // 読み込み完了を監視
+    await precacheImage(image.image, context);
+
+    // 読み込み終了したら更新
+    setState(() {
+      this.iconImage = image;
+    });
+  } // end of method
 
   /// メインコンテンツ(デモとサイト紹介)を作成
   @override
