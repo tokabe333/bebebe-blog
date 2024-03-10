@@ -51,7 +51,7 @@ class SkilsetBadge extends StatefulWidget {
   Alignment textAlignment;
 
   @override
-  State<SkilsetBadge> createState() => SkilsetBadgeView(height, width);
+  State<SkilsetBadge> createState() => SkilsetBadgeView();
 }
 
 class SkilsetBadgeView extends State<SkilsetBadge> {
@@ -73,26 +73,19 @@ class SkilsetBadgeView extends State<SkilsetBadge> {
   /// ホバー時にフェードで切り替える
   Widget animatedContainer = Container();
 
-  /// このウィジェットの高さ
-  double height;
-
-  /// このウィジェットの横幅
-  double width;
-
-  SkilsetBadgeView(double this.height, double this.width) {}
+  SkilsetBadgeView() {}
 
   @override
-  void initState() {
-    /// 通常時のフォント
-    this.primaryContainer = this._createSkilsetBadge(false);
-
-    /// ホバー時のフォント
-    this.hoverContainer = this._createSkilsetBadge(true);
-  }
+  void initState() {}
 
   @override
   Widget build(BuildContext context) {
-    /// クロスフェードを作る
+    // 通常時のフォント
+    this.primaryContainer = this._createSkilsetBadge(false);
+    // ホバー時のフォント
+    this.hoverContainer = this._createSkilsetBadge(true);
+
+    // クロスフェードを作る
     animatedContainer = AnimatedCrossFade(
       firstChild: primaryContainer,
       secondChild: hoverContainer,
@@ -121,8 +114,8 @@ class SkilsetBadgeView extends State<SkilsetBadge> {
   Widget _createSkilsetBadge(bool isHover) {
     return InkWell(
       child: Container(
-        height: this.height,
-        width: this.width,
+        height: widget.height,
+        width: widget.width,
         alignment: widget.textAlignment,
         padding: EdgeInsets.only(left: 10, right: 10),
         decoration: BoxDecoration(
@@ -131,13 +124,6 @@ class SkilsetBadgeView extends State<SkilsetBadge> {
         ),
         child: Text(
           widget.text,
-          // style: TextStyle(
-          //   // fontFamily: "noto",
-          //   color: isHover ? Colors.white : widget.borderColor.withAlpha(230),
-          //   letterSpacing: 0.5,
-          //   fontWeight: FontWeight.w500,
-          //   fontSize: widget.fontSize,
-          // ),
           style: GoogleFonts.notoSansJp(
             color: isHover ? Colors.white : widget.borderColor.withAlpha(230),
             letterSpacing: 0.5,

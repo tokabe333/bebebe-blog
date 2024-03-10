@@ -2,6 +2,7 @@
 ///         自己紹介とスキルセットとか
 /// -------------------------------------------
 
+import 'package:bebebe_blog/contents/profile_page/skilset_list.dart';
 import 'package:easy_animate/animation/fade_in_animation.dart';
 import 'package:easy_animate/enum/animate_direction.dart';
 import 'package:flutter/material.dart';
@@ -29,24 +30,19 @@ class ProfilePageView extends State<ProfilePageWidget> {
     double displayHeight = MediaQuery.of(context).size.height;
     double contentHeight = displayHeight - widget.topbarHeight;
     double displayWidth = MediaQuery.of(context).size.width;
-    double contentWidth = math.min(displayWidth * 0.95, 700);
+    double contentWidth = math.min(displayWidth * 0.9, 700);
+    double badgeWidth = contentWidth <= 500 ? 150 : 200;
+    print("contentWidth:${contentWidth}");
 
     return Container(
+      constraints: BoxConstraints(minHeight: contentHeight),
       color: Color.fromARGB(255, 244, 255, 237),
-      height: contentHeight,
+      // height: contentHeight,
       child: Column(
         children: [
           SizedBox(height: 60),
           this.createIntroduce(context, contentWidth),
-          Center(
-            child: SkilsetBadge(
-              text: "Github",
-              fontSize: 20,
-              hyperLink: "https://github.com/tokabe333",
-              borderColor: Color.fromARGB(255, 0, 112, 19),
-              hoverBackgroundColor: Color.fromARGB(255, 159, 203, 166),
-            ),
-          ),
+          this.createSkilsetList(context, contentWidth, badgeWidth),
         ],
       ),
     );

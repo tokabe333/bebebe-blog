@@ -21,25 +21,25 @@ extension ProfileIntroduce on ProfilePageView {
     /// 画面サイズからコンテンツサイズを作る
     double displayWidth = MediaQuery.of(context).size.width;
     double paddingWidth = (displayWidth - contentWidth) / 2;
-    double imageWidth = contentWidth * 0.2;
+    double imageWidth = math.max(contentWidth * 0.2, 200);
     double textWidth = contentWidth * 0.7;
 
     var rend = this.profileKey.currentContext?.findRenderObject() as RenderBox?;
-    double imageHeight = rend == null ? 150 : rend!.size.height * 0.8;
-    // print("currentContest : ${this.profileKey.currentContext}");
-    // print("findrenderobject : ${this.profileKey.currentContext?.findRenderObject()}");
-    // print("size : ${rend?.size}");
+    double imageHeight = rend == null ? 150 : rend!.size.height * 0.75;
 
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(30),
       ),
-      padding: EdgeInsets.all(contentWidth * 0.02),
+      padding: EdgeInsets.all(contentWidth * 0.03),
       child: Wrap(
         alignment: WrapAlignment.spaceAround,
         children: [
-          SizedBox(child: Image.asset("assets/images/beyan-alpha.png")),
+          ConstrainedBox(
+            constraints: BoxConstraints.tightFor(width: imageWidth),
+            child: Image.asset("assets/images/beyan-alpha.png"),
+          ),
           SizedBox(
             key: this.profileKey,
             width: textWidth,
@@ -52,7 +52,7 @@ extension ProfileIntroduce on ProfilePageView {
                   color: Colors.black,
                   letterSpacing: 0.5,
                   fontWeight: FontWeight.w500,
-                  fontSize: displayWidth > 500 ? 17 : 13,
+                  fontSize: displayWidth > 500 ? 20 : 17,
                 ),
               ),
             ),

@@ -112,14 +112,9 @@ class MainFrameView extends State<MainFrame> {
       child: Scrollbar(
         controller: this.mainContentScrollController,
         thumbVisibility: true,
-        // child: SingleChildScrollView(
-        //   controller: this.mainContentScrollController,
-        child: SizedBox(
-          height: mainContentHeight * pages.length,
-          child: ListView(
-            controller: this.mainContentScrollController,
-            children: pages,
-          ),
+        child: ListView(
+          controller: this.mainContentScrollController,
+          children: pages,
         ),
       ),
     );
