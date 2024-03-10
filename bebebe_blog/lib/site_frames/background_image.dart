@@ -83,6 +83,12 @@ class BackgroundImageView extends State<BackgroundImageWidget> {
   } // end of method
 
   @override
+  void didUpdateWidget(Widget old) {
+    print("didupdate old : ${old}");
+    setState(() {});
+  }
+
+  @override
   Widget build(BuildContext context) {
     // 読み込み終わっていなければ虚無を返す
     if (this.backgroundImage == null) {
