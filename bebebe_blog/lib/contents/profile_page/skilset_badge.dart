@@ -121,6 +121,7 @@ class SkilsetBadgeView extends State<SkilsetBadge> {
         decoration: BoxDecoration(
           color: isHover ? widget.hoverBackgroundColor : Colors.white,
           border: Border.all(width: 2, color: widget.borderColor),
+          borderRadius: BorderRadius.circular(30),
         ),
         child: Text(
           widget.text,

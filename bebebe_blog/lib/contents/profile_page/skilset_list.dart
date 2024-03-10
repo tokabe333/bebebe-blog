@@ -20,6 +20,7 @@ extension SkilsetList on ProfilePageView {
       width: contentWidth,
       child: Wrap(
         alignment: WrapAlignment.spaceBetween,
+        runSpacing: 20,
         children: badges,
       ),
     );
@@ -46,6 +47,16 @@ extension SkilsetList on ProfilePageView {
         hyperLink: "https://atcoder.jp/users/tokabe333",
         borderColor: const Color.fromARGB(255, 108, 108, 108),
         hoverBackgroundColor: const Color.fromARGB(255, 206, 206, 206),
+      ),
+
+      // Youtube
+      SkilsetBadge(
+        text: "Youtube",
+        width: badgeWidth,
+        fontSize: 20,
+        hyperLink: "https://www.youtube.com/channel/UCS2o5U1Aom8AgK4Pn1MI16w",
+        borderColor: Color.fromARGB(255, 182, 49, 49),
+        hoverBackgroundColor: Color.fromARGB(255, 223, 174, 174),
       ),
     ];
 

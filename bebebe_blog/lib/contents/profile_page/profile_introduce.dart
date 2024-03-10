@@ -25,7 +25,7 @@ extension ProfileIntroduce on ProfilePageView {
       key: this.profileKey,
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(30),
+        borderRadius: BorderRadius.circular(50),
       ),
       padding: EdgeInsets.all(contentWidth * 0.03),
       child: Wrap(

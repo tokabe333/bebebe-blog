@@ -31,7 +31,7 @@ class ProfilePageView extends State<ProfilePageWidget> {
     double contentHeight = displayHeight - widget.topbarHeight;
     double displayWidth = MediaQuery.of(context).size.width;
     double contentWidth = math.min(displayWidth * 0.9, 700);
-    double badgeWidth = contentWidth <= 500 ? 150 : 200;
+    double badgeWidth = contentWidth <= 500 ? 120 : 180;
 
     // 小さい画面のときは紹介文が上下にずれる、その時の横幅
     RenderObject? rendobj = this.profileKey.currentContext?.findRenderObject();
