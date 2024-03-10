@@ -15,7 +15,7 @@ import './skilset_badge.dart';
 extension SkilsetText on ProfilePageView {
   /// スキルセットを文字で表現
   Widget createSkilsetText(BuildContext context, double contentWidth, FontWeight fontWeight) {
-    String skilsetText = "言語 : C++, C#, Python, Ruby, Dart\nサーバ : Nginx, Django\nフロント:Unity, Flutter";
+    String skilsetText = "言語　　 : C++, C#, Python, Ruby, Dart\nサーバ　 : Nginx, Django\nフロント : Unity, Flutter";
     return Container(
       constraints: BoxConstraints.tightFor(width: contentWidth),
       decoration: BoxDecoration(
