@@ -25,7 +25,7 @@ extension SkilsetText on ProfilePageView {
       padding: EdgeInsets.only(top: 5, bottom: 5, left: 15, right: 15),
       child: Text(
         skilsetText,
-        style: GoogleFonts.notoSansJp(
+        style: GoogleFonts.kosugiMaru(
           color: Colors.black,
           fontWeight: fontWeight,
           fontSize: contentWidth > 500 ? 20 : 17,
