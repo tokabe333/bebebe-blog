@@ -20,7 +20,6 @@ class ProfilePageWidget extends StatefulWidget {
 } // end of class
 
 class ProfilePageView extends State<ProfilePageWidget> {
-  final GlobalKey profileKey = GlobalKey();
   @override
   void initState() {}
 
@@ -47,20 +46,13 @@ class ProfilePageView extends State<ProfilePageWidget> {
     double defaultContentWidth = 700;
     double contentWidth = math.min(displayWidth * 0.9, defaultContentWidth);
 
-    // 小さい画面のときは紹介文が上下にずれる、その時の横幅
-    RenderObject? rendobj = this.profileKey.currentContext?.findRenderObject();
-    RenderBox? render = rendobj == null ? null : rendobj as RenderBox;
-    double listWidth = render == null ? contentWidth : render!.size.width;
-
     // パディングは画面サイズ依存で
     double paddingTop = contentHeight * 0.2;
     double paddingMiddle = math.max(30, contentHeight * 0.05);
 
     // バッジの大きさは紹介Containerに収まるサイズ
-    double badgeWidth = listWidth / 4.5;
+    double badgeWidth = contentWidth / 4.5;
     double badgeFontSize = 20;
-    if (badgeWidth < 100) badgeFontSize = 15;
-    if (badgeWidth < 80) badgeFontSize = 13;
 
     return Container(
       constraints: BoxConstraints(minHeight: contentHeight),
@@ -71,7 +63,7 @@ class ProfilePageView extends State<ProfilePageWidget> {
           SizedBox(height: paddingTop),
           this.createIntroduce(context, contentWidth),
           SizedBox(height: paddingMiddle),
-          this.createSkilsetList(context, listWidth, badgeWidth, badgeFontSize),
+          this.createSkilsetList(context, contentWidth, badgeWidth, badgeFontSize),
         ],
       ),
     );

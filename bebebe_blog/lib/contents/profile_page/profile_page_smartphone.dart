@@ -30,7 +30,6 @@ extension ProfilePageViewSmartPhone on ProfilePageView {
     double badgeFontSize = 20;
     if (badgeWidth < 100) badgeFontSize = 15;
     if (badgeWidth < 80) badgeFontSize = 13;
-    print("badgeWidth:${badgeWidth} badgeFontsize:${badgeFontSize}");
 
     return Container(
       constraints: BoxConstraints(minHeight: contentHeight),
@@ -39,7 +38,7 @@ extension ProfilePageViewSmartPhone on ProfilePageView {
       child: Column(
         children: [
           SizedBox(height: paddingTop),
-          this.createIntroduce(context, contentWidth),
+          this.createIntroduceSmartphone(context, contentWidth),
           SizedBox(height: paddingMiddle),
           this.createSkilsetList(context, contentWidth, badgeWidth, badgeFontSize),
         ],
