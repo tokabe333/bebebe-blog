@@ -41,6 +41,7 @@ extension ProfilePageViewSmartPhone on ProfilePageView {
         children: [
           // 背景画像を繰り返す
           BackgroundImageWidget(
+            key: this.backgroundStateKeySmartphone,
             imagePath: "assets/images/background/introduction.webp",
             imageHeight: 315,
             imageWidth: 315,

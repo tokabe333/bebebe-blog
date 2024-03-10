@@ -34,6 +34,12 @@ class ProfilePageView extends State<ProfilePageWidget> {
   /// このウィジェットの大きさを調べるためのキー(スマートフォンページ)
   GlobalKey profilePageKeySmartphone = GlobalKey();
 
+  /// 子ウィジェットになる背景画像を更新するためのキー
+  GlobalKey backgroundStateKey = GlobalKey();
+
+  /// 子ウィジェットになる背景画像を更新するためのキー(スマートフォンページ)
+  GlobalKey backgroundStateKeySmartphone = GlobalKey();
+
   @override
   void didChangeDependencies() async {
     this._loadImage(context);
@@ -48,10 +54,12 @@ class ProfilePageView extends State<ProfilePageWidget> {
     await precacheImage(image.image, context);
 
     // 読み込み終了したら更新
-    setState(() {
-      showDialog(context: context, builder: (_) => Container());
-      print("hogehoge");
-      this.iconImage = image;
+    this.iconImage = image;
+    this.backgroundStateKey.currentState?.setState(() {
+      print("背景更新");
+    });
+    this.backgroundStateKeySmartphone.currentState?.setState(() {
+      print("背景更新(スマホ)");
     });
   } // end of method
 
@@ -94,6 +102,7 @@ class ProfilePageView extends State<ProfilePageWidget> {
         children: [
           // 背景画像を繰り返す
           BackgroundImageWidget(
+            key: this.backgroundStateKey,
             imagePath: "assets/images/background/introduction.webp",
             imageHeight: 315,
             imageWidth: 315,
