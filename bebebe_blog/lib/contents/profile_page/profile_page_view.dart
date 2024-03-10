@@ -12,6 +12,7 @@ import './skilset_badge.dart';
 import './skilset_list.dart';
 import './profile_introduce.dart';
 import './profile_page_smartphone.dart';
+import './skilset_text.dart';
 import '../../site_frames/background_image.dart';
 
 class ProfilePageWidget extends StatefulWidget {
@@ -34,12 +35,6 @@ class ProfilePageView extends State<ProfilePageWidget> {
   /// このウィジェットの大きさを調べるためのキー(スマートフォンページ)
   GlobalKey profilePageKeySmartphone = GlobalKey();
 
-  /// 子ウィジェットになる背景画像を更新するためのキー
-  GlobalKey backgroundStateKey = GlobalKey();
-
-  /// 子ウィジェットになる背景画像を更新するためのキー(スマートフォンページ)
-  GlobalKey backgroundStateKeySmartphone = GlobalKey();
-
   @override
   void didChangeDependencies() async {
     this._loadImage(context);
@@ -55,12 +50,7 @@ class ProfilePageView extends State<ProfilePageWidget> {
 
     // 読み込み終了したら更新
     this.iconImage = image;
-    this.backgroundStateKey.currentState?.setState(() {
-      print("背景更新");
-    });
-    this.backgroundStateKeySmartphone.currentState?.setState(() {
-      print("背景更新(スマホ)");
-    });
+    setState(() {});
   } // end of method
 
   /// メインコンテンツ(デモとサイト紹介)を作成
@@ -102,7 +92,6 @@ class ProfilePageView extends State<ProfilePageWidget> {
         children: [
           // 背景画像を繰り返す
           BackgroundImageWidget(
-            key: this.backgroundStateKey,
             imagePath: "assets/images/background/introduction.webp",
             imageHeight: 315,
             imageWidth: 315,
@@ -113,6 +102,8 @@ class ProfilePageView extends State<ProfilePageWidget> {
             children: [
               SizedBox(height: paddingTop),
               Center(child: this.createIntroduce(context, contentWidth)),
+              SizedBox(height: paddingMiddle / 2),
+              Center(child: this.createSkilsetText(context, contentWidth, FontWeight.w400)),
               SizedBox(height: paddingMiddle),
               this.createSkilsetList(context, contentWidth, badgeWidth, badgeFontSize),
             ],

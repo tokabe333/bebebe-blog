@@ -11,6 +11,7 @@ import './profile_page_view.dart';
 import './skilset_badge.dart';
 import './skilset_list.dart';
 import './profile_introduce.dart';
+import './skilset_text.dart';
 import '../../site_frames/background_image.dart';
 
 extension ProfilePageViewSmartPhone on ProfilePageView {
@@ -41,7 +42,6 @@ extension ProfilePageViewSmartPhone on ProfilePageView {
         children: [
           // 背景画像を繰り返す
           BackgroundImageWidget(
-            key: this.backgroundStateKeySmartphone,
             imagePath: "assets/images/background/introduction.webp",
             imageHeight: 315,
             imageWidth: 315,
@@ -51,6 +51,8 @@ extension ProfilePageViewSmartPhone on ProfilePageView {
             children: [
               SizedBox(height: paddingTop),
               Center(child: this.createIntroduceSmartphone(context, contentWidth)),
+              SizedBox(height: paddingMiddle / 2),
+              Center(child: this.createSkilsetText(context, contentWidth, FontWeight.w500)),
               SizedBox(height: paddingMiddle),
               this.createSkilsetList(context, contentWidth, badgeWidth, badgeFontSize),
             ],

@@ -83,12 +83,6 @@ class BackgroundImageView extends State<BackgroundImageWidget> {
   } // end of method
 
   @override
-  void didUpdateWidget(Widget old) {
-    print("didupdate old : ${old}");
-    setState(() {});
-  }
-
-  @override
   Widget build(BuildContext context) {
     // 読み込み終わっていなければ虚無を返す
     if (this.backgroundImage == null) {
@@ -107,9 +101,7 @@ class BackgroundImageView extends State<BackgroundImageWidget> {
     // 画面サイズと画像サイズ
     // 繰り返し回数
     int hnum = (parentWidth! / imageWidth).ceil();
-    int vnum = (parentHeight! / imageHeight).ceil() + 1;
-
-    print("parentHeight:${parentHeight} parentWidth:${parentWidth} hnum:${hnum} vnum:${vnum}");
+    int vnum = (parentHeight! / imageHeight).ceil();
 
     // 同じウィジェットをたくさんつくる
     List<Widget> backgrounds = [];
@@ -117,7 +109,7 @@ class BackgroundImageView extends State<BackgroundImageWidget> {
       for (int j = 0; j < hnum; ++j) {
         backgrounds.add(Positioned(
           // 下に超えるとコンテンツの大きさが変わってしまう
-          top: parentHeight - (i + 1) * this.imageHeight,
+          top: parentHeight - (i + 1) * imageHeight,
           left: j * this.imageWidth,
           child: this.backgroundImage!,
         ));
@@ -125,8 +117,8 @@ class BackgroundImageView extends State<BackgroundImageWidget> {
     }
 
     return SizedBox(
-      width: this.imageWidth * hnum,
-      height: imageHeight * (vnum - 1),
+      width: parentWidth,
+      height: parentHeight,
       child: Stack(children: backgrounds),
     );
   } // end of build
