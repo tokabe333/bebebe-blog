@@ -117,7 +117,7 @@ class SkilsetBadgeView extends State<SkilsetBadge> {
         height: widget.height,
         width: widget.width,
         alignment: widget.textAlignment,
-        padding: EdgeInsets.only(left: 10, right: 10),
+        // padding: EdgeInsets.only(left: 10, right: 10),
         decoration: BoxDecoration(
           color: isHover ? widget.hoverBackgroundColor : Colors.white,
           border: Border.all(width: 2, color: widget.borderColor),
