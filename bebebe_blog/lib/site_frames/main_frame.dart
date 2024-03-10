@@ -63,7 +63,7 @@ class MainFrameView extends State<MainFrame> {
   @override
   void initState() {
     this.mainContents = [
-      MainPageWidget(topbarHeight: this.topbarHeight),
+      MainPageWidget(topbarHeight: this.topbarHeight, isPlayDemo: true),
       ProfilePageWidget(topbarHeight: this.topbarHeight),
     ];
   }

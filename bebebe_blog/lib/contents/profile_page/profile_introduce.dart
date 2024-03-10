@@ -25,11 +25,11 @@ extension ProfileIntroduce on ProfilePageView {
     double imageWidth = contentWidth * 0.2;
     double textWidth = contentWidth * 0.7;
 
-    print("currentContest : ${this.profileKey.currentContext}");
-    print("findrenderobject : ${this.profileKey.currentContext?.findRenderObject()}");
     var rend = this.profileKey.currentContext?.findRenderObject() as RenderBox?;
-    print("size : ${rend?.size}");
     double imageHeight = rend == null ? 150 : rend!.size.height * 0.8;
+    // print("currentContest : ${this.profileKey.currentContext}");
+    // print("findrenderobject : ${this.profileKey.currentContext?.findRenderObject()}");
+    // print("size : ${rend?.size}");
 
     return Container(
       decoration: BoxDecoration(
@@ -38,6 +38,7 @@ extension ProfileIntroduce on ProfilePageView {
       ),
       padding: EdgeInsets.all(contentWidth * 0.02),
       child: Wrap(
+        alignment: WrapAlignment.spaceAround,
         children: [
           SizedBox(child: Image.asset("assets/images/beyan-alpha.png")),
           SizedBox(
