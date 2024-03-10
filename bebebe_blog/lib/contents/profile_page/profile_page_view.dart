@@ -2,6 +2,7 @@
 ///         自己紹介とスキルセットとか
 /// -------------------------------------------
 
+import 'package:bebebe_blog/contents/profile_page/profile_page_smartphone.dart';
 import 'package:bebebe_blog/contents/profile_page/skilset_list.dart';
 import 'package:easy_animate/animation/fade_in_animation.dart';
 import 'package:easy_animate/enum/animate_direction.dart';
@@ -26,6 +27,19 @@ class ProfilePageView extends State<ProfilePageWidget> {
   /// メインコンテンツ(デモとサイト紹介)を作成
   @override
   Widget build(BuildContext context) {
+    // 画面サイズに応じて画面を切り替え
+    double displayHeight = MediaQuery.of(context).size.height;
+    double displayWidth = MediaQuery.of(context).size.width;
+
+    // 横幅で対応
+    if (displayWidth < 640) {
+      return this.createSmartPhonePage(context);
+    } else {
+      return this.createPcPage(context);
+    }
+  } // end of build
+
+  Widget createPcPage(BuildContext context) {
     // 画面サイズに応じてウィジェット更新
     double displayHeight = MediaQuery.of(context).size.height;
     double contentHeight = displayHeight - widget.topbarHeight;
@@ -47,7 +61,6 @@ class ProfilePageView extends State<ProfilePageWidget> {
     double badgeFontSize = 20;
     if (badgeWidth < 100) badgeFontSize = 15;
     if (badgeWidth < 80) badgeFontSize = 13;
-    print("badgeWidth:${badgeWidth} badgeFontsize:${badgeFontSize}");
 
     return Container(
       constraints: BoxConstraints(minHeight: contentHeight),
@@ -62,7 +75,7 @@ class ProfilePageView extends State<ProfilePageWidget> {
         ],
       ),
     );
-  }
+  } // end of method
 } // end of class
 
 
