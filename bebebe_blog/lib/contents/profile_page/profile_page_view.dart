@@ -28,6 +28,12 @@ class ProfilePageView extends State<ProfilePageWidget> {
   @override
   void initState() {}
 
+  /// このウィジェットの大きさを調べるためのキー
+  GlobalKey profilePageKey = GlobalKey();
+
+  /// このウィジェットの大きさを調べるためのキー(スマートフォンページ)
+  GlobalKey profilePageKeySmartphone = GlobalKey();
+
   /// メインコンテンツ(デモとサイト紹介)を作成
   @override
   Widget build(BuildContext context) {
@@ -61,8 +67,8 @@ class ProfilePageView extends State<ProfilePageWidget> {
 
     // メインのコンテンツ
     return Container(
+      key: this.profilePageKey,
       constraints: BoxConstraints(minHeight: contentHeight),
-      // height: contentHeight,
       child: Stack(
         children: [
           // 背景画像を繰り返す
@@ -71,8 +77,8 @@ class ProfilePageView extends State<ProfilePageWidget> {
             imagePath: "assets/images/background/introduction.webp",
             imageHeight: 315,
             imageWidth: 315,
+            parentWidgetKey: this.profilePageKey,
           ),
-          // BackgroundImageWidget(contentHeight: displayHeight, imagePath: "assets/images/beyan.png"),
 
           Column(
             children: [

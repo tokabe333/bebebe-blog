@@ -33,6 +33,7 @@ extension ProfilePageViewSmartPhone on ProfilePageView {
     if (badgeWidth < 80) badgeFontSize = 13;
 
     return Container(
+      key: this.profilePageKeySmartphone,
       constraints: BoxConstraints(minHeight: contentHeight),
       color: Color.fromARGB(255, 249, 255, 246),
       // height: contentHeight,
@@ -44,6 +45,7 @@ extension ProfilePageViewSmartPhone on ProfilePageView {
             imagePath: "assets/images/background/introduction.webp",
             imageHeight: 315,
             imageWidth: 315,
+            parentWidgetKey: this.profilePageKeySmartphone,
           ),
           Column(
             children: [
