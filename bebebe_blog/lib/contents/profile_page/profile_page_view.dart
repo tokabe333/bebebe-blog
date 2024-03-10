@@ -49,6 +49,8 @@ class ProfilePageView extends State<ProfilePageWidget> {
 
     // 読み込み終了したら更新
     setState(() {
+      showDialog(context: context, builder: (_) => Container());
+      print("hogehoge");
       this.iconImage = image;
     });
   } // end of method
