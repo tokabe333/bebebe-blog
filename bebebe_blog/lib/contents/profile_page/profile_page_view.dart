@@ -12,6 +12,7 @@ import './skilset_badge.dart';
 import './skilset_list.dart';
 import './profile_introduce.dart';
 import './profile_page_smartphone.dart';
+import '../../site_frames/background_image.dart';
 
 class ProfilePageWidget extends StatefulWidget {
   const ProfilePageWidget({Key? key, required double this.topbarHeight}) : super(key: key);
@@ -58,16 +59,29 @@ class ProfilePageView extends State<ProfilePageWidget> {
     double badgeWidth = contentWidth / 4.5;
     double badgeFontSize = 20;
 
+    // メインのコンテンツ
     return Container(
       constraints: BoxConstraints(minHeight: contentHeight),
-      color: Color.fromARGB(255, 249, 255, 246),
       // height: contentHeight,
-      child: Column(
+      child: Stack(
         children: [
-          SizedBox(height: paddingTop),
-          this.createIntroduce(context, contentWidth),
-          SizedBox(height: paddingMiddle),
-          this.createSkilsetList(context, contentWidth, badgeWidth, badgeFontSize),
+          // 背景画像を繰り返す
+          BackgroundImageWidget(
+            contentHeight: displayHeight,
+            imagePath: "assets/images/background/introduction.webp",
+            imageHeight: 315,
+            imageWidth: 315,
+          ),
+          // BackgroundImageWidget(contentHeight: displayHeight, imagePath: "assets/images/beyan.png"),
+
+          Column(
+            children: [
+              SizedBox(height: paddingTop),
+              this.createIntroduce(context, contentWidth),
+              SizedBox(height: paddingMiddle),
+              this.createSkilsetList(context, contentWidth, badgeWidth, badgeFontSize),
+            ],
+          ),
         ],
       ),
     );

@@ -11,6 +11,7 @@ import './profile_page_view.dart';
 import './skilset_badge.dart';
 import './skilset_list.dart';
 import './profile_introduce.dart';
+import '../../site_frames/background_image.dart';
 
 extension ProfilePageViewSmartPhone on ProfilePageView {
   /// メインコンテンツ(デモとサイト紹介)を作成
@@ -35,12 +36,23 @@ extension ProfilePageViewSmartPhone on ProfilePageView {
       constraints: BoxConstraints(minHeight: contentHeight),
       color: Color.fromARGB(255, 249, 255, 246),
       // height: contentHeight,
-      child: Column(
+      child: Stack(
         children: [
-          SizedBox(height: paddingTop),
-          this.createIntroduceSmartphone(context, contentWidth),
-          SizedBox(height: paddingMiddle),
-          this.createSkilsetList(context, contentWidth, badgeWidth, badgeFontSize),
+          // 背景画像を繰り返す
+          BackgroundImageWidget(
+            contentHeight: displayHeight,
+            imagePath: "assets/images/background/introduction.webp",
+            imageHeight: 315,
+            imageWidth: 315,
+          ),
+          Column(
+            children: [
+              SizedBox(height: paddingTop),
+              this.createIntroduceSmartphone(context, contentWidth),
+              SizedBox(height: paddingMiddle),
+              this.createSkilsetList(context, contentWidth, badgeWidth, badgeFontSize),
+            ],
+          ),
         ],
       ),
     );

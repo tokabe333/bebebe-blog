@@ -2,7 +2,6 @@
 ///    ポートフォリオ一覧を出せるように頑張る
 /// -------------------------------------------
 
-import 'package:bebebe_blog/contents/profile_page/skilset_list.dart';
 import 'package:easy_animate/animation/fade_in_animation.dart';
 import 'package:easy_animate/enum/animate_direction.dart';
 import 'package:flutter/material.dart';
