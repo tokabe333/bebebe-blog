@@ -54,7 +54,7 @@ class ProfilePageView extends State<ProfilePageWidget> {
     double displayHeight = MediaQuery.of(context).size.height;
     double contentHeight = displayHeight - widget.topbarHeight;
     double displayWidth = MediaQuery.of(context).size.width;
-    double defaultContentWidth = 700;
+    double defaultContentWidth = 900;
     double contentWidth = math.min(displayWidth * 0.9, defaultContentWidth);
 
     // パディングは画面サイズ依存で
@@ -73,7 +73,6 @@ class ProfilePageView extends State<ProfilePageWidget> {
         children: [
           // 背景画像を繰り返す
           BackgroundImageWidget(
-            contentHeight: displayHeight,
             imagePath: "assets/images/background/introduction.webp",
             imageHeight: 315,
             imageWidth: 315,
@@ -83,7 +82,7 @@ class ProfilePageView extends State<ProfilePageWidget> {
           Column(
             children: [
               SizedBox(height: paddingTop),
-              this.createIntroduce(context, contentWidth),
+              Center(child: this.createIntroduce(context, contentWidth)),
               SizedBox(height: paddingMiddle),
               this.createSkilsetList(context, contentWidth, badgeWidth, badgeFontSize),
             ],

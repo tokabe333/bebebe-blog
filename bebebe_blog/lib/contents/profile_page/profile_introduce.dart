@@ -43,10 +43,12 @@ extension ProfileIntroduce on ProfilePageView {
   /// 紹介文作成
   Widget createIntroduce(BuildContext context, double contentWidth) {
     // コンテンツサイズから配分
-    double imageWidth = math.max(contentWidth * 0.2, 200);
+    // double imageWidth = math.max(contentWidth * 0.2, 200);
+    double imageWidth = contentWidth * 0.2;
     double textWidth = contentWidth * 0.7;
 
     return Container(
+      width: contentWidth,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(50),
@@ -72,6 +74,7 @@ extension ProfileIntroduce on ProfilePageView {
     double textWidth = contentWidth;
 
     return Container(
+      width: contentWidth,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(50),

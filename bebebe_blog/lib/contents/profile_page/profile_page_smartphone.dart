@@ -41,7 +41,6 @@ extension ProfilePageViewSmartPhone on ProfilePageView {
         children: [
           // 背景画像を繰り返す
           BackgroundImageWidget(
-            contentHeight: displayHeight,
             imagePath: "assets/images/background/introduction.webp",
             imageHeight: 315,
             imageWidth: 315,
@@ -50,7 +49,7 @@ extension ProfilePageViewSmartPhone on ProfilePageView {
           Column(
             children: [
               SizedBox(height: paddingTop),
-              this.createIntroduceSmartphone(context, contentWidth),
+              Center(child: this.createIntroduceSmartphone(context, contentWidth)),
               SizedBox(height: paddingMiddle),
               this.createSkilsetList(context, contentWidth, badgeWidth, badgeFontSize),
             ],

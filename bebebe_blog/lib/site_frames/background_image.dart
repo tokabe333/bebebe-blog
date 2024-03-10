@@ -14,15 +14,11 @@ import 'dart:io';
 class BackgroundImageWidget extends StatefulWidget {
   const BackgroundImageWidget({
     Key? key,
-    required double this.contentHeight,
     required String this.imagePath,
     required double this.imageHeight,
     required double this.imageWidth,
     required GlobalKey this.parentWidgetKey,
   }) : super(key: key);
-
-  /// 背景を表示するフィールド
-  final double contentHeight;
 
   /// 表示する背景画像パス
   final String imagePath;
@@ -38,7 +34,7 @@ class BackgroundImageWidget extends StatefulWidget {
 
   @override
   State<BackgroundImageWidget> createState() =>
-      BackgroundImageView(contentHeight, imagePath, imageHeight, imageWidth, parentWidgetKey);
+      BackgroundImageView(imagePath, imageHeight, imageWidth, parentWidgetKey);
 } // end of class
 
 class BackgroundImageView extends State<BackgroundImageWidget> {
@@ -46,7 +42,6 @@ class BackgroundImageView extends State<BackgroundImageWidget> {
   Image? backgroundImage;
 
   /// 背景を表示するフィールド
-  double contentHeight;
 
   /// 読み込む画像のパス
   String imagePath;
@@ -62,7 +57,6 @@ class BackgroundImageView extends State<BackgroundImageWidget> {
 
   /// コンテンツの大きさとパスはwidget.よりコンストラクタで受け取る方が便利
   BackgroundImageView(
-    double this.contentHeight,
     String this.imagePath,
     double this.imageHeight,
     double this.imageWidth,
@@ -98,10 +92,13 @@ class BackgroundImageView extends State<BackgroundImageWidget> {
     // 親ウィジェットのサイズを調べる(まだ作られていなければ何もしない)
     RenderObject? renderObj = this.parentWidgetKey.currentContext?.findRenderObject();
     RenderBox? renderBox = renderObj == null ? null : renderObj as RenderBox;
-    double? parentWidth = renderBox?.size?.width;
-    double? parentHeight = renderBox?.size?.height;
-    print("parentHeight:${parentHeight} parentWidth:${parentWidth}");
+    double? parentWidth = renderBox?.size.width;
+    double? parentHeight = renderBox?.size.height;
     if (parentWidth == null || parentHeight == null) {
+      // とりあえず0.2秒後にもう一度見てみる
+      Future.delayed(Duration(milliseconds: 200)).then((_) {
+        setState(() {});
+      });
       return SizedBox();
     }
 
@@ -110,13 +107,15 @@ class BackgroundImageView extends State<BackgroundImageWidget> {
     int hnum = (parentWidth! / imageWidth).ceil();
     int vnum = (parentHeight! / imageHeight).ceil() + 1;
 
+    print("parentHeight:${parentHeight} parentWidth:${parentWidth} hnum:${hnum} vnum:${vnum}");
+
     // 同じウィジェットをたくさんつくる
     List<Widget> backgrounds = [];
     for (int i = 0; i < vnum; ++i) {
       for (int j = 0; j < hnum; ++j) {
         backgrounds.add(Positioned(
           // 下に超えるとコンテンツの大きさが変わってしまう
-          top: contentHeight - i * this.imageHeight,
+          top: parentHeight - (i + 1) * this.imageHeight,
           left: j * this.imageWidth,
           child: this.backgroundImage!,
         ));
