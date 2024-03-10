@@ -10,14 +10,19 @@ import 'package:vrouter/vrouter.dart';
 /// 各ページを入れるフレーム
 /// main_frameはbodyにcontent_frameを並べる
 class ContentFrame extends StatefulWidget {
-  ContentFrame({Key? key, String this.title = "beyan's page", required double this.topbarHeight}) : super(key: key);
+  const ContentFrame({
+    Key? key,
+    String this.title = "beyan's page",
+    required double this.topbarHeight,
+  }) : super(key: key);
 
   // タブに表示されるタイトル
-  String title;
+  final String title;
 
   /// トップバーの高さ
-  double topbarHeight;
+  final double topbarHeight;
 
+  @override
   State<ContentFrame> createState() => ContentFrameView();
 } // end of class
 

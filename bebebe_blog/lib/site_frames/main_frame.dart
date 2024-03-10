@@ -17,14 +17,15 @@ import '../contents/profile_page/profile_page_view.dart';
 /// Webサイトの構成を決めるフレーム
 /// 各ページはこれに自身を渡すことで画面を表示する
 class MainFrame extends StatefulWidget {
-  MainFrame({Key? key, String this.title = "beyan's page", required double this.topbarHeight}) : super(key: key);
+  const MainFrame({Key? key, String this.title = "beyan's page", required double this.topbarHeight}) : super(key: key);
 
   // タブに表示されるタイトル
-  String title;
+  final String title;
 
   /// トップバーの高さ
-  double topbarHeight;
+  final double topbarHeight;
 
+  @override
   State<MainFrame> createState() => MainFrameView(topbarHeight);
 } // end of class
 
@@ -93,8 +94,6 @@ class MainFrameView extends State<MainFrame> {
           // メインボディ
           // body: this.createAutoFillBody(this.mainContents[0]),
           body: this._createScrollableMainContent(context, this.mainContents),
-
-          // bottomNavigationBar: this._createBottomIconBar(),
         ),
       ),
     );

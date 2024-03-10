@@ -14,8 +14,12 @@ import './skilset_badge.dart';
 import './profile_introduce.dart';
 
 class ProfilePageWidget extends StatefulWidget {
-  ProfilePageWidget({Key? key, required double this.topbarHeight}) : super(key: key);
-  double topbarHeight;
+  const ProfilePageWidget({Key? key, required double this.topbarHeight}) : super(key: key);
+
+  /// トップバーの高さは毎回与えられる
+  final double topbarHeight;
+
+  @override
   State<ProfilePageWidget> createState() => ProfilePageView();
 } // end of class
 

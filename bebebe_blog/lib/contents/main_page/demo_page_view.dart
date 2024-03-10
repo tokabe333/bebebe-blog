@@ -15,18 +15,10 @@ class DemoPageWidget {
 
   RiveAnimationController _stopContoller = OneShotAnimation("text2");
 
-  // デモファイルのアートボード
-  Artboard? mainDemoArtboard;
-
-  /// でも再生する？
+  /// デモ再生する？
   bool isPlayDemo;
 
-  /// デモのサイズ(元のriveファイル)
-  double demoOriginHeight = 340;
-
-  /// でものサイズ(元のriveファイル)
-  double demoOriginWidth = 500;
-
+  /// デモファイル本体
   late Widget demo;
 
   DemoPageWidget(bool this.isPlayDemo) {

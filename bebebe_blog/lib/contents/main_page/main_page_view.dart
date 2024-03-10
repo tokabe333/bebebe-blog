@@ -12,10 +12,15 @@ import '../../site_frames/main_frame.dart';
 import './demo_page_view.dart';
 
 class MainPageWidget extends StatefulWidget {
-  MainPageWidget({Key? key, bool this.isPlayDemo = true, required double this.topbarHeight}) : super(key: key);
-  final String title = "べーやん's Site";
-  bool isPlayDemo = true;
-  double topbarHeight;
+  const MainPageWidget({Key? key, bool this.isPlayDemo = true, required double this.topbarHeight}) : super(key: key);
+
+  /// デモを再生するか
+  final bool isPlayDemo;
+
+  /// トップバーの高さは毎回与えられる
+  final double topbarHeight;
+
+  @override
   State<MainPageWidget> createState() => MainPageView(isPlayDemo, topbarHeight);
 } // end of class
 
@@ -132,12 +137,6 @@ class MainPageView extends State<MainPageWidget> {
       child: Center(
         child: Text(
           text,
-          // style: TextStyle(
-          //   // fontFamily: "noto",
-          //   color: color,
-          //   fontSize: fontSize,
-          //   fontWeight: FontWeight.w500,
-          // ),
           style: GoogleFonts.notoSansJp(
             color: color,
             fontSize: fontSize,

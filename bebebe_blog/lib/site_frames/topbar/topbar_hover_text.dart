@@ -124,10 +124,9 @@ class HyperLinkTextView extends State<HyperLinkText> {
       duration: Duration(milliseconds: 100),
     );
 
-    /// マウスホバーイベントをつける
+    // マウスホバーイベントをつける
     return MouseRegion(
-
-        /// ホバー時に色を変える
+        // ホバー時に色を変える
         onEnter: (_) {
           setState(() {
             this.isHover = true;

@@ -27,28 +27,28 @@ class SkilsetBadge extends StatefulWidget {
     this.hoverBackgroundColor ??= this.borderColor.withAlpha(22);
   }
   // 表示するテキスト
-  String text;
+  final String text;
 
   /// フォントサイズ
-  double fontSize;
+  final double fontSize;
 
   /// ウィジェットの高さ
-  double height;
+  final double height;
 
   /// ウィジェットの横幅
-  double width;
+  final double width;
 
   /// このウィジェットをクリックしたときに飛ぶページ
-  String hyperLink;
+  final String hyperLink;
 
   /// このウィジェットの枠線色
-  Color borderColor;
+  final Color borderColor;
 
   /// ホバー時の色
-  Color? hoverBackgroundColor;
+  late Color? hoverBackgroundColor;
 
   /// フォントの配置
-  Alignment textAlignment;
+  final Alignment textAlignment;
 
   @override
   State<SkilsetBadge> createState() => SkilsetBadgeView();

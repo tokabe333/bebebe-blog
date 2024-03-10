@@ -12,7 +12,7 @@ void main() {
 } // end of class
 
 class BebebeApp extends StatelessWidget {
-  BebebeApp({super.key}) {}
+  BebebeApp({super.key});
 
   /// 画面上部のバーの高さ
   double topbarHeight = 60;
@@ -20,12 +20,10 @@ class BebebeApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "beyan's home page",
+      title: "beyan's page!",
       home: MainFrame(topbarHeight: this.topbarHeight),
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 226, 216, 243)),
-        // fontFamily: "noto",
-        fontFamily: "noto",
         useMaterial3: true,
       ),
     );

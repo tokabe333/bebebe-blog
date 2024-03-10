@@ -12,16 +12,23 @@ import '../../contents/main_page/main_page_view.dart';
 import './topbar_hover_text.dart';
 
 class Topbar extends StatefulWidget implements PreferredSizeWidget {
-  Topbar({Key? key, required double this.height, required GlobalKey<ScaffoldState> this.scaffoldKey}) : super(key: key);
+  const Topbar({
+    Key? key,
+    required double this.height,
+    required GlobalKey<ScaffoldState> this.scaffoldKey,
+  }) : super(key: key);
 
-  double height = 0;
+  /// トップバーの高さ、以降はこれが基準
+  final double height;
 
-  GlobalKey<ScaffoldState> scaffoldKey;
+  /// Drawerをいじる用、MainFrameのscaffoldを取得
+  final GlobalKey<ScaffoldState> scaffoldKey;
 
   /// これをオーバーライドすることでPreferredSizeWidgetになってAppBarに表示できる
   @override
   Size get preferredSize => Size.fromHeight(height);
 
+  @override
   State<Topbar> createState() => TopbarView(height: height, scaffoldKey: scaffoldKey);
 } // end of class
 
@@ -170,7 +177,7 @@ class TopbarView extends State<Topbar> {
         ],
       ),
     );
-  }
+  } // end of method
 
   /// 外部リンクへのアイコンを作る(BottomではなくTop)
   Widget _createBottomIcon({required String path, String hyperLink = ""}) {
