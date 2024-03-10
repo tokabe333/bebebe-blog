@@ -73,10 +73,11 @@ class MainFrameView extends State<MainFrame> {
     // ページリスト作成
     // デモは初回のみしか読み込まないのでinitStateじゃなくてbuildで宣言
     this.mainContents = [
-      MainPageWidget(topbarHeight: this.topbarHeight, isPlayDemo: this.isFinishedDemo),
+      MainPageWidget(topbarHeight: this.topbarHeight, isPlayDemo: !this.isFinishedDemo),
       ProfilePageWidget(topbarHeight: this.topbarHeight),
       PortfolioPageWidget(topbarHeight: topbarHeight),
     ];
+    this.isFinishedDemo = true;
 
     // 画面が更新されるタイミングで横幅も調整
     this.updateSize();
