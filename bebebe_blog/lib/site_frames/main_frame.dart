@@ -4,6 +4,7 @@
 /// -------------------------------------------
 
 import 'package:flutter/material.dart';
+import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:html' as html;
 
@@ -65,6 +66,8 @@ class MainFrameView extends State<MainFrame> {
   /// デモを再生済みかどうか
   bool isFinishedDemo = false;
 
+  final AutoScrollController mainContentScrollControllerWithJump = AutoScrollController();
+
   @override
   void initState() {
     // デモは初回しか読み込まない
@@ -100,14 +103,17 @@ class MainFrameView extends State<MainFrame> {
           // ScaffoldのDrawerの起動をtopbarからできるように
           key: this._scaffoldKey,
           // トップバーくん
-          appBar: Topbar(height: this.topbarHeight, scaffoldKey: this._scaffoldKey),
+          appBar: Topbar(
+              height: this.topbarHeight,
+              scaffoldKey: this._scaffoldKey,
+              mainContentsScrollControler: this.mainContentScrollControllerWithJump),
           // トップバーがボディを透過するように
           extendBodyBehindAppBar: true,
           // トップバーが作ってくれたDrawerをキーから取得する
           drawer: this.createDrawerMenu(),
           // メインボディ
-          // body: this.createAutoFillBody(this.mainContents[0]),
-          body: this._createScrollableMainContent(context, this.mainContents),
+          // body: this._createScrollableMainContent(context, this.mainContents),
+          body: this._createScrollableMainContentWithJump(context, this.mainContents),
         ),
       ),
     );
@@ -132,4 +138,19 @@ class MainFrameView extends State<MainFrame> {
       ),
     );
   } // end of main
+
+  Widget _createScrollableMainContentWithJump(BuildContext context, List<Widget> pages) {
+    return ListView.builder(
+      controller: this.mainContentScrollControllerWithJump,
+      itemCount: pages.length,
+      itemBuilder: (context, index) {
+        return AutoScrollTag(
+          key: ValueKey(index),
+          controller: this.mainContentScrollControllerWithJump,
+          index: index,
+          child: pages[index],
+        );
+      },
+    );
+  } // end of method
 } // end of class

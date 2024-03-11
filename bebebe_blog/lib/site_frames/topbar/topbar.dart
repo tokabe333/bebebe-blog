@@ -4,6 +4,7 @@
 /// -------------------------------------------
 
 import 'package:flutter/material.dart';
+import 'package:scroll_to_index/scroll_to_index.dart';
 import 'dart:math' as math;
 import 'package:vrouter/vrouter.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -16,6 +17,7 @@ class Topbar extends StatefulWidget implements PreferredSizeWidget {
     Key? key,
     required double this.height,
     required GlobalKey<ScaffoldState> this.scaffoldKey,
+    required AutoScrollController? this.mainContentsScrollControler,
   }) : super(key: key);
 
   /// トップバーの高さ、以降はこれが基準
@@ -24,12 +26,16 @@ class Topbar extends StatefulWidget implements PreferredSizeWidget {
   /// Drawerをいじる用、MainFrameのscaffoldを取得
   final GlobalKey<ScaffoldState> scaffoldKey;
 
+  /// メインコンテンツをスクロールするためのコントローラー
+  final AutoScrollController? mainContentsScrollControler;
+
   /// これをオーバーライドすることでPreferredSizeWidgetになってAppBarに表示できる
   @override
   Size get preferredSize => Size.fromHeight(height);
 
   @override
-  State<Topbar> createState() => TopbarView(height: height, scaffoldKey: scaffoldKey);
+  State<Topbar> createState() =>
+      TopbarView(height: height, scaffoldKey: scaffoldKey, mainContentsScrollControler: mainContentsScrollControler);
 } // end of class
 
 /// 画面上部に表示するバー
@@ -55,11 +61,15 @@ class TopbarView extends State<Topbar> {
   /// main_frameからDrawerを呼び出すためのkey
   final GlobalKey<TopbarView> _topbarViewKey = GlobalKey<TopbarView>();
 
+  /// メインコンテンツをスクロールするためのコントローラー
+  final AutoScrollController? mainContentsScrollControler;
+
   /// Constructor
   TopbarView({
     double this.height = 0,
     GlobalKey<ScaffoldState>? this.scaffoldKey,
-  }) {} // end of constructor
+    AutoScrollController? this.mainContentsScrollControler,
+  }); // end of constructor
 
   /// 画面上部のタブバーを作成する
   void _createTopTabs(BuildContext context) {
@@ -110,7 +120,12 @@ class TopbarView extends State<Topbar> {
         children: [
           // アイコン
           InkWell(
-            onTap: () => this.scaffoldKey?.currentState?.openDrawer(),
+            // onTap: () => this.scaffoldKey?.currentState?.openDrawer(),
+            onTap: () {
+              this
+                  .mainContentsScrollControler
+                  ?.scrollToIndex(2, preferPosition: AutoScrollPosition.begin, duration: Duration(milliseconds: 2000));
+            },
             child: Container(height: this.height, margin: EdgeInsets.only(left: 40), child: this.iconImage),
           ),
 
@@ -156,7 +171,6 @@ class TopbarView extends State<Topbar> {
       ),
     );
 
-    // return Padding(padding:EdgeInsets.only(left: paddingLeft), child:Drawer)
     return Container(
       color: Colors.white.withOpacity(0.9),
       child: Row(

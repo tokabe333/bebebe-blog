@@ -17,6 +17,7 @@ dependencies:
   rive: ^0.12.4
   easy_animate: ^0.0.3
   google_fonts: 6.1.0
+  scroll_to_index: ^3.0.1
 
 dev_dependencies:
   flutter_test:
