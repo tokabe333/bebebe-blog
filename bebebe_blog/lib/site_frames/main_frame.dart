@@ -4,7 +4,7 @@
 /// -------------------------------------------
 
 import 'package:flutter/material.dart';
-import 'package:scroll_to_index/scroll_to_index.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:html' as html;
 
@@ -66,7 +66,9 @@ class MainFrameView extends State<MainFrame> {
   /// デモを再生済みかどうか
   bool isFinishedDemo = false;
 
-  final AutoScrollController mainContentScrollControllerWithJump = AutoScrollController();
+  final ItemScrollController mainContentScrollControllerWithJump = ItemScrollController();
+
+  final ItemPositionsListener mainContentScrollListener = ItemPositionsListener.create();
 
   @override
   void initState() {
@@ -140,17 +142,13 @@ class MainFrameView extends State<MainFrame> {
   } // end of main
 
   Widget _createScrollableMainContentWithJump(BuildContext context, List<Widget> pages) {
-    return ListView.builder(
-      controller: this.mainContentScrollControllerWithJump,
+    // 1ページあたりの高さ
+    double mainContentHeight = MediaQuery.of(context).size.height;
+    return ScrollablePositionedList.builder(
       itemCount: pages.length,
-      itemBuilder: (context, index) {
-        return AutoScrollTag(
-          key: ValueKey(index),
-          controller: this.mainContentScrollControllerWithJump,
-          index: index,
-          child: pages[index],
-        );
-      },
+      itemScrollController: this.mainContentScrollControllerWithJump,
+      itemPositionsListener: this.mainContentScrollListener,
+      itemBuilder: (context, index) => SizedBox(height: mainContentHeight, child: pages[index]),
     );
   } // end of method
 } // end of class

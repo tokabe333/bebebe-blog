@@ -4,7 +4,7 @@
 /// -------------------------------------------
 
 import 'package:flutter/material.dart';
-import 'package:scroll_to_index/scroll_to_index.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'dart:math' as math;
 import 'package:vrouter/vrouter.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -17,7 +17,7 @@ class Topbar extends StatefulWidget implements PreferredSizeWidget {
     Key? key,
     required double this.height,
     required GlobalKey<ScaffoldState> this.scaffoldKey,
-    required AutoScrollController? this.mainContentsScrollControler,
+    required ItemScrollController? this.mainContentsScrollControler,
   }) : super(key: key);
 
   /// トップバーの高さ、以降はこれが基準
@@ -27,7 +27,7 @@ class Topbar extends StatefulWidget implements PreferredSizeWidget {
   final GlobalKey<ScaffoldState> scaffoldKey;
 
   /// メインコンテンツをスクロールするためのコントローラー
-  final AutoScrollController? mainContentsScrollControler;
+  final ItemScrollController? mainContentsScrollControler;
 
   /// これをオーバーライドすることでPreferredSizeWidgetになってAppBarに表示できる
   @override
@@ -62,13 +62,13 @@ class TopbarView extends State<Topbar> {
   final GlobalKey<TopbarView> _topbarViewKey = GlobalKey<TopbarView>();
 
   /// メインコンテンツをスクロールするためのコントローラー
-  final AutoScrollController? mainContentsScrollControler;
+  final ItemScrollController? mainContentsScrollControler;
 
   /// Constructor
   TopbarView({
     double this.height = 0,
     GlobalKey<ScaffoldState>? this.scaffoldKey,
-    AutoScrollController? this.mainContentsScrollControler,
+    ItemScrollController? this.mainContentsScrollControler,
   }); // end of constructor
 
   /// 画面上部のタブバーを作成する
@@ -124,7 +124,7 @@ class TopbarView extends State<Topbar> {
             onTap: () {
               this
                   .mainContentsScrollControler
-                  ?.scrollToIndex(2, preferPosition: AutoScrollPosition.begin, duration: Duration(milliseconds: 2000));
+                  ?.scrollTo(index: 2, curve: Curves.easeInOutCubic, duration: Duration(milliseconds: 1000));
             },
             child: Container(height: this.height, margin: EdgeInsets.only(left: 40), child: this.iconImage),
           ),

@@ -83,9 +83,9 @@ class HyperLinkTextView extends State<HyperLinkText> {
                 fontSize: widget.fontSize)),
         onTap: () {
           // 別のページなら遷移する(現在のページには遷移しない)
-          if (context.vRouter.path != widget.route) {
-            context.vRouter.to(widget.route);
-          }
+          // if (context.vRouter.path != widget.route) {
+          //   context.vRouter.to(widget.route);
+          // }
         },
       ),
     );
@@ -106,9 +106,9 @@ class HyperLinkTextView extends State<HyperLinkText> {
             )),
         onTap: () {
           // 別のページなら遷移する(現在のページには遷移しない)
-          if (context.vRouter.path != widget.route) {
-            context.vRouter.to(widget.route);
-          }
+          // if (context.vRouter.path != widget.route) {
+          //   context.vRouter.to(widget.route);
+          // }
         },
       ),
     );
