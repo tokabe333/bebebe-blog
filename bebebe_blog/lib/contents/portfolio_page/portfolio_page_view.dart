@@ -8,16 +8,21 @@ import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
 class PortfolioPageWidget extends StatefulWidget {
-  const PortfolioPageWidget({Key? key, required double this.topbarHeight}) : super(key: key);
+  const PortfolioPageWidget({Key? key, required double this.mainContentHeight}) : super(key: key);
 
   /// トップバーの高さは毎回与えられる
-  final double topbarHeight;
+  final double mainContentHeight;
 
   @override
-  State<PortfolioPageWidget> createState() => PortfolioPageView();
+  State<PortfolioPageWidget> createState() => PortfolioPageView(this.mainContentHeight);
 } // end of class
 
 class PortfolioPageView extends State<PortfolioPageWidget> {
+  /// このコンテンツの高さ
+  double mainContentHeight;
+
+  PortfolioPageView(double this.mainContentHeight);
+
   @override
   void initState() {}
 
@@ -26,7 +31,7 @@ class PortfolioPageView extends State<PortfolioPageWidget> {
   Widget build(BuildContext context) {
     // 画面サイズに応じてウィジェット更新
     double displayHeight = MediaQuery.of(context).size.height;
-    double contentHeight = displayHeight - widget.topbarHeight;
+    double contentHeight = displayHeight - this.mainContentHeight;
     return Container(
       constraints: BoxConstraints(minHeight: contentHeight),
       color: Colors.lightBlue,

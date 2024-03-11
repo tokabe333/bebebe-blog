@@ -12,41 +12,42 @@ import '../../site_frames/main_frame.dart';
 import './demo_page_view.dart';
 
 class MainPageWidget extends StatefulWidget {
-  const MainPageWidget({Key? key, bool this.isPlayDemo = true, required double this.topbarHeight}) : super(key: key);
+  const MainPageWidget({Key? key, bool this.isPlayDemo = true, required double this.mainContentHeight})
+      : super(key: key);
 
   /// デモを再生するか
   final bool isPlayDemo;
 
-  /// トップバーの高さは毎回与えられる
-  final double topbarHeight;
+  /// このコンテンツの高さ
+  final double mainContentHeight;
 
   @override
-  State<MainPageWidget> createState() => MainPageView(isPlayDemo, topbarHeight);
+  State<MainPageWidget> createState() => MainPageView(this.isPlayDemo, this.mainContentHeight);
 } // end of class
 
 class MainPageView extends State<MainPageWidget> {
-  /// デモ画面再生フラグ
-  bool _isPlayDemo;
-
   /// デモを再生するだけのページ
   late DemoPageWidget _demoPage;
 
   /// 画面切り替え用
   bool _isFinishedDemo = false;
 
-  /// トップバーの高さ
-  double topbarHeight;
-
   /// デモからメイン画面に移るディレイ
   int delaySwitchTime = 0;
 
+  /// デモを再生するか
+  final bool isPlayDemo;
+
+  /// このコンテンツの高さ
+  final double mainContentHeight;
+
   /// 画面切り替えのためにディレイして状態を変化させる
-  MainPageView(this._isPlayDemo, this.topbarHeight) {
+  MainPageView(bool this.isPlayDemo, double this.mainContentHeight) {
     // デモをするときはディレイをつける
-    if (this._isPlayDemo) this.delaySwitchTime = 5300;
+    if (this.isPlayDemo) this.delaySwitchTime = 5300;
 
     // デモページを作成
-    this._demoPage = DemoPageWidget(this._isPlayDemo);
+    this._demoPage = DemoPageWidget(this.isPlayDemo);
 
     // 時間が来たら紹介文を表示する
     Future.delayed(Duration(milliseconds: this.delaySwitchTime), () {
@@ -65,11 +66,11 @@ class MainPageView extends State<MainPageWidget> {
   Widget build(BuildContext context) {
     double displayWidth = MediaQuery.of(context).size.width;
     double displayHeight = MediaQuery.of(context).size.height;
-    double mainContentHeight = displayHeight - this.topbarHeight;
-    double introduceHeight = mainContentHeight * 0.3;
+    double introduceHeight = this.mainContentHeight * 0.3;
 
     // stackで重ねるデモの位置
-    double demoHeight = displayHeight * 0.6;
+    print("maincontentHeight : ${mainContentHeight}");
+    double demoHeight = this.mainContentHeight * 0.65;
     double demoWidth = 0;
     if (displayHeight <= displayWidth) {
       demoWidth = demoHeight / 340 * 500;
@@ -82,7 +83,7 @@ class MainPageView extends State<MainPageWidget> {
     // 背景をつけて、Stackで位置を決めていく
     return Container(
       width: displayWidth,
-      height: mainContentHeight,
+      height: this.mainContentHeight,
       color: const Color.fromARGB(255, 137, 194, 240),
       child: Stack(
         children: [

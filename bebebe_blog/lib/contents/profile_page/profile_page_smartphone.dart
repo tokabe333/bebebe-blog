@@ -19,7 +19,7 @@ extension ProfilePageViewSmartPhone on ProfilePageView {
   Widget createSmartPhonePage(BuildContext context) {
     // 画面サイズに応じてウィジェット更新
     double displayHeight = MediaQuery.of(context).size.height;
-    double contentHeight = displayHeight - widget.topbarHeight;
+    double contentHeight = displayHeight - widget.mainContentHeight;
     double displayWidth = MediaQuery.of(context).size.width;
     double contentWidth = displayWidth * 0.9;
 

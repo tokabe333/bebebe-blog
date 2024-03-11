@@ -16,13 +16,13 @@ import './skilset_text.dart';
 import '../../site_frames/background_image.dart';
 
 class ProfilePageWidget extends StatefulWidget {
-  const ProfilePageWidget({Key? key, required double this.topbarHeight}) : super(key: key);
+  const ProfilePageWidget({Key? key, required double this.mainContentHeight}) : super(key: key);
 
-  /// トップバーの高さは毎回与えられる
-  final double topbarHeight;
+  /// このコンテンツの高さ
+  final double mainContentHeight;
 
   @override
-  State<ProfilePageWidget> createState() => ProfilePageView();
+  State<ProfilePageWidget> createState() => ProfilePageView(this.mainContentHeight);
 } // end of class
 
 class ProfilePageView extends State<ProfilePageWidget> {
@@ -34,6 +34,11 @@ class ProfilePageView extends State<ProfilePageWidget> {
 
   /// このウィジェットの大きさを調べるためのキー(スマートフォンページ)
   GlobalKey profilePageKeySmartphone = GlobalKey();
+
+  /// このコンテンツの高さ
+  final double mainContentHeight;
+
+  ProfilePageView(double this.mainContentHeight);
 
   @override
   void didChangeDependencies() async {
@@ -71,14 +76,13 @@ class ProfilePageView extends State<ProfilePageWidget> {
   Widget createPcPage(BuildContext context) {
     // 画面サイズに応じてウィジェット更新
     double displayHeight = MediaQuery.of(context).size.height;
-    double contentHeight = displayHeight - widget.topbarHeight;
     double displayWidth = MediaQuery.of(context).size.width;
     double defaultContentWidth = 900;
     double contentWidth = math.min(displayWidth * 0.9, defaultContentWidth);
 
     // パディングは画面サイズ依存で
-    double paddingTop = contentHeight * 0.2;
-    double paddingMiddle = math.max(30, contentHeight * 0.05);
+    double paddingTop = widget.mainContentHeight * 0.2;
+    double paddingMiddle = math.max(30, widget.mainContentHeight * 0.05);
 
     // バッジの大きさは紹介Containerに収まるサイズ
     double badgeWidth = contentWidth / 4.5;
@@ -87,7 +91,7 @@ class ProfilePageView extends State<ProfilePageWidget> {
     // メインのコンテンツ
     return Container(
       key: this.profilePageKey,
-      constraints: BoxConstraints(minHeight: contentHeight),
+      constraints: BoxConstraints(minHeight: widget.mainContentHeight),
       child: Stack(
         children: [
           // 背景画像を繰り返す

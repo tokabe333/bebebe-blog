@@ -23,19 +23,4 @@ extension MainFrameFit on MainFrameView {
       this.mainContentWidth = this.displayWidth * this.mainContentWidthRatio;
     }
   }
-
-  /// 画面サイズに応じて自動的にパディングをつくるボディー
-  Widget createAutoFillBody(Widget page) {
-    // メイン画面はスクロール可能なバーで
-    return Scrollbar(
-      controller: this.mainContentScrollController,
-      child: SingleChildScrollView(
-        controller: this.mainContentScrollController,
-        child: Container(
-            width: mainContentWidth,
-            margin: EdgeInsets.only(left: this.paddingWidth, right: this.paddingWidth),
-            child: page),
-      ),
-    );
-  } // end of method
 } // end of class

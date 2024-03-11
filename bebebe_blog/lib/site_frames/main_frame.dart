@@ -48,9 +48,6 @@ class MainFrameView extends State<MainFrame> {
   // トップバーの高さ
   double topbarHeight = 60;
 
-  // スクロールバーのコントローラー
-  ScrollController mainContentScrollController = ScrollController();
-
   /// トップバーのDrawerを取得するためのキー
   GlobalKey<TopbarView>? drawerKey;
 
@@ -60,15 +57,17 @@ class MainFrameView extends State<MainFrame> {
   /// このWebサイトのコンテンツ一覧(ページ一覧)
   late List<Widget> mainContents;
 
-  /// constructor 各ページを初期化していく
-  MainFrameView(double this.topbarHeight) {}
-
   /// デモを再生済みかどうか
   bool isFinishedDemo = false;
 
+  /// 画面スクロール用コントローラ
   final ItemScrollController mainContentScrollControllerWithJump = ItemScrollController();
 
+  /// 画面スクロール用、書くページのポジション取得
   final ItemPositionsListener mainContentScrollListener = ItemPositionsListener.create();
+
+  /// constructor 各ページを初期化していく
+  MainFrameView(double this.topbarHeight) {}
 
   @override
   void initState() {
@@ -82,12 +81,18 @@ class MainFrameView extends State<MainFrame> {
 
   @override
   Widget build(BuildContext context) {
+    // 1ページあたりの高さ
+    double displayHeight = MediaQuery.of(context).size.height;
+    double mainContentHeight = displayHeight - this.topbarHeight;
+
     // ページリスト作成
     // デモ再生は初回のみなのでinitStateじゃなくてbuildで宣言して状態を変える
     this.mainContents = [
-      MainPageWidget(topbarHeight: this.topbarHeight, isPlayDemo: !this.isFinishedDemo),
-      ProfilePageWidget(topbarHeight: this.topbarHeight),
-      PortfolioPageWidget(topbarHeight: topbarHeight),
+      SizedBox(
+          height: displayHeight,
+          child: MainPageWidget(mainContentHeight: displayHeight, isPlayDemo: !this.isFinishedDemo)),
+      SizedBox(height: mainContentHeight, child: ProfilePageWidget(mainContentHeight: displayHeight)),
+      SizedBox(height: mainContentHeight, child: PortfolioPageWidget(mainContentHeight: displayHeight)),
     ];
 
     // 画面が更新されるタイミングで横幅も調整
@@ -110,11 +115,10 @@ class MainFrameView extends State<MainFrame> {
               scaffoldKey: this._scaffoldKey,
               mainContentsScrollControler: this.mainContentScrollControllerWithJump),
           // トップバーがボディを透過するように
-          extendBodyBehindAppBar: true,
+          extendBodyBehindAppBar: false,
           // トップバーが作ってくれたDrawerをキーから取得する
           drawer: this.createDrawerMenu(),
           // メインボディ
-          // body: this._createScrollableMainContent(context, this.mainContents),
           body: this._createScrollableMainContentWithJump(context, this.mainContents),
         ),
       ),
@@ -122,33 +126,33 @@ class MainFrameView extends State<MainFrame> {
   } // end of build
 
   /// スクロールバー付きでメインコンテンツを並べていく
-  Widget _createScrollableMainContent(BuildContext context, List<Widget> pages) {
-    // 1ページあたりの高さ
-    double mainContentHeight = MediaQuery.of(context).size.height - this.topbarHeight;
-    return RefreshIndicator(
-      onRefresh: () async {
-        print("onRefresh!");
-        html.window.location.reload();
-      },
-      child: Scrollbar(
-        controller: this.mainContentScrollController,
-        thumbVisibility: true,
-        child: ListView(
-          controller: this.mainContentScrollController,
-          children: pages,
-        ),
-      ),
-    );
-  } // end of main
-
   Widget _createScrollableMainContentWithJump(BuildContext context, List<Widget> pages) {
-    // 1ページあたりの高さ
-    double mainContentHeight = MediaQuery.of(context).size.height;
     return ScrollablePositionedList.builder(
       itemCount: pages.length,
       itemScrollController: this.mainContentScrollControllerWithJump,
       itemPositionsListener: this.mainContentScrollListener,
-      itemBuilder: (context, index) => SizedBox(height: mainContentHeight, child: pages[index]),
+      itemBuilder: (context, index) => pages[index],
     );
   } // end of method
+
+  /// ------------------------ 使用しない ------------------------
+  /// スクロールバー付きでメインコンテンツを並べていく
+  // Widget _createScrollableMainContent(BuildContext context, List<Widget> pages) {
+  //   // 1ページあたりの高さ
+  //   double mainContentHeight = MediaQuery.of(context).size.height - this.topbarHeight;
+  //   return RefreshIndicator(
+  //     onRefresh: () async {
+  //       print("onRefresh!");
+  //       html.window.location.reload();
+  //     },
+  //     child: Scrollbar(
+  //       controller: this.mainContentScrollController,
+  //       thumbVisibility: true,
+  //       child: ListView(
+  //         controller: this.mainContentScrollController,
+  //         children: pages,
+  //       ),
+  //     ),
+  //   );
+  // } // end of main
 } // end of class
