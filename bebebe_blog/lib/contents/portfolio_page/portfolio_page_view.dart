@@ -29,11 +29,8 @@ class PortfolioPageView extends State<PortfolioPageWidget> {
   /// メインコンテンツ(デモとサイト紹介)を作成
   @override
   Widget build(BuildContext context) {
-    // 画面サイズに応じてウィジェット更新
-    double displayHeight = MediaQuery.of(context).size.height;
-    double contentHeight = displayHeight - this.mainContentHeight;
     return Container(
-      constraints: BoxConstraints(minHeight: contentHeight),
+      constraints: BoxConstraints(minHeight: this.mainContentHeight),
       color: Colors.lightBlue,
     );
   } // end of method

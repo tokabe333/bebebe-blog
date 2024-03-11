@@ -10,8 +10,6 @@ import 'dart:html' as html;
 
 import './topbar/topbar.dart';
 import './main_frame_drawer.dart';
-import './main_frame_fit.dart';
-
 import '../contents/main_page/main_page_view.dart';
 import '../contents/profile_page/profile_page_view.dart';
 import '../contents/portfolio_page/portfolio_page_view.dart';
@@ -33,18 +31,6 @@ class MainFrame extends StatefulWidget {
 
 /// 実際に表示を記述する
 class MainFrameView extends State<MainFrame> {
-  /// 利用する領域 % (左右はパディング)
-  double mainContentWidthRatio = 1.0;
-
-  /// 実際のメインコンテンツの大きさ
-  double mainContentWidth = 0;
-
-  // 現在の画面サイズ
-  double displayWidth = 0;
-
-  // 画面サイズに応じてパディングサイズを決める
-  double paddingWidth = 0;
-
   // トップバーの高さ
   double topbarHeight = 60;
 
@@ -71,6 +57,7 @@ class MainFrameView extends State<MainFrame> {
 
   @override
   void initState() {
+    super.initState();
     // デモは初回しか読み込まない
     Future.delayed(Duration(milliseconds: 5500)).then((_) {
       setState(() {
@@ -96,7 +83,7 @@ class MainFrameView extends State<MainFrame> {
     ];
 
     // 画面が更新されるタイミングで横幅も調整
-    this.updateSize();
+    // this.updateSize();
 
     // トップバーを作ってキーを取得する
     return Title(
@@ -127,32 +114,17 @@ class MainFrameView extends State<MainFrame> {
 
   /// スクロールバー付きでメインコンテンツを並べていく
   Widget _createScrollableMainContentWithJump(BuildContext context, List<Widget> pages) {
-    return ScrollablePositionedList.builder(
-      itemCount: pages.length,
-      itemScrollController: this.mainContentScrollControllerWithJump,
-      itemPositionsListener: this.mainContentScrollListener,
-      itemBuilder: (context, index) => pages[index],
+    return RefreshIndicator(
+      onRefresh: () async {
+        print("onRefresh!");
+        html.window.location.reload();
+      },
+      child: ScrollablePositionedList.builder(
+        itemCount: pages.length,
+        itemScrollController: this.mainContentScrollControllerWithJump,
+        itemPositionsListener: this.mainContentScrollListener,
+        itemBuilder: (context, index) => pages[index],
+      ),
     );
   } // end of method
-
-  /// ------------------------ 使用しない ------------------------
-  /// スクロールバー付きでメインコンテンツを並べていく
-  // Widget _createScrollableMainContent(BuildContext context, List<Widget> pages) {
-  //   // 1ページあたりの高さ
-  //   double mainContentHeight = MediaQuery.of(context).size.height - this.topbarHeight;
-  //   return RefreshIndicator(
-  //     onRefresh: () async {
-  //       print("onRefresh!");
-  //       html.window.location.reload();
-  //     },
-  //     child: Scrollbar(
-  //       controller: this.mainContentScrollController,
-  //       thumbVisibility: true,
-  //       child: ListView(
-  //         controller: this.mainContentScrollController,
-  //         children: pages,
-  //       ),
-  //     ),
-  //   );
-  // } // end of main
 } // end of class

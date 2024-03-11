@@ -18,14 +18,12 @@ extension ProfilePageViewSmartPhone on ProfilePageView {
   /// メインコンテンツ(デモとサイト紹介)を作成
   Widget createSmartPhonePage(BuildContext context) {
     // 画面サイズに応じてウィジェット更新
-    double displayHeight = MediaQuery.of(context).size.height;
-    double contentHeight = displayHeight - widget.mainContentHeight;
     double displayWidth = MediaQuery.of(context).size.width;
     double contentWidth = displayWidth * 0.9;
 
     // パディングは画面サイズ依存で
-    double paddingTop = contentHeight * 0.1;
-    double paddingMiddle = contentHeight * 0.05;
+    double paddingTop = this.mainContentHeight * 0.1;
+    double paddingMiddle = this.mainContentHeight * 0.05;
 
     // バッジの大きさは紹介Containerに収まるサイズ
     double badgeWidth = contentWidth / 4.5;
@@ -35,7 +33,7 @@ extension ProfilePageViewSmartPhone on ProfilePageView {
 
     return Container(
       key: this.profilePageKeySmartphone,
-      constraints: BoxConstraints(minHeight: contentHeight),
+      constraints: BoxConstraints(minHeight: this.mainContentHeight),
       color: Color.fromARGB(255, 249, 255, 246),
       // height: contentHeight,
       child: Stack(

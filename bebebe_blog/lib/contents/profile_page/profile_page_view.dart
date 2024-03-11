@@ -75,14 +75,13 @@ class ProfilePageView extends State<ProfilePageWidget> {
 
   Widget createPcPage(BuildContext context) {
     // 画面サイズに応じてウィジェット更新
-    double displayHeight = MediaQuery.of(context).size.height;
     double displayWidth = MediaQuery.of(context).size.width;
     double defaultContentWidth = 900;
     double contentWidth = math.min(displayWidth * 0.9, defaultContentWidth);
 
     // パディングは画面サイズ依存で
-    double paddingTop = widget.mainContentHeight * 0.2;
-    double paddingMiddle = math.max(30, widget.mainContentHeight * 0.05);
+    double paddingTop = this.mainContentHeight * 0.2;
+    double paddingMiddle = math.max(30, this.mainContentHeight * 0.05);
 
     // バッジの大きさは紹介Containerに収まるサイズ
     double badgeWidth = contentWidth / 4.5;
@@ -91,7 +90,7 @@ class ProfilePageView extends State<ProfilePageWidget> {
     // メインのコンテンツ
     return Container(
       key: this.profilePageKey,
-      constraints: BoxConstraints(minHeight: widget.mainContentHeight),
+      constraints: BoxConstraints(minHeight: this.mainContentHeight),
       child: Stack(
         children: [
           // 背景画像を繰り返す
