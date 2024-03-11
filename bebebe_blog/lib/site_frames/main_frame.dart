@@ -47,7 +47,7 @@ class MainFrameView extends State<MainFrame> {
   bool isFinishedDemo = false;
 
   /// 画面スクロール用コントローラ
-  final ItemScrollController mainContentScrollControllerWithJump = ItemScrollController();
+  final ItemScrollController mainContentScrollController = ItemScrollController();
 
   /// 画面スクロール用、書くページのポジション取得
   final ItemPositionsListener mainContentScrollListener = ItemPositionsListener.create();
@@ -75,15 +75,10 @@ class MainFrameView extends State<MainFrame> {
     // ページリスト作成
     // デモ再生は初回のみなのでinitStateじゃなくてbuildで宣言して状態を変える
     this.mainContents = [
-      SizedBox(
-          height: displayHeight,
-          child: MainPageWidget(mainContentHeight: displayHeight, isPlayDemo: !this.isFinishedDemo)),
+      SizedBox(height: displayHeight, child: MainPageWidget(mainContentHeight: displayHeight, isPlayDemo: !this.isFinishedDemo)),
       SizedBox(height: mainContentHeight, child: ProfilePageWidget(mainContentHeight: displayHeight)),
       SizedBox(height: mainContentHeight, child: PortfolioPageWidget(mainContentHeight: displayHeight)),
     ];
-
-    // 画面が更新されるタイミングで横幅も調整
-    // this.updateSize();
 
     // トップバーを作ってキーを取得する
     return Title(
@@ -97,14 +92,11 @@ class MainFrameView extends State<MainFrame> {
           // ScaffoldのDrawerの起動をtopbarからできるように
           key: this._scaffoldKey,
           // トップバーくん
-          appBar: Topbar(
-              height: this.topbarHeight,
-              scaffoldKey: this._scaffoldKey,
-              mainContentsScrollControler: this.mainContentScrollControllerWithJump),
+          appBar: Topbar(height: this.topbarHeight, scaffoldKey: this._scaffoldKey, mainContentsScrollControler: this.mainContentScrollController),
           // トップバーがボディを透過するように
           extendBodyBehindAppBar: false,
           // トップバーが作ってくれたDrawerをキーから取得する
-          drawer: this.createDrawerMenu(),
+          drawer: this.createDrawerMenu(context),
           // メインボディ
           body: this._createScrollableMainContentWithJump(context, this.mainContents),
         ),
@@ -121,7 +113,7 @@ class MainFrameView extends State<MainFrame> {
       },
       child: ScrollablePositionedList.builder(
         itemCount: pages.length,
-        itemScrollController: this.mainContentScrollControllerWithJump,
+        itemScrollController: this.mainContentScrollController,
         itemPositionsListener: this.mainContentScrollListener,
         itemBuilder: (context, index) => pages[index],
       ),

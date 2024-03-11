@@ -12,8 +12,7 @@ import '../../site_frames/main_frame.dart';
 import './demo_page_view.dart';
 
 class MainPageWidget extends StatefulWidget {
-  const MainPageWidget({Key? key, bool this.isPlayDemo = true, required double this.mainContentHeight})
-      : super(key: key);
+  const MainPageWidget({Key? key, bool this.isPlayDemo = true, required double this.mainContentHeight}) : super(key: key);
 
   /// デモを再生するか
   final bool isPlayDemo;
@@ -69,7 +68,6 @@ class MainPageView extends State<MainPageWidget> {
     double introduceHeight = this.mainContentHeight * 0.3;
 
     // stackで重ねるデモの位置
-    print("maincontentHeight : ${mainContentHeight}");
     double demoHeight = this.mainContentHeight * 0.65;
     double demoWidth = 0;
     if (displayHeight <= displayWidth) {

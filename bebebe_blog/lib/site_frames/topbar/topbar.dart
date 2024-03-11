@@ -34,8 +34,7 @@ class Topbar extends StatefulWidget implements PreferredSizeWidget {
   Size get preferredSize => Size.fromHeight(height);
 
   @override
-  State<Topbar> createState() =>
-      TopbarView(height: height, scaffoldKey: scaffoldKey, mainContentsScrollControler: mainContentsScrollControler);
+  State<Topbar> createState() => TopbarView(height: height, scaffoldKey: scaffoldKey, mainContentsScrollControler: mainContentsScrollControler);
 } // end of class
 
 /// 画面上部に表示するバー
@@ -71,17 +70,39 @@ class TopbarView extends State<Topbar> {
     ItemScrollController? this.mainContentsScrollControler,
   }); // end of constructor
 
+  /// フォントをタップした際のスクロール処理
+  void scrollOnTap(int index) {
+    this.mainContentsScrollControler?.scrollTo(
+          index: index,
+          duration: Duration(milliseconds: 1000),
+          curve: Curves.easeInOutCubic,
+        );
+  } // end of method
+
   /// 画面上部のタブバーを作成する
   void _createTopTabs(BuildContext context) {
-    this.tabs.add(HyperLinkText(text: "トップ", fontSize: 15, route: "/top"));
-    this.tabs.add(HyperLinkText(text: "ポートフォリオ", fontSize: 15, route: "/github"));
+    this.tabs.add(HyperLinkText(
+          text: "トップ",
+          fontSize: 15,
+          onTap: () => this.scrollOnTap(0),
+        ));
+    this.tabs.add(HyperLinkText(
+          text: "ポートフォリオ",
+          fontSize: 15,
+          onTap: () => this.scrollOnTap(1),
+        ));
+    this.tabs.add(HyperLinkText(
+          text: "制作物",
+          fontSize: 15,
+          textAlignment: Alignment.center,
+          onTap: () => this.scrollOnTap(2),
+        ));
     this.tabs.add(SizedBox(width: 20));
     // this.tabs.add(this._createBottomIcon(path: "images/qiita.png", hyperLink: "https://qiita.com/tokabe333"));
     this.tabs.add(this._createBottomIcon(path: "images/github.png", hyperLink: "https://github.com/tokabe333/"));
     this.tabs.add(this._createBottomIcon(path: "images/atcoder.png", hyperLink: "https://atcoder.jp/users/tokabe333"));
     this.tabs.add(this._createBottomIcon(path: "images/twitter_blue.png", hyperLink: "https://twitter.com/tokabe333"));
-    this.tabs.add(this._createBottomIcon(
-        path: "images/youtube_red.png", hyperLink: "https://www.youtube.com/channel/UCS2o5U1Aom8AgK4Pn1MI16w"));
+    this.tabs.add(this._createBottomIcon(path: "images/youtube_red.png", hyperLink: "https://www.youtube.com/channel/UCS2o5U1Aom8AgK4Pn1MI16w"));
   }
 
   @override
@@ -90,9 +111,9 @@ class TopbarView extends State<Topbar> {
     this._createTopTabs(context);
 
     this.scaffoldKey?.currentState?.openDrawer();
-    print("scaffold key : ${this.scaffoldKey}");
-    print("current state : ${this.scaffoldKey?.currentState}");
-  }
+
+    super.initState();
+  } // end of initState
 
   @override
   Widget build(BuildContext context) {
@@ -120,12 +141,7 @@ class TopbarView extends State<Topbar> {
         children: [
           // アイコン
           InkWell(
-            // onTap: () => this.scaffoldKey?.currentState?.openDrawer(),
-            onTap: () {
-              this
-                  .mainContentsScrollControler
-                  ?.scrollTo(index: 2, curve: Curves.easeInOutCubic, duration: Duration(milliseconds: 1000));
-            },
+            onTap: () => this.scaffoldKey?.currentState?.openDrawer(),
             child: Container(height: this.height, margin: EdgeInsets.only(left: 40), child: this.iconImage),
           ),
 

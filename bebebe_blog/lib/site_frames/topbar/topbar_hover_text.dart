@@ -4,10 +4,8 @@
 /// -------------------------------------------
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:math' as math;
-import 'package:vrouter/vrouter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../contents/main_page/main_page_view.dart';
@@ -18,9 +16,9 @@ class HyperLinkText extends StatefulWidget {
       {Key? key,
       required String this.text,
       required double this.fontSize,
-      required String this.route,
       Alignment this.textAlignment = Alignment.center,
-      double this.height = 60})
+      double this.height = 60,
+      Function? this.onTap})
       : super(key: key);
   // 表示するテキスト
   String text;
@@ -28,14 +26,14 @@ class HyperLinkText extends StatefulWidget {
   /// フォントサイズ
   double fontSize;
 
-  /// Vrouteで使用するリンク
-  String route;
-
   /// フォントの高さ
   double height;
 
   /// フォントの配置
   Alignment textAlignment;
+
+  /// タップ時の処理
+  Function? onTap;
 
   @override
   State<HyperLinkText> createState() => HyperLinkTextView(height);
@@ -81,12 +79,7 @@ class HyperLinkTextView extends State<HyperLinkText> {
                 letterSpacing: 0.5,
                 fontWeight: FontWeight.w500,
                 fontSize: widget.fontSize)),
-        onTap: () {
-          // 別のページなら遷移する(現在のページには遷移しない)
-          // if (context.vRouter.path != widget.route) {
-          //   context.vRouter.to(widget.route);
-          // }
-        },
+        onTap: () => widget.onTap?.call(),
       ),
     );
 
@@ -104,15 +97,12 @@ class HyperLinkTextView extends State<HyperLinkText> {
               fontWeight: FontWeight.w500,
               fontSize: widget.fontSize,
             )),
-        onTap: () {
-          // 別のページなら遷移する(現在のページには遷移しない)
-          // if (context.vRouter.path != widget.route) {
-          //   context.vRouter.to(widget.route);
-          // }
-        },
+        onTap: () => widget.onTap?.call(),
       ),
     );
-  }
+
+    super.initState();
+  } // end of method
 
   @override
   Widget build(BuildContext context) {
@@ -126,17 +116,18 @@ class HyperLinkTextView extends State<HyperLinkText> {
 
     // マウスホバーイベントをつける
     return MouseRegion(
-        // ホバー時に色を変える
-        onEnter: (_) {
-          setState(() {
-            this.isHover = true;
-          });
-        },
-        onExit: (_) {
-          setState(() {
-            this.isHover = false;
-          });
-        },
-        child: animatedContainer);
+      // ホバー時に色を変える
+      onEnter: (_) {
+        setState(() {
+          this.isHover = true;
+        });
+      },
+      onExit: (_) {
+        setState(() {
+          this.isHover = false;
+        });
+      },
+      child: animatedContainer,
+    );
   } // end of build
 } // end of class
