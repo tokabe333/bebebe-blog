@@ -27,14 +27,11 @@ class MainPageView extends State<MainPageWidget> {
   /// デモを再生するだけのページ
   late DemoPageWidget _demoPage;
 
-  /// 画面切り替え用
-  bool _isFinishedDemo = false;
-
   /// デモからメイン画面に移るディレイ
   int delaySwitchTime = 0;
 
   /// デモを再生するか
-  final bool isPlayDemo;
+  bool isPlayDemo;
 
   /// このコンテンツの高さ
   final double mainContentHeight;
@@ -45,13 +42,12 @@ class MainPageView extends State<MainPageWidget> {
     if (this.isPlayDemo) this.delaySwitchTime = 5300;
 
     // デモページを作成
-    this._demoPage = DemoPageWidget(this.isPlayDemo);
+    this._demoPage = DemoPageWidget();
 
     // 時間が来たら紹介文を表示する
     Future.delayed(Duration(milliseconds: this.delaySwitchTime), () {
-      setState(() {
-        this._isFinishedDemo = true;
-      });
+      this.isPlayDemo = false;
+      setState(() {});
     });
   } // end of constructor
 
@@ -89,7 +85,7 @@ class MainPageView extends State<MainPageWidget> {
           Positioned(
             left: demoPadding,
             right: demoPadding,
-            child: Container(height: demoHeight, width: demoWidth, child: this._demoPage.createDemoWidget(context)),
+            child: Container(height: demoHeight, width: demoWidth, child: this._demoPage.createDemoWidget(context, this.isPlayDemo)),
           ),
           // ポートフォリオサイトです
           Positioned(
@@ -114,7 +110,7 @@ class MainPageView extends State<MainPageWidget> {
     // 表示用コンテナ
     Widget introduceContainer = SizedBox(
       height: height,
-      child: this._isFinishedDemo ? introduceColumn : SizedBox(),
+      child: this.isPlayDemo ? SizedBox() : introduceColumn,
     );
 
     // フェードインアニメーション

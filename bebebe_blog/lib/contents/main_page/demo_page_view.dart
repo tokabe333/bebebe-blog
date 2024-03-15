@@ -11,23 +11,14 @@ import '../../site_frames/main_frame.dart';
 
 class DemoPageWidget {
   // Riveアニメーション
-  RiveAnimationController _controller = SimpleAnimation("demo2");
+  // RiveAnimationController _controller = SimpleAnimation("demo2");
+  RiveAnimationController _controller = OneShotAnimation("demo2");
 
   RiveAnimationController _stopContoller = OneShotAnimation("text2");
 
-  /// デモ再生する？
-  bool isPlayDemo;
-
-  /// デモファイル本体
-  late Widget demo;
-
-  DemoPageWidget(bool this.isPlayDemo) {
-    this.demo = this.isPlayDemo ? _playDemo() : _noPlayDemo();
-  }
-
   /// 色々あったけどmain_page側で大きさや配置をいじるのが一番だった
-  Widget createDemoWidget(BuildContext context) {
-    return demo;
+  Widget createDemoWidget(BuildContext context, bool isPlayDemo) {
+    return isPlayDemo ? this._playDemo() : this._noPlayDemo();
   } // end of method
 
   /// デモを再生するだけ
