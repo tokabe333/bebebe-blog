@@ -55,9 +55,8 @@ class MainPageView extends State<MainPageWidget> {
     super.initState();
     // 時間が来たら紹介文を表示する
     Future.delayed(Duration(milliseconds: this.delaySwitchTime)).then((_) {
-      print("main_page setstate for 紹介文");
       this.isPlayDemo = false;
-      // setState(() {});
+      setState(() {});
     });
   } // end of method
 

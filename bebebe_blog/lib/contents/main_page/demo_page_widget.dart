@@ -28,13 +28,11 @@ class DemoPageWidget extends StatelessWidget {
 class NoDemoPageWidget extends StatelessWidget {
   /// デモ再生用コントローラー
   final RiveAnimationController _controller = OneShotAnimation("text2");
-  // RiveAnimationController _controller = OneShotAnimation("demo2");
 
   /// デモページは最初に作っておく
   late final Widget _demoPage;
 
   NoDemoPageWidget({Key? key}) : super(key: key) {
-    print("でも停止ウィジェットコンストラクタ");
     this._demoPage = RiveAnimation.asset(
       "assets/animations/maindemo_nologo_textonly.riv",
       controllers: [this._controller],
