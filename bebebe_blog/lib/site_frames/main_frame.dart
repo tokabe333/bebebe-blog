@@ -5,7 +5,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'dart:html' as html;
 
 import './topbar/topbar.dart';
@@ -26,14 +25,11 @@ class MainFrame extends StatefulWidget {
   final double topbarHeight;
 
   @override
-  State<MainFrame> createState() => MainFrameView(topbarHeight);
+  State<MainFrame> createState() => MainFrameView();
 } // end of class
 
 /// 実際に表示を記述する
 class MainFrameView extends State<MainFrame> {
-  // トップバーの高さ
-  double topbarHeight = 60;
-
   /// トップバーのDrawerを取得するためのキー
   GlobalKey<TopbarView>? drawerKey;
 
@@ -53,14 +49,15 @@ class MainFrameView extends State<MainFrame> {
   final ItemPositionsListener mainContentScrollListener = ItemPositionsListener.create();
 
   /// constructor 各ページを初期化していく
-  MainFrameView(double this.topbarHeight) {}
+  MainFrameView();
 
   @override
   void initState() {
     super.initState();
     // デモは初回しか読み込まない
-    Future.delayed(Duration(milliseconds: 5500)).then((_) {
+    Future.delayed(const Duration(milliseconds: 6000)).then((_) {
       setState(() {
+        print("finish");
         this.isFinishedDemo = true;
       });
     });
@@ -70,7 +67,7 @@ class MainFrameView extends State<MainFrame> {
   Widget build(BuildContext context) {
     // 1ページあたりの高さ
     double displayHeight = MediaQuery.of(context).size.height;
-    double mainContentHeight = displayHeight - this.topbarHeight;
+    double mainContentHeight = displayHeight - widget.topbarHeight;
 
     // ページリスト作成
     // デモ再生は初回のみなのでinitStateじゃなくてbuildで宣言して状態を変える
@@ -84,7 +81,7 @@ class MainFrameView extends State<MainFrame> {
     return Title(
       color: Colors.black,
       title: widget.title,
-      child: Container(
+      child: SizedBox(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         child: Scaffold(
@@ -92,7 +89,7 @@ class MainFrameView extends State<MainFrame> {
           // ScaffoldのDrawerの起動をtopbarからできるように
           key: this._scaffoldKey,
           // トップバーくん
-          appBar: Topbar(height: this.topbarHeight, scaffoldKey: this._scaffoldKey, mainContentsScrollControler: this.mainContentScrollController),
+          appBar: Topbar(height: widget.topbarHeight, scaffoldKey: this._scaffoldKey, mainContentsScrollControler: this.mainContentScrollController),
           // トップバーがボディを透過するように
           extendBodyBehindAppBar: false,
           // トップバーが作ってくれたDrawerをキーから取得する

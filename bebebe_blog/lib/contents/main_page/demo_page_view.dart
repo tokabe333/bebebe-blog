@@ -11,7 +11,7 @@ import '../../site_frames/main_frame.dart';
 
 class DemoPageWidget {
   // Riveアニメーション
-  RiveAnimationController _controller = SimpleAnimation("demo");
+  RiveAnimationController _controller = SimpleAnimation("demo2");
 
   RiveAnimationController _stopContoller = OneShotAnimation("text2");
 
@@ -33,7 +33,8 @@ class DemoPageWidget {
   /// デモを再生するだけ
   Widget _playDemo() {
     return RiveAnimation.asset(
-      "assets/animations/maindemo_nologo.riv",
+      // "assets/animations/maindemo_nologo.riv",
+      "assets/animations/maindemo.riv",
       controllers: [this._controller],
     );
   } // end of method

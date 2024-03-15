@@ -8,7 +8,6 @@ import 'package:easy_animate/enum/animate_direction.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../site_frames/main_frame.dart';
 import './demo_page_view.dart';
 
 class MainPageWidget extends StatefulWidget {
@@ -57,11 +56,12 @@ class MainPageView extends State<MainPageWidget> {
   } // end of constructor
 
   @override
-  void initState() {}
-
-  @override
+  void initState() {
+    super.initState();
+  } // end of method
 
   /// メインコンテンツ(デモとサイト紹介)を作成
+  @override
   Widget build(BuildContext context) {
     double displayWidth = MediaQuery.of(context).size.width;
     double displayHeight = MediaQuery.of(context).size.height;

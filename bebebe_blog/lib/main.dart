@@ -3,19 +3,18 @@
 /// -------------------------------------------
 
 import 'package:flutter/material.dart';
-import 'package:vrouter/vrouter.dart';
 
 import './site_frames/main_frame.dart';
 
 void main() {
-  runApp(BebebeApp());
+  runApp(const BebebeApp());
 } // end of class
 
 class BebebeApp extends StatelessWidget {
-  BebebeApp({super.key});
+  const BebebeApp({super.key});
 
   /// 画面上部のバーの高さ
-  double topbarHeight = 60;
+  final double topbarHeight = 60;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +22,7 @@ class BebebeApp extends StatelessWidget {
       title: "beyan's page!",
       home: MainFrame(topbarHeight: this.topbarHeight),
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 226, 216, 243)),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 226, 216, 243)),
         useMaterial3: true,
       ),
     );
