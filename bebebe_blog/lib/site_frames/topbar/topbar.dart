@@ -5,11 +5,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
-import 'dart:math' as math;
-import 'package:vrouter/vrouter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../contents/main_page/main_page_view.dart';
 import './topbar_hover_text.dart';
 
 class Topbar extends StatefulWidget implements PreferredSizeWidget {
@@ -58,7 +55,7 @@ class TopbarView extends State<Topbar> {
   GlobalKey<ScaffoldState>? scaffoldKey;
 
   /// main_frameからDrawerを呼び出すためのkey
-  final GlobalKey<TopbarView> _topbarViewKey = GlobalKey<TopbarView>();
+  // final GlobalKey<TopbarView> _topbarViewKey = GlobalKey<TopbarView>();
 
   /// メインコンテンツをスクロールするためのコントローラー
   final ItemScrollController? mainContentsScrollControler;
@@ -74,7 +71,7 @@ class TopbarView extends State<Topbar> {
   void scrollOnTap(int index) {
     this.mainContentsScrollControler?.scrollTo(
           index: index,
-          duration: Duration(milliseconds: 1000),
+          duration: const Duration(milliseconds: 1000),
           curve: Curves.easeInOutCubic,
         );
   } // end of method
@@ -97,7 +94,7 @@ class TopbarView extends State<Topbar> {
           textAlignment: Alignment.center,
           onTap: () => this.scrollOnTap(2),
         ));
-    this.tabs.add(SizedBox(width: 20));
+    this.tabs.add(const SizedBox(width: 20));
     // this.tabs.add(this._createBottomIcon(path: "images/qiita.png", hyperLink: "https://qiita.com/tokabe333"));
     this.tabs.add(this._createBottomIcon(path: "images/github.png", hyperLink: "https://github.com/tokabe333/"));
     this.tabs.add(this._createBottomIcon(path: "images/atcoder.png", hyperLink: "https://atcoder.jp/users/tokabe333"));
@@ -142,7 +139,7 @@ class TopbarView extends State<Topbar> {
           // アイコン
           InkWell(
             onTap: () => this.scaffoldKey?.currentState?.openDrawer(),
-            child: Container(height: this.height, margin: EdgeInsets.only(left: 40), child: this.iconImage),
+            child: Container(height: this.height, margin: const EdgeInsets.only(left: 40), child: this.iconImage),
           ),
 
           // 右上タブ
@@ -178,7 +175,7 @@ class TopbarView extends State<Topbar> {
           onTap: () {
             this.scaffoldKey?.currentState?.openDrawer();
           },
-          child: Icon(
+          child: const Icon(
             Icons.dehaze_rounded,
             color: Color.fromARGB(185, 11, 127, 223),
             // color: Colors.white,
@@ -201,9 +198,9 @@ class TopbarView extends State<Topbar> {
           // アイコン
           InkWell(
             onTap: () => this.scaffoldKey?.currentState?.openDrawer(),
-            child: Container(height: this.height, child: this.iconImage),
+            child: SizedBox(height: this.height, child: this.iconImage),
           ),
-          Expanded(child: SizedBox()),
+          const Expanded(child: SizedBox()),
         ],
       ),
     );
@@ -214,7 +211,7 @@ class TopbarView extends State<Topbar> {
     return Container(
         height: 50,
         width: 20,
-        margin: EdgeInsets.only(left: 7, right: 7),
+        margin: const EdgeInsets.only(left: 7, right: 7),
         child: InkWell(
           child: Image.asset(path),
           onTap: () async {

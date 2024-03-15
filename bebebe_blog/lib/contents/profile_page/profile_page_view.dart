@@ -2,13 +2,9 @@
 ///         自己紹介とスキルセットとか
 /// -------------------------------------------
 
-import 'package:easy_animate/animation/fade_in_animation.dart';
-import 'package:easy_animate/enum/animate_direction.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
-import './profile_page_view.dart';
-import './skilset_badge.dart';
 import './skilset_list.dart';
 import './profile_introduce.dart';
 import './profile_page_smartphone.dart';
@@ -62,7 +58,6 @@ class ProfilePageView extends State<ProfilePageWidget> {
   @override
   Widget build(BuildContext context) {
     // 画面サイズに応じて画面を切り替え
-    double displayHeight = MediaQuery.of(context).size.height;
     double displayWidth = MediaQuery.of(context).size.width;
 
     // 横幅で対応

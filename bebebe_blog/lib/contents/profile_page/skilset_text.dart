@@ -2,15 +2,10 @@
 ///         スキル紹介文章(language:)
 /// -------------------------------------------
 
-import 'package:easy_animate/animation/fade_in_animation.dart';
-import 'package:easy_animate/enum/animate_direction.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'dart:math' as math;
-
 import './profile_page_view.dart';
-import './skilset_badge.dart';
 
 extension SkilsetText on ProfilePageView {
   /// スキルセットを文字で表現
@@ -22,7 +17,7 @@ extension SkilsetText on ProfilePageView {
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
       ),
-      padding: EdgeInsets.only(top: 5, bottom: 5, left: 15, right: 15),
+      padding: const EdgeInsets.only(top: 5, bottom: 5, left: 15, right: 15),
       child: Text(
         skilsetText,
         style: GoogleFonts.kosugiMaru(

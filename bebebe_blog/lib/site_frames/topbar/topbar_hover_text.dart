@@ -5,14 +5,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'dart:math' as math;
-import 'package:url_launcher/url_launcher.dart';
-
-import '../../contents/main_page/main_page_view.dart';
 
 /// 画面上部に表示するハイパーリンクテキスト
 class HyperLinkText extends StatefulWidget {
-  HyperLinkText(
+  const HyperLinkText(
       {Key? key,
       required String this.text,
       required double this.fontSize,
@@ -21,19 +17,19 @@ class HyperLinkText extends StatefulWidget {
       Function? this.onTap})
       : super(key: key);
   // 表示するテキスト
-  String text;
+  final String text;
 
   /// フォントサイズ
-  double fontSize;
+  final double fontSize;
 
   /// フォントの高さ
-  double height;
+  final double height;
 
   /// フォントの配置
-  Alignment textAlignment;
+  final Alignment textAlignment;
 
   /// タップ時の処理
-  Function? onTap;
+  final Function? onTap;
 
   @override
   State<HyperLinkText> createState() => HyperLinkTextView(height);
@@ -61,7 +57,7 @@ class HyperLinkTextView extends State<HyperLinkText> {
   /// このウィジェットの高さ
   double height;
 
-  HyperLinkTextView(double this.height) {}
+  HyperLinkTextView(double this.height);
 
   @override
   void initState() {
@@ -71,14 +67,11 @@ class HyperLinkTextView extends State<HyperLinkText> {
       color: primaryColor.withOpacity(0),
       alignment: widget.textAlignment,
       // margin: EdgeInsets.only(left: 10, right: 10),
-      padding: EdgeInsets.only(left: 10, right: 10),
+      padding: const EdgeInsets.only(left: 10, right: 10),
       child: InkWell(
         child: Text(widget.text,
             style: GoogleFonts.notoSansJp(
-                color: const Color.fromARGB(255, 102, 102, 102),
-                letterSpacing: 0.5,
-                fontWeight: FontWeight.w500,
-                fontSize: widget.fontSize)),
+                color: const Color.fromARGB(255, 102, 102, 102), letterSpacing: 0.5, fontWeight: FontWeight.w500, fontSize: widget.fontSize)),
         onTap: () => widget.onTap?.call(),
       ),
     );
@@ -88,7 +81,7 @@ class HyperLinkTextView extends State<HyperLinkText> {
       height: this.height,
       color: hoverColor,
       alignment: widget.textAlignment,
-      padding: EdgeInsets.only(left: 10, right: 10),
+      padding: const EdgeInsets.only(left: 10, right: 10),
       child: InkWell(
         child: Text(widget.text,
             style: GoogleFonts.notoSansJp(
@@ -111,7 +104,7 @@ class HyperLinkTextView extends State<HyperLinkText> {
       firstChild: primaryContainer,
       secondChild: hoverContainer,
       crossFadeState: this.isHover ? CrossFadeState.showSecond : CrossFadeState.showFirst,
-      duration: Duration(milliseconds: 100),
+      duration: const Duration(milliseconds: 100),
     );
 
     // マウスホバーイベントをつける

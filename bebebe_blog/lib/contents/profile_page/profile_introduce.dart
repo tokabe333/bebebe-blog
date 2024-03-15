@@ -2,15 +2,12 @@
 ///         自己紹介文章のところ
 /// -------------------------------------------
 
-import 'package:easy_animate/animation/fade_in_animation.dart';
-import 'package:easy_animate/enum/animate_direction.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'dart:math' as math;
 
 import './profile_page_view.dart';
-import './skilset_badge.dart';
 
 extension ProfileIntroduce on ProfilePageView {
   /// べーやんアイコン作成
@@ -25,7 +22,7 @@ extension ProfileIntroduce on ProfilePageView {
     return SizedBox(
       width: textWidth,
       child: Padding(
-        padding: EdgeInsets.only(top: 15),
+        padding: const EdgeInsets.only(top: 15),
         child: Text(
           "高専→高専専攻科→大学院と情報系学科に所属。就職を機に地元へ帰るも半年で離職し、四国八十八箇所へ歩き遍路に。結願後は友人に誘われ再就職して現在。スキルは競技プログラミングやUnityでのゲーム開発、Djangoでのバックエンド、Flutterでのフロントエンド等。大学院では医療用CTの画像再構成と深層学習の研究に従事。",
           style: GoogleFonts.kosugiMaru(
@@ -79,7 +76,7 @@ extension ProfileIntroduce on ProfilePageView {
         color: Colors.white,
         borderRadius: BorderRadius.circular(50),
       ),
-      padding: EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 20),
+      padding: const EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 20),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,

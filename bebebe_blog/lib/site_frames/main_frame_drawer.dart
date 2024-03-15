@@ -3,7 +3,6 @@
 /// -------------------------------------------
 
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import './topbar/topbar_hover_text.dart';
 import './main_frame.dart';
@@ -44,7 +43,7 @@ extension MainFrameDrawer on MainFrameView {
   void scrollOnTap(BuildContext context, int index) {
     this.mainContentScrollController.scrollTo(
           index: index,
-          duration: Duration(milliseconds: 1000),
+          duration: const Duration(milliseconds: 1000),
           curve: Curves.easeInOutCubic,
         );
     Navigator.pop(context);

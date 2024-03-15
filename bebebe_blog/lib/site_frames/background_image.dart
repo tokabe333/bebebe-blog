@@ -2,14 +2,7 @@
 ///    ポートフォリオ一覧を出せるように頑張る
 /// -------------------------------------------
 
-import 'package:bebebe_blog/site_frames/content_frame/content_frame.dart';
-import 'package:easy_animate/animation/fade_in_animation.dart';
-import 'package:easy_animate/enum/animate_direction.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
-import 'dart:math' as math;
-import 'dart:io';
 
 class BackgroundImageWidget extends StatefulWidget {
   const BackgroundImageWidget({
@@ -33,8 +26,7 @@ class BackgroundImageWidget extends StatefulWidget {
   final GlobalKey parentWidgetKey;
 
   @override
-  State<BackgroundImageWidget> createState() =>
-      BackgroundImageView(imagePath, imageHeight, imageWidth, parentWidgetKey);
+  State<BackgroundImageWidget> createState() => BackgroundImageView(imagePath, imageHeight, imageWidth, parentWidgetKey);
 } // end of class
 
 class BackgroundImageView extends State<BackgroundImageWidget> {
@@ -95,13 +87,13 @@ class BackgroundImageView extends State<BackgroundImageWidget> {
     double? parentWidth = renderBox?.size.width;
     double? parentHeight = renderBox?.size.height;
     if (parentWidth == null || parentHeight == null) {
-      return SizedBox();
+      return const SizedBox();
     }
 
     // 画面サイズと画像サイズ
     // 繰り返し回数
-    int hnum = (parentWidth! / imageWidth).ceil();
-    int vnum = (parentHeight! / imageHeight).ceil();
+    int hnum = (parentWidth / imageWidth).ceil();
+    int vnum = (parentHeight / imageHeight).ceil();
 
     // 同じウィジェットをたくさんつくる
     List<Widget> backgrounds = [];

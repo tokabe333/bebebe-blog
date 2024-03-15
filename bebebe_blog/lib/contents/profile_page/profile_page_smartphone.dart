@@ -2,13 +2,9 @@
 ///       自己紹介とスキルセットとか(スマホ版)
 /// -------------------------------------------
 
-import 'package:easy_animate/animation/fade_in_animation.dart';
-import 'package:easy_animate/enum/animate_direction.dart';
 import 'package:flutter/material.dart';
-import 'dart:math' as math;
 
 import './profile_page_view.dart';
-import './skilset_badge.dart';
 import './skilset_list.dart';
 import './profile_introduce.dart';
 import './skilset_text.dart';
@@ -34,7 +30,7 @@ extension ProfilePageViewSmartPhone on ProfilePageView {
     return Container(
       key: this.profilePageKeySmartphone,
       constraints: BoxConstraints(minHeight: this.mainContentHeight),
-      color: Color.fromARGB(255, 249, 255, 246),
+      color: const Color.fromARGB(255, 249, 255, 246),
       // height: contentHeight,
       child: Stack(
         children: [

@@ -2,10 +2,7 @@
 ///    ポートフォリオ一覧を出せるように頑張る
 /// -------------------------------------------
 
-import 'package:easy_animate/animation/fade_in_animation.dart';
-import 'package:easy_animate/enum/animate_direction.dart';
 import 'package:flutter/material.dart';
-import 'dart:math' as math;
 
 class PortfolioPageWidget extends StatefulWidget {
   const PortfolioPageWidget({Key? key, required double this.mainContentHeight}) : super(key: key);
@@ -23,8 +20,8 @@ class PortfolioPageView extends State<PortfolioPageWidget> {
 
   PortfolioPageView(double this.mainContentHeight);
 
-  @override
-  void initState() {}
+  // @override
+  // void initState() {}
 
   /// メインコンテンツ(デモとサイト紹介)を作成
   @override

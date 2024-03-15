@@ -7,7 +7,6 @@ import 'package:easy_animate/animation/fade_in_animation.dart';
 import 'package:easy_animate/enum/animate_direction.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:rive/rive.dart';
 
 // import './demo_page_view.dart';
 import './demo_page_widget.dart';
@@ -116,7 +115,8 @@ class MainPageView extends State<MainPageWidget> {
     // 表示用コンテナ
     Widget introduceContainer = SizedBox(
       height: height,
-      child: this.isFinishDemo ? introduceColumn : const SizedBox(),
+      // child: this.isFinishDemo ? introduceColumn : const SizedBox(),
+      child: introduceColumn,
     );
 
     // フェードインアニメーション

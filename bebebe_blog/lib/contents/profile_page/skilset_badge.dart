@@ -4,10 +4,7 @@
 /// -------------------------------------------
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'dart:math' as math;
-import 'package:vrouter/vrouter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 /// 画面上部に表示するハイパーリンクテキスト
@@ -18,13 +15,13 @@ class SkilsetBadge extends StatefulWidget {
     required double this.fontSize,
     required String this.hyperLink,
     required Color this.borderColor,
-    Color? this.hoverBackgroundColor,
+    required Color? this.hoverBackgroundColor,
     Alignment this.textAlignment = Alignment.center,
     double this.height = 60,
     double this.width = 200,
   }) : super(key: key) {
     // 背景色が与えられていないならBorderColorをもとに作る
-    this.hoverBackgroundColor ??= this.borderColor.withAlpha(22);
+    // this.hoverBackgroundColor ??= this.borderColor.withAlpha(22);
   }
   // 表示するテキスト
   final String text;
@@ -45,7 +42,7 @@ class SkilsetBadge extends StatefulWidget {
   final Color borderColor;
 
   /// ホバー時の色
-  late Color? hoverBackgroundColor;
+  final Color? hoverBackgroundColor;
 
   /// フォントの配置
   final Alignment textAlignment;
@@ -75,8 +72,8 @@ class SkilsetBadgeView extends State<SkilsetBadge> {
 
   SkilsetBadgeView() {}
 
-  @override
-  void initState() {}
+  // @override
+  // void initState() {}
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +87,7 @@ class SkilsetBadgeView extends State<SkilsetBadge> {
       firstChild: primaryContainer,
       secondChild: hoverContainer,
       crossFadeState: this.isHover ? CrossFadeState.showSecond : CrossFadeState.showFirst,
-      duration: Duration(milliseconds: 100),
+      duration: const Duration(milliseconds: 100),
     );
 
     /// マウスホバーイベントをつける

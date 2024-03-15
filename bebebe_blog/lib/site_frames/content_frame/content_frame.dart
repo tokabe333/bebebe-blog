@@ -4,8 +4,6 @@
 /// -------------------------------------------
 
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:vrouter/vrouter.dart';
 
 /// 各ページを入れるフレーム
 /// main_frameはbodyにcontent_frameを並べる
@@ -28,9 +26,6 @@ class ContentFrame extends StatefulWidget {
 
 /// 実際に表示を記述する
 class ContentFrameView extends State<ContentFrame> {
-  @override
-  void initState() {}
-
   @override
   Widget build(BuildContext context) {
     return Container();
