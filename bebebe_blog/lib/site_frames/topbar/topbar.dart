@@ -78,22 +78,27 @@ class TopbarView extends State<Topbar> {
 
   /// 画面上部のタブバーを作成する
   void _createTopTabs(BuildContext context) {
-    this.tabs.add(HyperLinkText(
+    this.tabs.add(InkWell(
+        onTap: () => this.scrollOnTap(0),
+        child: HyperLinkText(
           text: "トップ",
           fontSize: 15,
           onTap: () => this.scrollOnTap(0),
-        ));
-    this.tabs.add(HyperLinkText(
-          text: "ポートフォリオ",
+        )));
+    this.tabs.add(InkWell(
+        onTap: () => this.scrollOnTap(1),
+        child: HyperLinkText(
+          text: "プロフィール",
           fontSize: 15,
           onTap: () => this.scrollOnTap(1),
-        ));
-    this.tabs.add(HyperLinkText(
+        )));
+    this.tabs.add(InkWell(
+        onTap: () => this.scrollOnTap(2),
+        child: HyperLinkText(
           text: "制作物",
           fontSize: 15,
-          textAlignment: Alignment.center,
           onTap: () => this.scrollOnTap(2),
-        ));
+        )));
     this.tabs.add(const SizedBox(width: 20));
     // this.tabs.add(this._createBottomIcon(path: "images/qiita.png", hyperLink: "https://qiita.com/tokabe333"));
     this.tabs.add(this._createBottomIcon(path: "images/github.png", hyperLink: "https://github.com/tokabe333/"));

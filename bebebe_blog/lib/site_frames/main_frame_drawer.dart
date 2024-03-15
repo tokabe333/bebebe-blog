@@ -13,23 +13,32 @@ extension MainFrameDrawer on MainFrameView {
   Drawer createDrawerMenu(BuildContext context) {
     // アクセス一覧
     List<Widget> access = [
-      HyperLinkText(
-        text: "トップ",
-        fontSize: 15,
-        textAlignment: Alignment.center,
+      InkWell(
         onTap: () => this.scrollOnTap(context, 0),
+        child: HyperLinkText(
+          text: "トップ",
+          fontSize: 15,
+          textAlignment: Alignment.center,
+          onTap: () => this.scrollOnTap(context, 0),
+        ),
       ),
-      HyperLinkText(
-        text: "ポートフォリオ",
-        fontSize: 15,
-        textAlignment: Alignment.center,
+      InkWell(
         onTap: () => this.scrollOnTap(context, 1),
+        child: HyperLinkText(
+          text: "プロフィール",
+          fontSize: 15,
+          textAlignment: Alignment.center,
+          onTap: () => this.scrollOnTap(context, 1),
+        ),
       ),
-      HyperLinkText(
-        text: "制作物",
-        fontSize: 15,
-        textAlignment: Alignment.center,
+      InkWell(
         onTap: () => this.scrollOnTap(context, 2),
+        child: HyperLinkText(
+          text: "制作物",
+          fontSize: 15,
+          textAlignment: Alignment.center,
+          onTap: () => this.scrollOnTap(context, 2),
+        ),
       ),
     ];
 
