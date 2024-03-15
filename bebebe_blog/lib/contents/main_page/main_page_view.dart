@@ -27,15 +27,16 @@ class MainPageWidget extends StatefulWidget {
 
 class MainPageView extends State<MainPageWidget> {
   /// デモを再生するだけのページ
-  late DemoPageWidget _demoPage;
-
-  late NoDemoPageWidget _noDemoPage;
+  late Widget _demoPage;
 
   /// デモからメイン画面に移るディレイ
   int delaySwitchTime = 0;
 
   /// デモを再生するか
   bool isPlayDemo;
+
+  /// デモが再生終了したか(isPlayDemoがtrueの場合のみ、画面更新をしないようにするため)
+  bool isFinishDemo = false;
 
   /// このコンテンツの高さ
   final double mainContentHeight;
@@ -44,18 +45,19 @@ class MainPageView extends State<MainPageWidget> {
   MainPageView(bool this.isPlayDemo, double this.mainContentHeight) {
     // デモをするときはディレイをつける
     if (this.isPlayDemo) this.delaySwitchTime = 6000;
+    if (this.isPlayDemo == false) this.isFinishDemo = true;
 
     // デモページを作成
-    this._demoPage = DemoPageWidget();
-    this._noDemoPage = NoDemoPageWidget();
+    this._demoPage = this.isPlayDemo ? DemoPageWidget() : NoDemoPageWidget();
   } // end of constructor
 
   @override
   void initState() {
     super.initState();
     // 時間が来たら紹介文を表示する
+    if (this.isPlayDemo == false) return;
     Future.delayed(Duration(milliseconds: this.delaySwitchTime)).then((_) {
-      this.isPlayDemo = false;
+      this.isFinishDemo = true;
       setState(() {});
     });
   } // end of method
@@ -89,7 +91,7 @@ class MainPageView extends State<MainPageWidget> {
           Positioned(
             left: demoPadding,
             right: demoPadding,
-            child: Container(height: demoHeight, width: demoWidth, child: this.isPlayDemo ? this._demoPage : this._noDemoPage),
+            child: Container(height: demoHeight, width: demoWidth, child: this._demoPage),
           ),
           // ポートフォリオサイトです
           Positioned(
@@ -114,7 +116,7 @@ class MainPageView extends State<MainPageWidget> {
     // 表示用コンテナ
     Widget introduceContainer = SizedBox(
       height: height,
-      child: this.isPlayDemo ? SizedBox() : introduceColumn,
+      child: this.isFinishDemo ? introduceColumn : const SizedBox(),
     );
 
     // フェードインアニメーション

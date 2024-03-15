@@ -34,7 +34,8 @@ class NoDemoPageWidget extends StatelessWidget {
 
   NoDemoPageWidget({Key? key}) : super(key: key) {
     this._demoPage = RiveAnimation.asset(
-      "assets/animations/maindemo_nologo_textonly.riv",
+      // "assets/animations/maindemo_nologo_textonly.riv",
+      "assets/animations/maindemo.riv",
       controllers: [this._controller],
     );
   }
