@@ -39,24 +39,6 @@
   </script>
   <!-- This script adds the flutter initialization JS code -->
   <script src="flutter.js" defer></script>
-</head>
-
-<body>
-  <script>
-    window.addEventListener('load', function (ev) {
-      // Download main.dart.js
-      _flutter.loader.loadEntrypoint({
-        serviceWorker: {
-          serviceWorkerVersion: serviceWorkerVersion,
-        },
-        onEntrypointLoaded: function (engineInitializer) {
-          engineInitializer.initializeEngine().then(function (appRunner) {
-            appRunner.runApp();
-          });
-        }
-      });
-    });
-  </script>
   <style type="text/css">
     .flutter-loader {
       width: 100%;
@@ -117,15 +99,33 @@
   <script>
     function flutterReady() {
       // console.log("flutter app is ready");
-      var el = document.getElementsByClassName('loading')[0];
-      if (el) { el.remove(); }
+      var el = document.getElementsByClassName('flutter-loader')[0];
+      if (el) {
+        el.remove();
+      }
     };
   </script>
+</head>
 
+<body>
+  <script>
+    window.addEventListener('load', function (ev) {
+      // Download main.dart.js
+      _flutter.loader.loadEntrypoint({
+        serviceWorker: {
+          serviceWorkerVersion: serviceWorkerVersion,
+        },
+        onEntrypointLoaded: function (engineInitializer) {
+          engineInitializer.initializeEngine().then(function (appRunner) {
+            appRunner.runApp();
+          });
+        }
+      });
+    });
+  </script>
   <div class="flutter-loader">
     <div class="indeterminate"></div>
   </div>
-
 </body>
 
 </html>
