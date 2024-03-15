@@ -3,10 +3,15 @@
 /// -------------------------------------------
 
 import 'package:flutter/material.dart';
+import 'dart:js_util' as js_util;
+import 'dart:html' as html;
 
 import './site_frames/main_frame.dart';
 
 void main() {
+  if (js_util.hasProperty(html.window, "flutterReady")) {
+    js_util.callMethod(html.window, "flutterReady", []);
+  }
   runApp(const BebebeApp());
 } // end of class
 
