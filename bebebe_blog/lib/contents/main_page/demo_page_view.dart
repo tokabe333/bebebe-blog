@@ -3,22 +3,25 @@
 /// -------------------------------------------
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:rive/rive.dart';
-import 'dart:math' as math;
-
-import '../../site_frames/main_frame.dart';
 
 class DemoPageWidget {
-  // Riveアニメーション
-  // RiveAnimationController _controller = SimpleAnimation("demo2");
-  RiveAnimationController _controller = OneShotAnimation("demo2");
+  /// デモ再生用コントローラー
+  final RiveAnimationController _controller = SimpleAnimation("demo2");
+  // RiveAnimationController _controller = OneShotAnimation("demo2");
 
-  RiveAnimationController _stopContoller = OneShotAnimation("text2");
+  /// デモ終了後の表示用コントローラー
+  final RiveAnimationController _stopContoller = OneShotAnimation("text2");
+
+  /// デモページは最初に作っておく
+  late final Widget _demoPage = this._playDemo();
+
+  /// デモページは最初に作っておく
+  late final Widget _noDemoPage = this._noPlayDemo();
 
   /// 色々あったけどmain_page側で大きさや配置をいじるのが一番だった
   Widget createDemoWidget(BuildContext context, bool isPlayDemo) {
-    return isPlayDemo ? this._playDemo() : this._noPlayDemo();
+    return isPlayDemo ? this._demoPage : this._noDemoPage;
   } // end of method
 
   /// デモを再生するだけ
