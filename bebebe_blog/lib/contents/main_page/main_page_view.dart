@@ -7,6 +7,7 @@ import 'package:easy_animate/animation/fade_in_animation.dart';
 import 'package:easy_animate/enum/animate_direction.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:rive/rive.dart';
 
 // import './demo_page_view.dart';
 import './demo_page_widget.dart';
@@ -42,7 +43,7 @@ class MainPageView extends State<MainPageWidget> {
   /// 画面切り替えのためにディレイして状態を変化させる
   MainPageView(bool this.isPlayDemo, double this.mainContentHeight) {
     // デモをするときはディレイをつける
-    if (this.isPlayDemo) this.delaySwitchTime = 7000;
+    if (this.isPlayDemo) this.delaySwitchTime = 6000;
 
     // デモページを作成
     this._demoPage = DemoPageWidget();
@@ -56,7 +57,7 @@ class MainPageView extends State<MainPageWidget> {
     Future.delayed(Duration(milliseconds: this.delaySwitchTime)).then((_) {
       print("main_page setstate for 紹介文");
       this.isPlayDemo = false;
-      setState(() {});
+      // setState(() {});
     });
   } // end of method
 

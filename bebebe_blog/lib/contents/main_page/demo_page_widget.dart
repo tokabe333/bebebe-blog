@@ -7,13 +7,12 @@ import 'package:rive/rive.dart';
 
 class DemoPageWidget extends StatelessWidget {
   /// デモ再生用コントローラー
-  final RiveAnimationController _controller = OneShotAnimation("demo2");
+  final RiveAnimationController _controller = SimpleAnimation("demo2");
 
   /// デモページは最初に作っておく
   late final Widget _demoPage;
 
   DemoPageWidget({Key? key}) : super(key: key) {
-    print("でも再生ウィジェットコンストラクタ");
     this._demoPage = RiveAnimation.asset(
       "assets/animations/maindemo.riv",
       controllers: [this._controller],
@@ -22,11 +21,7 @@ class DemoPageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // return this._demoPage;
-    return RiveAnimation.asset(
-      "assets/animations/maindemo.riv",
-      controllers: [this._controller],
-    );
+    return this._demoPage;
   }
 } // end of class
 

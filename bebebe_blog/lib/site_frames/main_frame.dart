@@ -54,7 +54,7 @@ class MainFrameView extends State<MainFrame> {
   @override
   void initState() {
     // デモは初回しか読み込まない
-    Future.delayed(const Duration(milliseconds: 6000)).then((_) {
+    Future.delayed(const Duration(milliseconds: 5500)).then((_) {
       print("finish");
       this.isFinishedDemo = true;
       setState(() {});
