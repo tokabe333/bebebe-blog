@@ -53,14 +53,14 @@ class MainFrameView extends State<MainFrame> {
 
   @override
   void initState() {
-    super.initState();
     // デモは初回しか読み込まない
     Future.delayed(const Duration(milliseconds: 6000)).then((_) {
-      setState(() {
-        print("finish");
-        this.isFinishedDemo = true;
-      });
+      print("finish");
+      this.isFinishedDemo = true;
+      setState(() {});
     });
+
+    super.initState();
   } // end of constructor
 
   @override
@@ -68,7 +68,6 @@ class MainFrameView extends State<MainFrame> {
     // 1ページあたりの高さ
     double displayHeight = MediaQuery.of(context).size.height;
     double mainContentHeight = displayHeight - widget.topbarHeight;
-
     // ページリスト作成
     // デモ再生は初回のみなのでinitStateじゃなくてbuildで宣言して状態を変える
     this.mainContents = [
@@ -76,7 +75,6 @@ class MainFrameView extends State<MainFrame> {
       SizedBox(height: mainContentHeight, child: ProfilePageWidget(mainContentHeight: displayHeight)),
       SizedBox(height: mainContentHeight, child: PortfolioPageWidget(mainContentHeight: displayHeight)),
     ];
-
     // トップバーを作ってキーを取得する
     return Title(
       color: Colors.black,

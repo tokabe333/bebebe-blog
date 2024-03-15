@@ -8,7 +8,8 @@ import 'package:easy_animate/enum/animate_direction.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import './demo_page_view.dart';
+// import './demo_page_view.dart';
+import './demo_page_widget.dart';
 
 class MainPageWidget extends StatefulWidget {
   const MainPageWidget({Key? key, bool this.isPlayDemo = true, required double this.mainContentHeight}) : super(key: key);
@@ -27,6 +28,8 @@ class MainPageView extends State<MainPageWidget> {
   /// デモを再生するだけのページ
   late DemoPageWidget _demoPage;
 
+  late NoDemoPageWidget _noDemoPage;
+
   /// デモからメイン画面に移るディレイ
   int delaySwitchTime = 0;
 
@@ -39,21 +42,22 @@ class MainPageView extends State<MainPageWidget> {
   /// 画面切り替えのためにディレイして状態を変化させる
   MainPageView(bool this.isPlayDemo, double this.mainContentHeight) {
     // デモをするときはディレイをつける
-    if (this.isPlayDemo) this.delaySwitchTime = 5300;
+    if (this.isPlayDemo) this.delaySwitchTime = 7000;
 
     // デモページを作成
     this._demoPage = DemoPageWidget();
-
-    // 時間が来たら紹介文を表示する
-    Future.delayed(Duration(milliseconds: this.delaySwitchTime), () {
-      this.isPlayDemo = false;
-      setState(() {});
-    });
+    this._noDemoPage = NoDemoPageWidget();
   } // end of constructor
 
   @override
   void initState() {
     super.initState();
+    // 時間が来たら紹介文を表示する
+    Future.delayed(Duration(milliseconds: this.delaySwitchTime)).then((_) {
+      print("main_page setstate for 紹介文");
+      this.isPlayDemo = false;
+      setState(() {});
+    });
   } // end of method
 
   /// メインコンテンツ(デモとサイト紹介)を作成
@@ -85,7 +89,7 @@ class MainPageView extends State<MainPageWidget> {
           Positioned(
             left: demoPadding,
             right: demoPadding,
-            child: Container(height: demoHeight, width: demoWidth, child: this._demoPage.createDemoWidget(context, this.isPlayDemo)),
+            child: Container(height: demoHeight, width: demoWidth, child: this.isPlayDemo ? this._demoPage : this._noDemoPage),
           ),
           // ポートフォリオサイトです
           Positioned(
