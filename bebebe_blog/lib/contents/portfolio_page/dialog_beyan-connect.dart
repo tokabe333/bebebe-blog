@@ -27,32 +27,47 @@ class BeyanConnectDialogView extends State<BeyanConnectDialogWidget> {
   /// リンク表示用文字列
   TextStyle _hyperlinkStyle(size) => GoogleFonts.kosugiMaru(fontSize: size, fontWeight: FontWeight.w400, color: Colors.lightBlue, height: 1.75);
 
+  /// ダイアログで実際に表示するコンテンツ
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-      content: this._createDialogContent(context),
-      actions: [],
-    );
-  } // end of build
-
-  /// ダイアログで実際に表示するコンテンツ
-  Widget _createDialogContent(BuildContext context) {
+    double displayHeight = MediaQuery.of(context).size.height;
     double displayWidth = MediaQuery.of(context).size.width;
     double contentWidth = math.min(displayWidth * 0.8, 900);
 
-    return Container(
-      constraints: BoxConstraints.tightFor(width: contentWidth),
-      padding: const EdgeInsets.all(10),
-      child: Wrap(
-        children: displayWidth < 640 ? [this._createSmartPhoneDialog(contentWidth)] : [this._createPcDialog(contentWidth)],
-      ),
-    );
+    // スマートフォン版のダイアログ(スクロールできるようにする)
+    if (contentWidth < 640) {
+      return AlertDialog(
+        scrollable: true,
+        content: Container(
+          padding: const EdgeInsets.all(10),
+          child: Wrap(children: [
+            SizedBox(width: contentWidth, height: displayHeight * 0.7, child: this._createSmartPhoneDialog(contentWidth)),
+          ]),
+        ),
+      );
+    }
+    // PC版のダイアログ(普通に表示する)
+    else {
+      return AlertDialog(
+        content: Container(
+          padding: const EdgeInsets.all(10),
+          child: Wrap(children: [this._createPcDialog(contentWidth)]),
+        ),
+      );
+    }
   } // end of method
 
   /// 画面サイズが小さい場合は縦に並べる
   Widget _createSmartPhoneDialog(double contentWidth) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
+    // return Column(
+    //   crossAxisAlignment: CrossAxisAlignment.center,
+    //   children: [
+    //     this._createLeftSideIntroduction(contentWidth),
+    //     const SizedBox(height: 20),
+    //     this._createRightSideImage(contentWidth),
+    //   ],
+    // );
+    return ListView(
       children: [
         this._createLeftSideIntroduction(contentWidth),
         const SizedBox(height: 20),
