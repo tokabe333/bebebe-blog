@@ -32,15 +32,23 @@ class PortfolioPageView extends State<PortfolioPageWidget> {
   Widget build(BuildContext context) {
     // 画面サイズに応じてコンテンツのサイズ決定
     double displayWidth = MediaQuery.of(context).size.width;
-    double contentWidth = displayWidth * 0.3;
+    double contentWidth = displayWidth * 0.5;
+    double contentHeight = contentWidth / 3.0 * 2;
 
     return Container(
       constraints: BoxConstraints(minHeight: this.mainContentHeight),
-      color: Color.fromARGB(255, 178, 247, 230),
+      color: Color.fromARGB(255, 222, 250, 243),
       padding: EdgeInsets.all(20),
       alignment: Alignment.center,
       child: Wrap(
-        children: [PortFolioContentWidget(containerHeight: contentWidth, containerWidth: contentWidth)],
+        children: [
+          PortFolioContentWidget(
+            containerHeight: contentHeight,
+            containerWidth: contentWidth,
+            imagePath: "assets/images/portfolio/beyan-connect.png",
+            caption: "beyan-connect.net",
+          )
+        ],
       ),
     );
   } // end of method
