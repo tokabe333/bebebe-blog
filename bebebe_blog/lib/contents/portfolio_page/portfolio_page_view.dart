@@ -7,6 +7,7 @@ import 'package:easy_animate/enum/animate_direction.dart';
 import 'package:flutter/material.dart';
 
 import './portfolio_content_view.dart';
+import './dialog_beyan-connect.dart';
 
 class PortfolioPageWidget extends StatefulWidget {
   const PortfolioPageWidget({Key? key, required double this.mainContentHeight}) : super(key: key);
@@ -37,8 +38,7 @@ class PortfolioPageView extends State<PortfolioPageWidget> {
 
     return Container(
       constraints: BoxConstraints(minHeight: this.mainContentHeight),
-      color: Color.fromARGB(255, 222, 250, 243),
-      padding: EdgeInsets.all(20),
+      color: const Color.fromARGB(255, 222, 250, 243),
       alignment: Alignment.center,
       child: Wrap(
         children: [
@@ -47,6 +47,7 @@ class PortfolioPageView extends State<PortfolioPageWidget> {
             containerWidth: contentWidth,
             imagePath: "assets/images/portfolio/beyan-connect.png",
             caption: "beyan-connect.net",
+            dialogWidget: BeyanConnectDialogWidget(),
           )
         ],
       ),

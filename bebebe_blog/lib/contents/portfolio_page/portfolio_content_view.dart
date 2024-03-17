@@ -7,6 +7,8 @@ import 'package:easy_animate/enum/animate_direction.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import './dialog_beyan-connect.dart';
+
 class PortFolioContentWidget extends StatefulWidget {
   const PortFolioContentWidget({
     Key? key,
@@ -14,12 +16,14 @@ class PortFolioContentWidget extends StatefulWidget {
     required double this.containerWidth,
     required String this.imagePath,
     required String this.caption,
+    required Widget this.dialogWidget,
   }) : super(key: key);
 
   final double containerHeight;
   final double containerWidth;
   final String imagePath;
   final String caption;
+  final Widget dialogWidget;
 
   @override
   State<PortFolioContentWidget> createState() => PortFolioContentView();
@@ -48,7 +52,7 @@ class PortFolioContentView extends State<PortFolioContentWidget> {
   Widget build(BuildContext context) {
     // ホバー時とクリック時のイベントをつける
     Widget container = InkWell(
-      onTap: () => {},
+      onTap: () => showDialog(context: context, builder: (context) => widget.dialogWidget),
       onHover: (isEnter) {
         if (isEnter) {
           this._isHover = true;
