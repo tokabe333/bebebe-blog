@@ -8,6 +8,7 @@ import 'dart:math' as math;
 
 import './portfolio_content_view.dart';
 import './dialog_beyan-connect.dart';
+import './dialog_syunpujuku_app.dart';
 
 class PortfolioPageWidget extends StatefulWidget {
   const PortfolioPageWidget({Key? key, required double this.mainContentHeight}) : super(key: key);
@@ -34,7 +35,7 @@ class PortfolioPageView extends State<PortfolioPageWidget> {
     } else if (displayWidth < 1000) {
       contentWidth = displayWidth * 0.52;
     } else {
-      contentWidth = displayWidth * 0.4;
+      contentWidth = displayWidth * 0.35;
     }
     double contentHeight = contentWidth / 3.0 * 2;
 
@@ -63,9 +64,9 @@ class PortfolioPageView extends State<PortfolioPageWidget> {
               PortFolioContentWidget(
                 containerHeight: contentHeight,
                 containerWidth: contentWidth,
-                imagePath: "assets/images/portfolio/beyan-connect.png",
-                caption: "beyan-connect.net",
-                dialogWidget: const BeyanConnectDialogWidget(),
+                imagePath: "assets/images/portfolio/coming_soon.png",
+                caption: "塾管理アプリ(製作中)",
+                dialogWidget: const ShunpujukuAppDialogWidget(),
               )
             ],
           ),

@@ -1,5 +1,5 @@
 // -------------------------------------------
-//   beyan-connect.net のポートフォリオ詳細
+//   春風塾アプリ のポートフォリオ詳細
 // -------------------------------------------
 
 import 'package:flutter/material.dart';
@@ -9,15 +9,15 @@ import 'dart:math' as math;
 import 'package:google_fonts/google_fonts.dart';
 
 /// ダイアログ画面のウィジェット
-class BeyanConnectDialogWidget extends StatefulWidget {
-  const BeyanConnectDialogWidget({Key? key}) : super(key: key);
+class ShunpujukuAppDialogWidget extends StatefulWidget {
+  const ShunpujukuAppDialogWidget({Key? key}) : super(key: key);
 
   @override
-  State<BeyanConnectDialogWidget> createState() => BeyanConnectDialogView();
+  State<ShunpujukuAppDialogWidget> createState() => ShunpujukuAppDialogView();
 } // end of class
 
 /// ダイアログ画面のビュー(状態)
-class BeyanConnectDialogView extends State<BeyanConnectDialogWidget> {
+class ShunpujukuAppDialogView extends State<ShunpujukuAppDialogWidget> {
   /// 画面見出し用の
   TextStyle _sectionStyle(size) => GoogleFonts.kosugiMaru(fontSize: size, letterSpacing: 1.5, fontWeight: FontWeight.w600);
 
@@ -81,19 +81,15 @@ class BeyanConnectDialogView extends State<BeyanConnectDialogWidget> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Center(child: Text("Beyan-Connect", style: this._sectionStyle(22))),
+          Center(child: Text("塾管理アプリ(仮)", style: this._sectionStyle(22))),
           const SizedBox(height: 5),
-          Text("現在開いているWebサイトです。Flutterの学習用と趣味を兼ねて作成しました。Hodaさんのページを参考にさせていただいています！", style: this._bodyStyle(17)),
+          Text("現在製作中のスマートフォン/Webアプリです。プログラミング塾の教員や保護者の利用を想定し、予約管理・連絡・報告機能を備えます。私が勤めている会社で使用するためですね(笑)", style: this._bodyStyle(17)),
           const SizedBox(height: 2),
-          this._createHyperLinkText("Hoda's Portfolio", "https://hodalab.com/portfolio/", 17),
-          const SizedBox(height: 2),
-          Text("Flutter Webはまだまだ発展途上な印象を受けますが、学んだスキルがスマホやPCのネイティブアプリ開発に応用できるので気に入っています。", style: this._bodyStyle(17)),
-          const SizedBox(height: 2),
-          Row(crossAxisAlignment: CrossAxisAlignment.center, children: [this._createGithubIcon(), const SizedBox(width: 8), this._createHyperLinkText("GitHub", "https://github.com/tokabe333/bebebe-blog", 17)]),
+          Text("iOS、Android、Web(教員向け)のアプリ全てをFlutterで実装予定です。各種情報の管理や追加・更新をするためにサーバ側はDjango+SQlite3でAPIを提供しています。", style: this._bodyStyle(17)),
           const SizedBox(height: 20),
           Center(child: Text("Development Stacks", style: this._sectionStyle(22))),
           const SizedBox(height: 5),
-          Text("Conoha VPS, Nginx, Flutter Web, Rive", style: this._bodyStyle(17)),
+          Text("Conoha VPS, Nginx, Django, SQlite3\nFlutter, Flutter Web", style: this._bodyStyle(17)),
         ],
       ),
     );
@@ -107,38 +103,21 @@ class BeyanConnectDialogView extends State<BeyanConnectDialogWidget> {
         width: width,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10),
-          child: Image.asset("assets/images/portfolio/beyan-connect_dialog.png", fit: BoxFit.cover),
+          child: Image.asset("assets/images/portfolio/coming_soon_dialog.png", fit: BoxFit.cover),
         ),
       ),
     ]);
   } // end of method
 
   /// ハイパーリンクを内蔵したテキストを作成する
-  Widget _createHyperLinkText(String text, String hyperLink, double fontSize) {
+  Widget _createHyperLinkText(String hyperLink, double fontSize) {
     return InkWell(
-      child: Text(text, style: this._hyperlinkStyle(fontSize)),
+      child: Text(hyperLink, style: this._hyperlinkStyle(fontSize)),
       onTap: () async {
         final url = Uri.parse(hyperLink);
         if (await canLaunchUrl(url) == false) return;
         launchUrl(url);
       },
-    );
-  } // end of method
-
-  /// GitHubへのアイコンを作る
-  Widget _createGithubIcon() {
-    return SizedBox(
-      height: 20,
-      width: 20,
-      child: InkWell(
-        child: Image.asset("images/github.png"),
-        onTap: () async {
-          final url = Uri.parse("https://github.com/tokabe333/bebebe-blog");
-          if (await canLaunchUrl(url)) {
-            launchUrl(url);
-          }
-        },
-      ),
     );
   } // end of method
 } // end of class

@@ -70,7 +70,7 @@ class PortFolioContentView extends State<PortFolioContentWidget> {
       // ホバー時のサイズ変更
       height: this._isHover ? widget.containerHeight * 1.1 : widget.containerHeight,
       width: this._isHover ? widget.containerWidth * 1.1 : widget.containerWidth,
-      padding: const EdgeInsets.only(top: 5, bottom: 0, left: 10, right: 10),
+      padding: const EdgeInsets.only(top: 10, bottom: 0, left: 10, right: 10),
       alignment: Alignment.topCenter,
       // 形状と影
       decoration: BoxDecoration(
@@ -80,7 +80,7 @@ class PortFolioContentView extends State<PortFolioContentWidget> {
       ),
       // サムネ画像とキャプションを並べる
       child: Column(children: [
-        Image.asset(widget.imagePath),
+        ClipRRect(borderRadius: BorderRadius.circular(10), child: Image.asset(widget.imagePath, fit: BoxFit.cover)),
         const Spacer(),
         Text(widget.caption, style: GoogleFonts.notoSansJp(fontSize: widget.containerWidth < 300 ? 12 : 14, fontWeight: FontWeight.w400)),
         const Spacer(),
