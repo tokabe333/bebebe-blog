@@ -71,8 +71,8 @@ class MainFrameView extends State<MainFrame> {
     // ページリスト作成
     // デモ再生は初回のみなのでinitStateじゃなくてbuildで宣言して状態を変える
     this.mainContents = [
-      SizedBox(height: displayHeight, child: MainPageWidget(mainContentHeight: displayHeight, isPlayDemo: !this.isFinishedDemo)),
-      SizedBox(height: mainContentHeight, child: ProfilePageWidget(mainContentHeight: displayHeight)),
+      // SizedBox(height: displayHeight, child: MainPageWidget(mainContentHeight: displayHeight, isPlayDemo: !this.isFinishedDemo)),
+      // SizedBox(height: mainContentHeight, child: ProfilePageWidget(mainContentHeight: displayHeight)),
       SizedBox(height: mainContentHeight, child: PortfolioPageWidget(mainContentHeight: displayHeight)),
     ];
     // トップバーを作ってキーを取得する
