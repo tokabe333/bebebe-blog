@@ -2,9 +2,8 @@
 //    ポートフォリオ一覧を出せるように頑張る
 // -------------------------------------------
 
-import 'package:easy_animate/animation/fade_in_animation.dart';
-import 'package:easy_animate/enum/animate_direction.dart';
 import 'package:flutter/material.dart';
+import 'dart:math' as math;
 
 import './portfolio_content_view.dart';
 import './dialog_beyan-connect.dart';
@@ -33,21 +32,32 @@ class PortfolioPageView extends State<PortfolioPageWidget> {
   Widget build(BuildContext context) {
     // 画面サイズに応じてコンテンツのサイズ決定
     double displayWidth = MediaQuery.of(context).size.width;
-    double contentWidth = displayWidth * 0.5;
+    double contentWidth = math.max(displayWidth * 0.4, 400);
     double contentHeight = contentWidth / 3.0 * 2;
+
+    print("portfolio build width:${displayWidth}");
 
     return Container(
       constraints: BoxConstraints(minHeight: this.mainContentHeight),
       color: const Color.fromARGB(255, 222, 250, 243),
       alignment: Alignment.center,
       child: Wrap(
+        spacing: contentWidth * 0.05,
+        runSpacing: contentWidth * 0.05,
         children: [
           PortFolioContentWidget(
             containerHeight: contentHeight,
             containerWidth: contentWidth,
             imagePath: "assets/images/portfolio/beyan-connect.png",
             caption: "beyan-connect.net",
-            dialogWidget: BeyanConnectDialogWidget(),
+            dialogWidget: const BeyanConnectDialogWidget(),
+          ),
+          PortFolioContentWidget(
+            containerHeight: contentHeight,
+            containerWidth: contentWidth,
+            imagePath: "assets/images/portfolio/beyan-connect.png",
+            caption: "beyan-connect.net",
+            dialogWidget: const BeyanConnectDialogWidget(),
           )
         ],
       ),

@@ -7,10 +7,8 @@ import 'package:easy_animate/enum/animate_direction.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import './dialog_beyan-connect.dart';
-
 class PortFolioContentWidget extends StatefulWidget {
-  const PortFolioContentWidget({
+  PortFolioContentWidget({
     Key? key,
     required double this.containerHeight,
     required double this.containerWidth,
@@ -30,22 +28,13 @@ class PortFolioContentWidget extends StatefulWidget {
 } // end of class
 
 class PortFolioContentView extends State<PortFolioContentWidget> {
-  /// このコンテナの高さ(ホバー時に変化する)
-  double _containerHeight = 0;
-
-  /// このコンテナの横幅(ホバー時に変化する)
-  double _containerWidth = 0;
-
   /// コンテナのホバー中検出
   bool _isHover = false;
 
-  @override
-  initState() {
-    this._containerHeight = widget.containerHeight;
-    this._containerWidth = widget.containerWidth;
-
-    super.initState();
-  }
+  // @override
+  // initState() {
+  //   super.initState();
+  // }
 
   /// フェードインアニメーションを付けてコンテナを返す
   @override
@@ -79,8 +68,8 @@ class PortFolioContentView extends State<PortFolioContentWidget> {
       duration: const Duration(milliseconds: 200),
       curve: Curves.easeOutCubic,
       // ホバー時のサイズ変更
-      height: this._isHover ? this._containerHeight * 1.1 : this._containerHeight,
-      width: this._isHover ? this._containerWidth * 1.1 : this._containerWidth,
+      height: this._isHover ? widget.containerHeight * 1.1 : widget.containerHeight,
+      width: this._isHover ? widget.containerWidth * 1.1 : widget.containerWidth,
       padding: const EdgeInsets.only(top: 5, bottom: 0, left: 10, right: 10),
       alignment: Alignment.topCenter,
       // 形状と影
