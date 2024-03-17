@@ -28,7 +28,7 @@ class PortfolioPageView extends State<PortfolioPageWidget> {
   Widget build(BuildContext context) {
     return Container(
       constraints: BoxConstraints(minHeight: this.mainContentHeight),
-      color: Colors.lightBlue,
+      color: Color.fromARGB(255, 178, 247, 230),
     );
   } // end of method
 } // end of class
