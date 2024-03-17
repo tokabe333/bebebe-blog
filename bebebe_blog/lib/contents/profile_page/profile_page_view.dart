@@ -3,6 +3,7 @@
 // -------------------------------------------
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'dart:math' as math;
 
 import './skilset_list.dart';
@@ -96,14 +97,27 @@ class ProfilePageView extends State<ProfilePageWidget> {
             parentWidgetKey: this.profilePageKey,
           ),
 
+          // Column(
+          //   children: [
+          //     SizedBox(height: paddingTop),
+          //     Center(child: this.createIntroduce(context, contentWidth)),
+          //     SizedBox(height: paddingMiddle / 2),
+          //     Center(child: this.createSkilsetText(context, contentWidth, FontWeight.w400)),
+          //     SizedBox(height: paddingMiddle),
+          //     this.createSkilsetList(context, contentWidth, badgeWidth, badgeFontSize),
+          //   ],
+          // ),
           Column(
             children: [
-              SizedBox(height: paddingTop),
+              const Spacer(flex: 2),
+              Text("Profile", style: GoogleFonts.kosugiMaru(fontSize: 50, fontWeight: FontWeight.w600, letterSpacing: 1.5, color: const Color.fromARGB(255, 102, 102, 102))),
+              const Spacer(flex: 2),
               Center(child: this.createIntroduce(context, contentWidth)),
-              SizedBox(height: paddingMiddle / 2),
+              const Spacer(flex: 1),
               Center(child: this.createSkilsetText(context, contentWidth, FontWeight.w400)),
-              SizedBox(height: paddingMiddle),
+              const Spacer(flex: 1),
               this.createSkilsetList(context, contentWidth, badgeWidth, badgeFontSize),
+              const Spacer(flex: 4),
             ],
           ),
         ],
