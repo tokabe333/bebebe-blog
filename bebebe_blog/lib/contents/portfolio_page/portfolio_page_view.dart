@@ -35,8 +35,6 @@ class PortfolioPageView extends State<PortfolioPageWidget> {
     double contentWidth = math.max(displayWidth * 0.4, 400);
     double contentHeight = contentWidth / 3.0 * 2;
 
-    print("portfolio build width:${displayWidth}");
-
     return Container(
       constraints: BoxConstraints(minHeight: this.mainContentHeight),
       color: const Color.fromARGB(255, 222, 250, 243),
