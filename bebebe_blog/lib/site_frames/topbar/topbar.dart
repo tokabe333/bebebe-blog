@@ -31,14 +31,11 @@ class Topbar extends StatefulWidget implements PreferredSizeWidget {
   Size get preferredSize => Size.fromHeight(height);
 
   @override
-  State<Topbar> createState() => TopbarView(height: height, scaffoldKey: scaffoldKey, mainContentsScrollControler: mainContentsScrollControler);
+  State<Topbar> createState() => TopbarView();
 } // end of class
 
 /// 画面上部に表示するバー
 class TopbarView extends State<Topbar> {
-  /// タブバーのheight default=50px
-  double height;
-
   /// メインコンテンツサイズ
   double topbarContentWidth = 600;
 
@@ -51,29 +48,16 @@ class TopbarView extends State<Topbar> {
   /// 画面左上に表示するアイコン画像
   Widget iconImage = Image.asset("images/fox_logo_alpha.png", fit: BoxFit.contain);
 
-  /// 現在のScaffold状態を確認するKey
-  GlobalKey<ScaffoldState>? scaffoldKey;
-
   /// main_frameからDrawerを呼び出すためのkey
   // final GlobalKey<TopbarView> _topbarViewKey = GlobalKey<TopbarView>();
 
-  /// メインコンテンツをスクロールするためのコントローラー
-  final ItemScrollController? mainContentsScrollControler;
-
-  /// Constructor
-  TopbarView({
-    double this.height = 0,
-    GlobalKey<ScaffoldState>? this.scaffoldKey,
-    ItemScrollController? this.mainContentsScrollControler,
-  }); // end of constructor
-
   /// フォントをタップした際のスクロール処理
   void scrollOnTap(int index) {
-    this.mainContentsScrollControler?.scrollTo(
-          index: index,
-          duration: const Duration(milliseconds: 1000),
-          curve: Curves.easeInOutCubic,
-        );
+    widget.mainContentsScrollControler?.scrollTo(
+      index: index,
+      duration: const Duration(milliseconds: 1000),
+      curve: Curves.easeInOutCubic,
+    );
   } // end of method
 
   /// 画面上部のタブバーを作成する
@@ -112,7 +96,7 @@ class TopbarView extends State<Topbar> {
     // 画面上部のバーを作成する
     this._createTopTabs(context);
 
-    this.scaffoldKey?.currentState?.openDrawer();
+    widget.scaffoldKey.currentState?.openDrawer();
 
     super.initState();
   } // end of initState
@@ -143,8 +127,8 @@ class TopbarView extends State<Topbar> {
         children: [
           // アイコン
           InkWell(
-            onTap: () => this.scaffoldKey?.currentState?.openDrawer(),
-            child: Container(height: this.height, margin: const EdgeInsets.only(left: 40), child: this.iconImage),
+            onTap: () => widget.scaffoldKey.currentState?.openDrawer(),
+            child: Container(height: widget.height, margin: const EdgeInsets.only(left: 40), child: this.iconImage),
           ),
 
           // 右上タブ
@@ -171,14 +155,14 @@ class TopbarView extends State<Topbar> {
 
     // Drawerを起動するハンバーガーボタン
     Widget hamburgerButton = SizedBox(
-      width: this.height * 0.7,
-      height: this.height * 0.7,
+      width: widget.height * 0.7,
+      height: widget.height * 0.7,
       child: CircleAvatar(
         backgroundColor: Colors.white.withOpacity(0),
         // backgroundColor: const Color.fromARGB(128, 11, 127, 223),
         child: InkWell(
           onTap: () {
-            this.scaffoldKey?.currentState?.openDrawer();
+            widget.scaffoldKey?.currentState?.openDrawer();
           },
           child: const Icon(
             Icons.dehaze_rounded,
@@ -202,8 +186,8 @@ class TopbarView extends State<Topbar> {
           )),
           // アイコン
           InkWell(
-            onTap: () => this.scaffoldKey?.currentState?.openDrawer(),
-            child: SizedBox(height: this.height, child: this.iconImage),
+            onTap: () => widget.scaffoldKey.currentState?.openDrawer(),
+            child: SizedBox(height: widget.height, child: this.iconImage),
           ),
           const Expanded(child: SizedBox()),
         ],

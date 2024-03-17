@@ -16,15 +16,10 @@ class PortfolioPageWidget extends StatefulWidget {
   final double mainContentHeight;
 
   @override
-  State<PortfolioPageWidget> createState() => PortfolioPageView(this.mainContentHeight);
+  State<PortfolioPageWidget> createState() => PortfolioPageView();
 } // end of class
 
 class PortfolioPageView extends State<PortfolioPageWidget> {
-  /// このコンテンツの高さ
-  double mainContentHeight;
-
-  PortfolioPageView(double this.mainContentHeight);
-
   // @override
   // void initState() {}
 
@@ -44,7 +39,7 @@ class PortfolioPageView extends State<PortfolioPageWidget> {
     double contentHeight = contentWidth / 3.0 * 2;
 
     return Container(
-      constraints: BoxConstraints(minHeight: this.mainContentHeight),
+      constraints: BoxConstraints(minHeight: widget.mainContentHeight),
       color: const Color.fromARGB(255, 222, 250, 243),
       alignment: Alignment.center,
       child: Column(

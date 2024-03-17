@@ -8,14 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 /// 画面上部に表示するハイパーリンクテキスト
 class HyperLinkText extends StatefulWidget {
-  const HyperLinkText(
-      {Key? key,
-      required String this.text,
-      required double this.fontSize,
-      Alignment this.textAlignment = Alignment.center,
-      double this.height = 60,
-      Function? this.onTap})
-      : super(key: key);
+  const HyperLinkText({Key? key, required String this.text, required double this.fontSize, Alignment this.textAlignment = Alignment.center, double this.height = 60, Function? this.onTap}) : super(key: key);
   // 表示するテキスト
   final String text;
 
@@ -32,7 +25,7 @@ class HyperLinkText extends StatefulWidget {
   final Function? onTap;
 
   @override
-  State<HyperLinkText> createState() => HyperLinkTextView(height);
+  State<HyperLinkText> createState() => HyperLinkTextView();
 }
 
 class HyperLinkTextView extends State<HyperLinkText> {
@@ -54,31 +47,24 @@ class HyperLinkTextView extends State<HyperLinkText> {
   /// 通常時のウィジェット(普段はこれ)
   Widget animatedContainer = Container();
 
-  /// このウィジェットの高さ
-  double height;
-
-  HyperLinkTextView(double this.height);
-
   @override
   void initState() {
     /// 通常時のフォント
     primaryContainer = Container(
-      height: this.height,
+      height: widget.height,
       color: primaryColor.withOpacity(0),
       alignment: widget.textAlignment,
       // margin: EdgeInsets.only(left: 10, right: 10),
       padding: const EdgeInsets.only(left: 10, right: 10),
       child: InkWell(
-        child: Text(widget.text,
-            style: GoogleFonts.notoSansJp(
-                color: const Color.fromARGB(255, 102, 102, 102), letterSpacing: 0.5, fontWeight: FontWeight.w500, fontSize: widget.fontSize)),
+        child: Text(widget.text, style: GoogleFonts.notoSansJp(color: const Color.fromARGB(255, 102, 102, 102), letterSpacing: 0.5, fontWeight: FontWeight.w500, fontSize: widget.fontSize)),
         onTap: () => widget.onTap?.call(),
       ),
     );
 
     /// マウスホバー時のフォント
     hoverContainer = Container(
-      height: this.height,
+      height: widget.height,
       color: hoverColor,
       alignment: widget.textAlignment,
       padding: const EdgeInsets.only(left: 10, right: 10),
