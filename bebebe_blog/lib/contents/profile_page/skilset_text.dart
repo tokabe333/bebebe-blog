@@ -10,14 +10,15 @@ import './profile_page_view.dart';
 extension SkilsetText on ProfilePageView {
   /// スキルセットを文字で表現
   Widget createSkilsetText(BuildContext context, double contentWidth, FontWeight fontWeight) {
-    String skilsetText = "言語　　 : C++, C#, Python, Ruby, Dart\nサーバ　 : Nginx, Django\nフロント : Unity, Flutter";
+    String skilsetText = "言語　　 : C++, C#, Python, (Ruby, Dart)\nサーバ　 : Nginx, Django\nフロント : Unity, Flutter";
     return Container(
       constraints: BoxConstraints.tightFor(width: contentWidth),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
       ),
-      padding: const EdgeInsets.only(top: 5, bottom: 5, left: 15, right: 15),
+      padding: const EdgeInsets.only(top: 5, bottom: 5, right: 15, left: 15),
+      alignment: Alignment.center,
       child: Text(
         skilsetText,
         style: GoogleFonts.kosugiMaru(
