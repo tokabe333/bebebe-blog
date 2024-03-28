@@ -12,6 +12,7 @@ import './main_frame_drawer.dart';
 import '../contents/main_page/main_page_view.dart';
 import '../contents/profile_page/profile_page_view.dart';
 import '../contents/portfolio_page/portfolio_page_view.dart';
+import '../contents/contact_page/contact_page_view.dart';
 
 /// Webサイトの構成を決めるフレーム
 /// 各ページはこれに自身を渡すことで画面を表示する
@@ -74,6 +75,7 @@ class MainFrameView extends State<MainFrame> {
       SizedBox(height: displayHeight, child: MainPageWidget(mainContentHeight: displayHeight, isPlayDemo: !this.isFinishedDemo)),
       SizedBox(height: mainContentHeight, child: ProfilePageWidget(mainContentHeight: displayHeight)),
       SizedBox(height: mainContentHeight, child: PortfolioPageWidget(mainContentHeight: displayHeight)),
+      SizedBox(height: mainContentHeight, child: ContactPageWidget(mainContentHeight: displayHeight)),
     ];
     // トップバーを作ってキーを取得する
     return Title(
