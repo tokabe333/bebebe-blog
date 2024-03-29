@@ -109,7 +109,7 @@ class BeyanConnectDialogView extends State<BeyanConnectDialogWidget> {
           const SizedBox(height: 20),
           Center(child: Text("Development Stacks", style: this._sectionStyle(22))),
           const SizedBox(height: 5),
-          Text("Conoha VPS, Nginx, Flutter Web, Rive", style: this._bodyStyle(17)),
+          Text("Conoha VPS, Nginx, Django, Spearly, Flutter Web, Rive", style: this._bodyStyle(17)),
         ],
       ),
     );
