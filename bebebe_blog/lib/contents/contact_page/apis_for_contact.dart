@@ -17,7 +17,7 @@ import './contact_page_view.dart';
 extension ApisForContact on ContactPageView {
   // CMSのバージョンを取得するAPI
   Future<int> asyncCallCmsFormVersion() async {
-    Uri uri = Uri.http("beyan-connect.net", "apis/portfolio_page/call_csm_form_version");
+    Uri uri = Uri.https("beyan-connect.net", "apis/portfolio_page/call_csm_form_version");
     // ヘッダーの設定
     Map<String, String> headers = {'content-type': 'application/json'};
 
@@ -50,7 +50,7 @@ extension ApisForContact on ContactPageView {
   /// CSMのフォームにJSONで新規コメントを追加する
   Future<bool> asyncSetCsmFormComment({required String name, required String email, required String comment}) async {
     // POSTはヘッダーに特に値が入らない
-    Uri uri = Uri.http("beyan-connect.net", "apis/portfolio_page/set_csm_form_comment");
+    Uri uri = Uri.https("beyan-connect.net", "apis/portfolio_page/set_csm_form_comment");
     // ヘッダーの設定
     Map<String, String> headers = {'content-type': 'application/json'};
     // bodyにデータを書き込む
