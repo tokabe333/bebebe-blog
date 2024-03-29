@@ -81,7 +81,8 @@ class BeyanConnectDialogView extends State<BeyanConnectDialogWidget> {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        this._createLeftSideIntroduction(contentWidth * 0.45),
+        this._createLeftSideIntroduction(contentWidth * 0.4),
+        const SizedBox(width: 10),
         const Spacer(),
         // 右の画像は中央に配置
         this._createRightSideImage(contentWidth * 0.5),
