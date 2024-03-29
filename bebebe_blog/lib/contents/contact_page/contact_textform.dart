@@ -46,12 +46,16 @@ class ContactTextformView extends State<ContactTextformWidget> with SingleTicker
   /// 現在フォーカス中の文字
   final focusNode = FocusNode();
 
+  /// 再生関連
   late AnimationController _animationController;
 
+  /// 異動範囲
   late Tween<Alignment> _tween;
 
+  /// 再生されるアニメーション controller * tween;
   late Animation<Alignment> _animation;
 
+  /// 最初から再生するか、最後から逆再生するか
   bool animationSwitch = true;
 
   @override
@@ -60,20 +64,22 @@ class ContactTextformView extends State<ContactTextformWidget> with SingleTicker
 
     // アニメーションの状態定義
     this._animationController = AnimationController(vsync: this, duration: const Duration(milliseconds: 100));
-    this._tween = Tween(begin: const Alignment(-1, 0), end: const Alignment(-1, -1));
+    this._tween = Tween(begin: const Alignment(-1, 0), end: const Alignment(-1, -0.5));
     this._animation = this._animationController.drive(this._tween);
 
     // フォーカスの入力状態を監視
     this.focusNode.addListener(
       () {
+        // 見出し文字を動かす
+        if (this.textController.text.isEmpty) {
+          this.animationSwitch ? this._animationController.forward() : this._animationController.reverse();
+          this.animationSwitch = !this.animationSwitch;
+        }
         // フォーカスがあたっていたら文字を全選択して画面更新
         if (this.focusNode.hasFocus) {
           this.textController.selection = TextSelection(baseOffset: 0, extentOffset: this.textController.text.length);
-          setState(() {});
         }
-        // 見出し文字を動かす
-        this.animationSwitch ? this._animationController.forward() : this._animationController.reverse();
-        this.animationSwitch = !this.animationSwitch;
+        setState(() {});
       },
     );
 
@@ -91,7 +97,7 @@ class ContactTextformView extends State<ContactTextformWidget> with SingleTicker
     super.dispose();
     this.textController.dispose();
     this.focusNode.dispose();
-  }
+  } // end of dispose
 
   @override
   Widget build(BuildContext context) {
@@ -99,9 +105,15 @@ class ContactTextformView extends State<ContactTextformWidget> with SingleTicker
     double displayHeight = MediaQuery.of(context).size.height;
 
     // 画面サイズに応じて文字サイズを変更(選択状態に応じて変化するのでbuild内に)
-    this.primaryStyle = GoogleFonts.kosugiMaru(fontSize: 18, fontWeight: FontWeight.w400, height: 1.75);
-    this.focusStyle = GoogleFonts.kosugiMaru(fontSize: 15, fontWeight: FontWeight.w400, height: 1.75, color: this.focusNode.hasFocus ? mainblue : subgrey);
-    this.displayText = Text(widget.heading, style: this.focusNode.hasFocus ? this.focusStyle : this.primaryStyle);
+    this.primaryStyle = this.textController.text.isEmpty ? GoogleFonts.kosugiMaru(fontSize: 18, fontWeight: FontWeight.w400, height: 1.75) : GoogleFonts.kosugiMaru(fontSize: 15, fontWeight: FontWeight.w400, height: 1.75, color: subgrey);
+    this.focusStyle = GoogleFonts.kosugiMaru(fontSize: 15, fontWeight: FontWeight.w400, height: 1.75, color: mainblue);
+    // 移動しつつ色とサイズをアニメーションで変更
+    this.displayText = AnimatedCrossFade(
+      firstChild: Text(widget.heading, style: this.focusStyle),
+      secondChild: Text(widget.heading, style: this.primaryStyle),
+      crossFadeState: this.focusNode.hasFocus ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+      duration: const Duration(milliseconds: 200),
+    );
 
     // フォーカス選択でライン変更
     this.underLine = AnimatedCrossFade(
@@ -115,15 +127,17 @@ class ContactTextformView extends State<ContactTextformWidget> with SingleTicker
       width: displayWidth,
       height: displayHeight,
       child: Stack(children: [
-        // this.displayWidget,
+        // 押したら移動する見出し文字
         AnimatedBuilder(
           animation: this._animation,
           builder: (context, _) {
             return Align(alignment: this._animation.value, child: this.displayText);
           },
         ),
-        this.textform,
-        this.underLine,
+        // テキストフォーム
+        Align(alignment: const Alignment(-1, 0), child: this.textform),
+        // 下線
+        Align(alignment: const Alignment(0, 0.52), child: this.underLine),
       ]),
     );
   } // end of build
