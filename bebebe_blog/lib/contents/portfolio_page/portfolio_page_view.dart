@@ -47,7 +47,7 @@ class PortfolioPageView extends State<PortfolioPageWidget> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           const Spacer(flex: 1),
-          Text("Works", style: GoogleFonts.kosugiMaru(fontSize: 50, fontWeight: FontWeight.w600, letterSpacing: 1.5, color: const Color.fromARGB(255, 102, 102, 102))),
+          Text("Ｗｏｒｋｓ", style: GoogleFonts.kosugiMaru(fontSize: 50, fontWeight: FontWeight.w600, letterSpacing: -10, color: const Color.fromARGB(255, 102, 102, 102))),
           const Spacer(flex: 1),
           Wrap(
             spacing: contentWidth * 0.05,

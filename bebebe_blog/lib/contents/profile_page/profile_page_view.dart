@@ -92,20 +92,10 @@ class ProfilePageView extends State<ProfilePageWidget> {
             parentWidgetKey: this.profilePageKey,
           ),
 
-          // Column(
-          //   children: [
-          //     SizedBox(height: paddingTop),
-          //     Center(child: this.createIntroduce(context, contentWidth)),
-          //     SizedBox(height: paddingMiddle / 2),
-          //     Center(child: this.createSkilsetText(context, contentWidth, FontWeight.w400)),
-          //     SizedBox(height: paddingMiddle),
-          //     this.createSkilsetList(context, contentWidth, badgeWidth, badgeFontSize),
-          //   ],
-          // ),
           Column(
             children: [
               const Spacer(flex: 2),
-              Text("Profile", style: GoogleFonts.kosugiMaru(fontSize: 50, fontWeight: FontWeight.w600, letterSpacing: 1.5, color: const Color.fromARGB(255, 102, 102, 102))),
+              Text("Ｐｒｏｆｉｌｅ", style: GoogleFonts.kosugiMaru(fontSize: 50, fontWeight: FontWeight.w600, letterSpacing: -10, color: const Color.fromARGB(255, 102, 102, 102))),
               const Spacer(flex: 2),
               Center(child: this.createIntroduce(context, contentWidth)),
               const Spacer(flex: 1),
