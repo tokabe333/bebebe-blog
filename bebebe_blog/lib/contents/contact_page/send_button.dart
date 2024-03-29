@@ -19,9 +19,16 @@ class SendButtonWidget extends StatefulWidget {
 } // end of class
 
 class SendButtonView extends State<SendButtonWidget> {
+  /// ライブアニメーションを構成するアートボード
   Artboard? _riveArtBoard;
+
+  /// アートボード内のアニメーション遷移を管理するコントローラー
   StateMachineController? _controller;
+
+  /// アニメーション遷移の条件(マウスホバー)
   SMIInput<bool>? _hoverInput;
+
+  /// アニメーション遷移の条件(マウスクリック)
   SMIInput<bool>? _pressInput;
 
   /// メッセージの送信待ち状態(ボタンが押された)
@@ -31,14 +38,18 @@ class SendButtonView extends State<SendButtonWidget> {
   void initState() {
     super.initState();
 
+    // バイナリファイルを読み込む
     rootBundle.load("assets/animations/send_button.riv").then((data) async {
-      print(RiveFile.needsTextRuntime(data));
-
+      // 文字データを含んでいるので初期化が必要
       await RiveFile.initializeText();
+
       // バイナリデータを開く
       final file = RiveFile.import(data);
 
+      // アートボードを読み込み
       final artboard = file.mainArtboard;
+
+      // 遷移コントローラーを読み込み
       this._controller = StateMachineController.fromArtboard(artboard, "State Machine 1");
       if (this._controller != null) {
         artboard.addController(this._controller!);
@@ -55,6 +66,7 @@ class SendButtonView extends State<SendButtonWidget> {
   @override
   Widget build(BuildContext context) {
     Widget? clippedArtboard;
+    // 遷移ボタンがアートボードに対して小さいので拡大して切り抜く
     if (this._riveArtBoard != null) {
       clippedArtboard = Rive(artboard: this._riveArtBoard!);
       clippedArtboard = Transform.scale(scale: 5, child: clippedArtboard);
@@ -70,6 +82,7 @@ class SendButtonView extends State<SendButtonWidget> {
       clippedArtboard = Container(decoration: BoxDecoration(border: Border.all(width: 1)), child: clippedArtboard);
     }
 
+    // 下のRiveのアニメーション遷移条件に合わせてこちらからも遷移条件を変更する
     return MouseRegion(
       onEnter: (_) => this._hoverInput?.value = true,
       onExit: (_) => this._hoverInput?.value = false,
