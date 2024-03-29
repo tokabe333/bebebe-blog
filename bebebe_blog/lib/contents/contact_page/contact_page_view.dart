@@ -11,6 +11,7 @@ import 'package:provider/provider.dart';
 
 import './send_button.dart';
 import './contact_textform.dart';
+import './apis_for_contact.dart';
 
 class ContactPageWidget extends StatefulWidget {
   const ContactPageWidget({Key? key, required double this.mainContentHeight}) : super(key: key);
@@ -49,9 +50,10 @@ class ContactPageView extends State<ContactPageWidget> {
 
     // ボタンはPCとスマホで共通
     // 押したらデータを送信するために監視
-    this.sendButton = SendButtonWidget(sendComment: () {
+    this.sendButton = SendButtonWidget(sendComment: () async {
       var name = nameKey.currentState?.textController.text;
-      print("namename : ${name}");
+      int id = await asyncCallCmsFormVersion();
+      print("namename : ${name}   id:${id}");
     });
   } // end of initState
 
