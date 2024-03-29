@@ -9,7 +9,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:rive/rive.dart';
 
 class SendButtonWidget extends StatefulWidget {
-  const SendButtonWidget({Key? key}) : super(key: key);
+  const SendButtonWidget({Key? key, required Function this.sendComment}) : super(key: key);
+
+  /// JSONデータを送信する
+  final Function sendComment;
 
   @override
   State<SendButtonWidget> createState() => SendButtonView();
@@ -20,6 +23,9 @@ class SendButtonView extends State<SendButtonWidget> {
   StateMachineController? _controller;
   SMIInput<bool>? _hoverInput;
   SMIInput<bool>? _pressInput;
+
+  /// メッセージの送信待ち状態(ボタンが押された)
+  bool waitingSendMessage = false;
 
   @override
   void initState() {
@@ -48,19 +54,42 @@ class SendButtonView extends State<SendButtonWidget> {
 
   @override
   Widget build(BuildContext context) {
+    Widget? clippedArtboard;
+    if (this._riveArtBoard != null) {
+      clippedArtboard = Rive(artboard: this._riveArtBoard!);
+      clippedArtboard = Transform.scale(scale: 5, child: clippedArtboard);
+
+      clippedArtboard = ClipRect(
+        child: Align(
+          alignment: Alignment.center,
+          widthFactor: 0.2,
+          heightFactor: 0.2,
+          child: clippedArtboard,
+        ),
+      );
+      clippedArtboard = Container(decoration: BoxDecoration(border: Border.all(width: 1)), child: clippedArtboard);
+    }
+
     return MouseRegion(
       onEnter: (_) => this._hoverInput?.value = true,
       onExit: (_) => this._hoverInput?.value = false,
       child: InkWell(
         // onTap: () => this._pressInput?.value = true,
-        onTapDown: (_) => this._pressInput?.value = true,
+        onTapDown: (_) {
+          this._pressInput?.value = true;
+          this.waitingSendMessage = true;
+          print("send button いまから実行");
+          widget.sendComment.call();
+          print("sendbutton 終了");
+        },
         onTapUp: (_) => this._pressInput?.value = false,
         onTapCancel: () {
           this._pressInput?.value = false;
           this._hoverInput?.value = false;
         },
-        child: this._riveArtBoard != null ? Rive(artboard: this._riveArtBoard!) : const Text("Null", style: TextStyle(fontSize: 20)),
+        child: clippedArtboard ?? const Text("Null", style: TextStyle(fontSize: 20)),
       ),
     );
   } // end of build
 } // end of class
+ 

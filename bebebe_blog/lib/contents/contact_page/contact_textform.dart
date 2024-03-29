@@ -12,13 +12,16 @@ import '../../site_frames/colors.dart';
 import './send_button.dart';
 
 class ContactTextformWidget extends StatefulWidget {
-  ContactTextformWidget({Key? key, required String this.heading}) : super(key: key);
+  const ContactTextformWidget({Key? key, required String this.heading, required double this.width}) : super(key: key);
 
   /// フォームの見出し
   final String heading;
 
   /// テキストフォームの高さ(固定長)
   final double height = 100;
+
+  /// テキストフォームの横幅(親から指定)
+  final double width;
 
   @override
   State<ContactTextformWidget> createState() => ContactTextformView();
@@ -101,9 +104,6 @@ class ContactTextformView extends State<ContactTextformWidget> with SingleTicker
 
   @override
   Widget build(BuildContext context) {
-    double displayWidth = MediaQuery.of(context).size.width;
-    double displayHeight = MediaQuery.of(context).size.height;
-
     // 画面サイズに応じて文字サイズを変更(選択状態に応じて変化するのでbuild内に)
     this.primaryStyle = this.textController.text.isEmpty ? GoogleFonts.kosugiMaru(fontSize: 18, fontWeight: FontWeight.w400, height: 1.75) : GoogleFonts.kosugiMaru(fontSize: 15, fontWeight: FontWeight.w400, height: 1.75, color: MyColor.subgrey);
     this.focusStyle = GoogleFonts.kosugiMaru(fontSize: 15, fontWeight: FontWeight.w400, height: 1.75, color: MyColor.mainblue);
@@ -124,8 +124,8 @@ class ContactTextformView extends State<ContactTextformWidget> with SingleTicker
     );
 
     return SizedBox(
-      width: displayWidth,
-      height: displayHeight,
+      width: widget.width,
+      height: widget.height,
       child: Stack(children: [
         // 押したら移動する見出し文字
         AnimatedBuilder(
