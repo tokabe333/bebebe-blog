@@ -2,14 +2,10 @@
 //         入力用テキストフォーム
 // -------------------------------------------
 
-import 'package:easy_animate/animation/fade_in_animation.dart';
-import 'package:easy_animate/enum/animate_direction.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../site_frames/colors.dart';
-
-import './send_button.dart';
 
 class ContactTextformWidget extends StatefulWidget {
   const ContactTextformWidget({Key? key, required String this.heading, required double this.width}) : super(key: key);

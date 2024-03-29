@@ -164,7 +164,7 @@ class TopbarView extends State<Topbar> {
         // backgroundColor: const Color.fromARGB(128, 11, 127, 223),
         child: InkWell(
           onTap: () {
-            widget.scaffoldKey?.currentState?.openDrawer();
+            widget.scaffoldKey.currentState?.openDrawer();
           },
           child: const Icon(
             Icons.dehaze_rounded,
