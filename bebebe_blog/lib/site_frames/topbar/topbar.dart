@@ -85,6 +85,13 @@ class TopbarView extends State<Topbar> {
           fontSize: 15,
           onTap: () => this.scrollOnTap(2),
         )));
+    this.tabs.add(InkWell(
+        onTap: () => this.scrollOnTap(3),
+        child: HyperLinkText(
+          text: "連絡先",
+          fontSize: 15,
+          onTap: () => this.scrollOnTap(3),
+        )));
     this.tabs.add(const SizedBox(width: 20));
     // this.tabs.add(this._createBottomIcon(path: "images/qiita.png", hyperLink: "https://qiita.com/tokabe333"));
     this.tabs.add(this._createBottomIcon(path: "images/github.png", hyperLink: "https://github.com/tokabe333/"));

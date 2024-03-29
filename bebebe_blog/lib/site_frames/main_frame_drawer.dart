@@ -40,6 +40,15 @@ extension MainFrameDrawer on MainFrameView {
           onTap: () => this.scrollOnTap(context, 2),
         ),
       ),
+      InkWell(
+        onTap: () => this.scrollOnTap(context, 3),
+        child: HyperLinkText(
+          text: "連絡先",
+          fontSize: 15,
+          textAlignment: Alignment.center,
+          onTap: () => this.scrollOnTap(context, 3),
+        ),
+      ),
     ];
 
     return Drawer(
