@@ -50,7 +50,7 @@ extension ApisForContact on ContactPageView {
   /// CSMのフォームにJSONで新規コメントを追加する
   Future<bool> asyncSetCsmFormComment({required String name, required String email, required String comment}) async {
     // POSTはヘッダーに特に値が入らない
-    Uri uri = Uri.http("e-shunpujuku.top", "ShunpujukuApp/student_side/after_login/report_page/add_report_comment/");
+    Uri uri = Uri.http("beyan-connect.net", "apis/portfolio_page/set_csm_form_comment");
     // ヘッダーの設定
     Map<String, String> headers = {'content-type': 'application/json'};
     // bodyにデータを書き込む
@@ -62,6 +62,8 @@ extension ApisForContact on ContactPageView {
 
     // POST通信
     http.Response resp = await http.post(uri, headers: headers, body: jsonEncode(body));
+
+    print("resp.body : ${resp.body}");
 
     // 正しく送信できたか
     return resp.statusCode != 200 && resp.statusCode != 201;

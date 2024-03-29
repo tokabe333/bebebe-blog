@@ -51,9 +51,16 @@ class ContactPageView extends State<ContactPageWidget> {
     // ボタンはPCとスマホで共通
     // 押したらデータを送信するために監視
     this.sendButton = SendButtonWidget(sendComment: () async {
-      var name = nameKey.currentState?.textController.text;
-      int id = await asyncCallCmsFormVersion();
-      print("namename : ${name}   id:${id}");
+      // バージョン情報を取得
+      int id = await this.asyncCallCmsFormVersion();
+      if (id == -1) return;
+      // 入力されているテキストをAPIに投げる
+      String name = nameKey.currentState?.textController.text ?? "";
+      String email = emailKey.currentState?.textController.text ?? "";
+      String comment = commentKey.currentState?.textController.text ?? "";
+      print("id:${id} name:${name} email:${email} comment:${comment}");
+      bool status = await this.asyncSetCsmFormComment(name: name, email: email, comment: comment);
+      print("send status : ${status}");
     });
   } // end of initState
 
