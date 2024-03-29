@@ -63,7 +63,7 @@ class ContactTextformView extends State<ContactTextformWidget> with SingleTicker
 
     // アニメーションの状態定義
     this._animationController = AnimationController(vsync: this, duration: const Duration(milliseconds: 100));
-    this._tween = Tween(begin: const Alignment(-1, 0), end: const Alignment(-1, -0.5));
+    this._tween = Tween(begin: const Alignment(-1, 0), end: const Alignment(-1, -0.7));
     this._animation = this._animationController.drive(this._tween);
 
     // フォーカスの入力状態を監視
@@ -87,6 +87,7 @@ class ContactTextformView extends State<ContactTextformWidget> with SingleTicker
       autofocus: false,
       controller: this.textController,
       focusNode: this.focusNode,
+      style: GoogleFonts.kosugiMaru(fontSize: 18, fontWeight: FontWeight.w400, height: 1.75),
       decoration: const InputDecoration(border: InputBorder.none),
     );
   }

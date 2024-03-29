@@ -78,7 +78,6 @@ class SendButtonView extends State<SendButtonWidget> {
           child: clippedArtboard,
         ),
       );
-      clippedArtboard = Container(decoration: BoxDecoration(border: Border.all(width: 1)), child: clippedArtboard);
     }
 
     // 下のRiveのアニメーション遷移条件に合わせてこちらからも遷移条件を変更する

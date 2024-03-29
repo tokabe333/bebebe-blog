@@ -57,8 +57,6 @@ extension ApisForContact on ContactPageView {
     // POST通信
     http.Response resp = await http.post(uri, headers: headers, body: jsonEncode(body));
 
-    print("resp.body : ${resp.body}");
-
     // 正しく送信できたか
     return resp.statusCode != 200 && resp.statusCode != 201;
   } // end of method

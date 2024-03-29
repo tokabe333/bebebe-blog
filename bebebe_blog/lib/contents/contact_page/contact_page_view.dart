@@ -6,6 +6,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'dart:math' as math;
+
 import './send_button.dart';
 import './contact_textform.dart';
 import './apis_for_contact.dart';
@@ -21,8 +23,6 @@ class ContactPageWidget extends StatefulWidget {
 } // end of class
 
 class ContactPageView extends State<ContactPageWidget> {
-  int _versionid = 0;
-
   /// 名前を取得するためのキー
   GlobalKey<ContactTextformView> nameKey = GlobalKey();
 
@@ -55,17 +55,16 @@ class ContactPageView extends State<ContactPageWidget> {
       String name = nameKey.currentState?.textController.text ?? "";
       String email = emailKey.currentState?.textController.text ?? "";
       String comment = commentKey.currentState?.textController.text ?? "";
-      print("id:${id} name:${name} email:${email} comment:${comment}");
-      bool status = await this.asyncSetCsmFormComment(name: name, email: email, comment: comment);
-      print("send status : ${status}");
+      await this.asyncSetCsmFormComment(name: name, email: email, comment: comment);
     });
   } // end of initState
 
   @override
   Widget build(BuildContext context) {
+    double displayWidth = MediaQuery.of(context).size.width;
     return Container(
       color: Colors.white,
-      child: this._createContactPagePc(context),
+      child: displayWidth < 640 ? this._createContactPageSmartPhone(context) : this._createContactPagePc(context),
     );
   } // end of build
 
@@ -74,21 +73,42 @@ class ContactPageView extends State<ContactPageWidget> {
     double displayWidth = MediaQuery.of(context).size.width;
     double contentWidth = displayWidth * 0.7;
     double minicontentWidth = contentWidth * 0.45;
-    double buttonWidth = displayWidth * 0.2;
+    double buttonWidth = math.max(displayWidth * 0.2, 200);
 
     return Column(children: [
-      const Spacer(),
+      const Spacer(flex: 2),
       this.sectionText,
-      const Spacer(),
+      const Spacer(flex: 1),
       SizedBox(
         width: contentWidth,
         child: Row(children: [ContactTextformWidget(key: this.nameKey, heading: "Name", width: minicontentWidth), const Spacer(), ContactTextformWidget(key: this.emailKey, heading: "E-Mail", width: minicontentWidth)]),
       ),
-      const Spacer(),
+      const Spacer(flex: 1),
       ContactTextformWidget(key: this.commentKey, heading: "Comment", width: contentWidth),
-      const Spacer(),
-      Container(decoration: BoxDecoration(border: Border.all(width: 1)), width: buttonWidth, height: buttonWidth * 0.4, child: this.sendButton),
-      const Spacer(),
+      const Spacer(flex: 1),
+      SizedBox(width: buttonWidth, height: buttonWidth * 0.4, child: this.sendButton),
+      const Spacer(flex: 2),
+    ]);
+  } // end of method
+
+  /// スマホ用の上下に並べたフォームを作成
+  Widget _createContactPageSmartPhone(BuildContext context) {
+    double displayWidth = MediaQuery.of(context).size.width;
+    double contentWidth = displayWidth * 0.8;
+    double buttonWidth = math.max(displayWidth * 0.2, 200);
+
+    return Column(children: [
+      const Spacer(flex: 1),
+      this.sectionText,
+      const Spacer(flex: 2),
+      ContactTextformWidget(key: this.nameKey, heading: "Name", width: contentWidth),
+      const Spacer(flex: 2),
+      ContactTextformWidget(key: this.emailKey, heading: "E-Mail", width: contentWidth),
+      const Spacer(flex: 2),
+      ContactTextformWidget(key: this.commentKey, heading: "Comment", width: contentWidth),
+      const Spacer(flex: 2),
+      SizedBox(width: buttonWidth, height: buttonWidth * 0.4, child: this.sendButton),
+      const Spacer(flex: 1),
     ]);
   }
 } // end of class
