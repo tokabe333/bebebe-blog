@@ -48,7 +48,8 @@ class TopbarView extends State<Topbar> {
   final List<Widget> tabs = [];
 
   /// 画面左上に表示するアイコン画像
-  Widget iconImage = Image.asset("images/fox_logo_alpha.png", fit: BoxFit.contain);
+  // Widget iconImage = Image.asset("images/fox_logo_alpha.png", fit: BoxFit.contain);
+  Widget iconImage = Image.asset("images/beyan-alpha.png", fit: BoxFit.contain);
 
   /// main_frameからDrawerを呼び出すためのkey
   // final GlobalKey<TopbarView> _topbarViewKey = GlobalKey<TopbarView>();
