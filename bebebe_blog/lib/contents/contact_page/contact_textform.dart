@@ -105,8 +105,8 @@ class ContactTextformView extends State<ContactTextformWidget> with SingleTicker
     double displayHeight = MediaQuery.of(context).size.height;
 
     // 画面サイズに応じて文字サイズを変更(選択状態に応じて変化するのでbuild内に)
-    this.primaryStyle = this.textController.text.isEmpty ? GoogleFonts.kosugiMaru(fontSize: 18, fontWeight: FontWeight.w400, height: 1.75) : GoogleFonts.kosugiMaru(fontSize: 15, fontWeight: FontWeight.w400, height: 1.75, color: subgrey);
-    this.focusStyle = GoogleFonts.kosugiMaru(fontSize: 15, fontWeight: FontWeight.w400, height: 1.75, color: mainblue);
+    this.primaryStyle = this.textController.text.isEmpty ? GoogleFonts.kosugiMaru(fontSize: 18, fontWeight: FontWeight.w400, height: 1.75) : GoogleFonts.kosugiMaru(fontSize: 15, fontWeight: FontWeight.w400, height: 1.75, color: MyColor.subgrey);
+    this.focusStyle = GoogleFonts.kosugiMaru(fontSize: 15, fontWeight: FontWeight.w400, height: 1.75, color: MyColor.mainblue);
     // 移動しつつ色とサイズをアニメーションで変更
     this.displayText = AnimatedCrossFade(
       firstChild: Text(widget.heading, style: this.focusStyle),

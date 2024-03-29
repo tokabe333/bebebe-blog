@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:math' as math;
 
+import '../../site_frames/colors.dart';
+
 import './skilset_list.dart';
 import './profile_introduce.dart';
 import './profile_page_smartphone.dart';
@@ -95,7 +97,7 @@ class ProfilePageView extends State<ProfilePageWidget> {
           Column(
             children: [
               const Spacer(flex: 2),
-              Text("Ｐｒｏｆｉｌｅ", style: GoogleFonts.kosugiMaru(fontSize: 50, fontWeight: FontWeight.w600, letterSpacing: -10, color: const Color.fromARGB(255, 102, 102, 102))),
+              Text("Ｐｒｏｆｉｌｅ", style: GoogleFonts.kosugiMaru(fontSize: 50, fontWeight: FontWeight.w600, letterSpacing: -10, color: MyColor.subgrey)),
               const Spacer(flex: 2),
               Center(child: this.createIntroduce(context, contentWidth)),
               const Spacer(flex: 1),

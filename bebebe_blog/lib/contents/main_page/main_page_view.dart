@@ -8,7 +8,8 @@ import 'package:easy_animate/enum/animate_direction.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-// import './demo_page_view.dart';
+import '../../site_frames/colors.dart';
+
 import './demo_page_widget.dart';
 
 class MainPageWidget extends StatefulWidget {
@@ -83,14 +84,14 @@ class MainPageView extends State<MainPageWidget> {
     return Container(
       width: displayWidth,
       height: this.mainContentHeight,
-      color: const Color.fromARGB(255, 137, 194, 240),
+      color: MyColor.lightblue,
       child: Stack(
         children: [
           // デモ動画
           Positioned(
             left: demoPadding,
             right: demoPadding,
-            child: Container(height: demoHeight, width: demoWidth, child: this._demoPage),
+            child: SizedBox(height: demoHeight, width: demoWidth, child: this._demoPage),
           ),
           // ポートフォリオサイトです
           Positioned(
@@ -125,7 +126,7 @@ class MainPageView extends State<MainPageWidget> {
       moveAmount: 10,
       delay: Duration(milliseconds: this.delaySwitchTime + 1000),
       child: Container(
-        color: const Color.fromARGB(255, 137, 194, 240),
+        color: MyColor.lightblue,
         child: introduceContainer,
       ),
     );

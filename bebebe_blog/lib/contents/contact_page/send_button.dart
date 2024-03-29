@@ -59,7 +59,7 @@ class SendButtonView extends State<SendButtonWidget> {
           this._pressInput?.value = false;
           this._hoverInput?.value = false;
         },
-        child: this._riveArtBoard != null ? Rive(artboard: this._riveArtBoard!) : Text("ぬる", style: TextStyle(fontSize: 20)),
+        child: this._riveArtBoard != null ? Rive(artboard: this._riveArtBoard!) : const Text("Null", style: TextStyle(fontSize: 20)),
       ),
     );
   } // end of build

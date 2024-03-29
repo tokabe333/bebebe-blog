@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../site_frames/colors.dart';
+
 import './topbar_hover_text.dart';
 
 class Topbar extends StatefulWidget implements PreferredSizeWidget {
@@ -166,7 +168,7 @@ class TopbarView extends State<Topbar> {
           },
           child: const Icon(
             Icons.dehaze_rounded,
-            color: Color.fromARGB(185, 11, 127, 223),
+            color: MyColor.mainblue,
             // color: Colors.white,
           ),
         ),

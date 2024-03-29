@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:math' as math;
 
+import '../../site_frames/colors.dart';
+
 import './portfolio_content_view.dart';
 import './dialog_beyan-connect.dart';
 import './dialog_syunpujuku_app.dart';
@@ -41,13 +43,13 @@ class PortfolioPageView extends State<PortfolioPageWidget> {
 
     return Container(
       constraints: BoxConstraints(minHeight: widget.mainContentHeight),
-      color: const Color.fromARGB(255, 222, 250, 243),
+      color: MyColor.palegreen,
       alignment: Alignment.center,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           const Spacer(flex: 1),
-          Text("Ｗｏｒｋｓ", style: GoogleFonts.kosugiMaru(fontSize: 50, fontWeight: FontWeight.w600, letterSpacing: -10, color: const Color.fromARGB(255, 102, 102, 102))),
+          Text("Ｗｏｒｋｓ", style: GoogleFonts.kosugiMaru(fontSize: 50, fontWeight: FontWeight.w600, letterSpacing: -10, color: MyColor.subgrey)),
           const Spacer(flex: 1),
           Wrap(
             spacing: contentWidth * 0.05,

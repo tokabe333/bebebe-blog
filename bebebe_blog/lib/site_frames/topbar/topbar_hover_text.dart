@@ -6,6 +6,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../site_frames/colors.dart';
+
 /// 画面上部に表示するハイパーリンクテキスト
 class HyperLinkText extends StatefulWidget {
   const HyperLinkText({Key? key, required String this.text, required double this.fontSize, Alignment this.textAlignment = Alignment.center, double this.height = 60, Function? this.onTap}) : super(key: key);
@@ -36,7 +38,7 @@ class HyperLinkTextView extends State<HyperLinkText> {
   Color primaryColor = Colors.white;
 
   /// ホバー時の色
-  Color hoverColor = const Color.fromARGB(255, 137, 194, 240);
+  Color hoverColor = MyColor.lightblue;
 
   /// 通常時の色
   Widget primaryContainer = Container();
@@ -57,7 +59,7 @@ class HyperLinkTextView extends State<HyperLinkText> {
       // margin: EdgeInsets.only(left: 10, right: 10),
       padding: const EdgeInsets.only(left: 10, right: 10),
       child: InkWell(
-        child: Text(widget.text, style: GoogleFonts.notoSansJp(color: const Color.fromARGB(255, 102, 102, 102), letterSpacing: 0.5, fontWeight: FontWeight.w500, fontSize: widget.fontSize)),
+        child: Text(widget.text, style: GoogleFonts.notoSansJp(color: MyColor.subgrey, letterSpacing: 0.5, fontWeight: FontWeight.w500, fontSize: widget.fontSize)),
         onTap: () => widget.onTap?.call(),
       ),
     );

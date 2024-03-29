@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../site_frames/colors.dart';
+
 /// 画面上部に表示するハイパーリンクテキスト
 class SkilsetBadge extends StatefulWidget {
   SkilsetBadge({
@@ -59,7 +61,7 @@ class SkilsetBadgeView extends State<SkilsetBadge> {
   Color primaryColor = Colors.white;
 
   /// ホバー時の色
-  Color hoverColor = const Color.fromARGB(255, 137, 194, 240);
+  Color hoverColor = MyColor.lightblue;
 
   /// 通常時のウィジェット(普段はこれ)
   Widget primaryContainer = Container();
