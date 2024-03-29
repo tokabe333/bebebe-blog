@@ -1,12 +1,17 @@
-# bebebe-blog
-まとめサイトの前に個人ブログをいい感じに作ってみる
+# Welcome to Beyan's Portfolio!!
 
+ポートフォリオページのフロント部分です。<br>
+このリポジトリをご覧になられている方の参考になれば幸いです。<br>
+ソースコードは lib フォルダにあります。
+<br>
 
-### 
-Ubuntu版Flutterいんすこ
+## Server Side
+- Nginx 
+- Django
+- Spearly
 
-- AndroidStudioをダウンロード
-- sh AndroidStudio/bin/studio.sh で起動
-- 初期設定でSDKをいんすこ
-- AndroidStudioを起動してSDKマネージャーからコマンドラインツールズいんすこ
+## Front Side
+- Flutter web
+- Rive
+
 

@@ -6,5 +6,6 @@ linter:
     # prefer_single_quotes: true  # Uncomment to enable the `prefer_single_quotes` rule
     unnecessary_this: false
     type_init_formals: false
-    use_super_parameters: false    
+    use_super_parameters: false
+    unnecessary_brace_in_string_interps: false
     
