@@ -85,7 +85,6 @@ class SendButtonView extends State<SendButtonWidget> {
       onEnter: (_) => this._hoverInput?.value = true,
       onExit: (_) => this._hoverInput?.value = false,
       child: InkWell(
-        // onTap: () => this._pressInput?.value = true,
         onTapDown: (_) {
           this._pressInput?.value = true;
           this.waitingSendMessage = true;
@@ -96,10 +95,11 @@ class SendButtonView extends State<SendButtonWidget> {
           this._hoverInput?.value = true;
           this._pressInput?.value = true;
           this.waitingSendMessage = true;
-          widget.sendComment.call();
-          await Future.delayed(const Duration(milliseconds: 500));
-          this._hoverInput?.value = false;
+          await Future.delayed(const Duration(milliseconds: 200));
           this._pressInput?.value = false;
+          widget.sendComment.call();
+          await Future.delayed(const Duration(milliseconds: 2000));
+          this._hoverInput?.value = false;
         },
         onTapCancel: () {
           this._pressInput?.value = false;
