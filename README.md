@@ -1,4 +1,5 @@
 # Welcome to Beyan's Portfolio!!
+[ここで公開しています！](https://beyan-connect.net/)
 
 ポートフォリオページのフロント部分です。<br>
 このリポジトリをご覧になられている方の参考になれば幸いです。<br>
