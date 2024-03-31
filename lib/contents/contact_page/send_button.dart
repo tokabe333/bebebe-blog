@@ -89,11 +89,18 @@ class SendButtonView extends State<SendButtonWidget> {
         onTapDown: (_) {
           this._pressInput?.value = true;
           this.waitingSendMessage = true;
-          print("send button いまから実行");
           widget.sendComment.call();
-          print("sendbutton 終了");
         },
         onTapUp: (_) => this._pressInput?.value = false,
+        onTap: () async {
+          this._hoverInput?.value = true;
+          this._pressInput?.value = true;
+          this.waitingSendMessage = true;
+          widget.sendComment.call();
+          await Future.delayed(const Duration(milliseconds: 500));
+          this._hoverInput?.value = false;
+          this._pressInput?.value = false;
+        },
         onTapCancel: () {
           this._pressInput?.value = false;
           this._hoverInput?.value = false;
